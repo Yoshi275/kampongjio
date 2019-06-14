@@ -7,8 +7,8 @@ import React from 'react';
 import { Image, View, Text } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
-//import { Makisan }  from '../../resources/images';
-
+import { Makisan }  from '../../resources/images';
+// source={{ uri: 'http://4.bp.blogspot.com/-Lrkp3LMtUpQ/VIsYN_JaIYI/AAAAAAAABHw/RMZ-dfvGlfc/s1600/IMG_0894.JPG'}}
 
 const JioDetails = () => {
     const { 
@@ -29,7 +29,7 @@ const JioDetails = () => {
                 <View style={imageContainerStyle}>
                     <Image 
                         style={imageStyle}
-                        source={{ uri: 'http://4.bp.blogspot.com/-Lrkp3LMtUpQ/VIsYN_JaIYI/AAAAAAAABHw/RMZ-dfvGlfc/s1600/IMG_0894.JPG'}}
+                        source={ Makisan }
                     />
                 </View> 
  
@@ -66,7 +66,9 @@ const styles = {
     titleStyle: {
         fontSize: 24,
         color: '#FFFFFF',
-        fontWeight: 'bold' 
+        fontWeight: 'bold'
+        //fontFamily: 'KaushanScript-Regular'
+        //no error, but not sure whether font family will show up later 
     },
     locationStyle: {
         fontSize: 16,
@@ -83,7 +85,7 @@ const styles = {
     },
     iconStyle: {
         height: 40,
-        width: 40
+        width: 40,
     },
     iconContainerStyle: {
         flex: 1,

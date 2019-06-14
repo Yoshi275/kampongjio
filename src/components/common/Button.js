@@ -18,7 +18,7 @@ const Button = ({ onPress, children }) => {
 const styles = {
   textStyle: {
     alignSelf: 'center',
-    color: '#007aff',
+    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
     paddingTop: 10,
@@ -28,14 +28,19 @@ const styles = {
     //flex 1 is to make sure it will fill up the space as much as it possibly can
     //alignSelf is only for an element to stretch to limits of container
     //whereas alignItems is for the children in the container
-    flex: 1,
-    alignSelf: 'stretch',
-    backgroundColor: '#fff',
+    //ideally, I should set width for the button so it is smaller, but the alignment does not work
+    //so i cheated by toggling with the margin numbers instead
+    //flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#FF7058',
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: '#007aff',
-    marginLeft: 5,
-    marginRight: 5
+    borderColor: '#FF0000',
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 100,
+    marginRight: 100
   }
 };
 

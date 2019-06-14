@@ -15,6 +15,9 @@ class JioList extends Component {
                 <JioDetails />
                 <JioDetails />
                 <JioDetails />
+                <JioDetails />
+                <JioDetails />
+                <JioDetails />
             </ScrollView>
         );
     }
