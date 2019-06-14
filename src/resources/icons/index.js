@@ -1,0 +1,1 @@
+export const Open = require('./open.png');

@@ -1,3 +1,6 @@
+// CardSection is a section in the card, where its children will be arranged horizontally next to each other
+// so certain cards have only one CardSection
+
 import React from 'react';
 import { View } from 'react-native';
 
@@ -11,12 +14,13 @@ const CardSection = (props) => {
 
 const styles = {
     containerStyle: {
-        borderBottomWidth: 1,
+        //borderBottomWidth: 1,
         padding: 5,
-        backgroundColor: '#fff',
+        backgroundColor: '#F3A462',
         justifyContent: 'flex-start',
         flexDirection: 'row',
-        borderColor: '#ddd',
+        flex: 1,
+        borderColor: '#2F4353',
         position: 'relative'
     }
 };
