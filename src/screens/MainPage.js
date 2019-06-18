@@ -19,9 +19,7 @@ class MainPage extends Component {
                 value={this.state.location}
                 onChangeText={location => this.setState({ location })}
             /> 
-
             <JioList />
-
             <Button>+  JIO</Button>
         </View>
         );
@@ -32,6 +30,7 @@ const styles = {
     containerStyle: {
         // flex is so that background color literally covers the whole background
         // can be a potential problems if settings of common components are changes
+        // Not sure why the button is able to be at the bottom
         flex: 1,
         backgroundColor: '#2D9B83',
         flexDirection: 'column',

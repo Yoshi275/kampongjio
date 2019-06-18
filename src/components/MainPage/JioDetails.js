@@ -66,9 +66,9 @@ const styles = {
     titleStyle: {
         fontSize: 24,
         color: '#FFFFFF',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
         //fontFamily: 'KaushanScript-Regular'
-        //no error, but not sure whether font family will show up later 
+        //no error, but the font cannot show up
     },
     locationStyle: {
         fontSize: 16,
