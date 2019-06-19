@@ -63,7 +63,7 @@ class JioInfo extends Component {
                     </View>
 
                     <View style={timeBodyStyle}>
-                            <InfoDisplay text={'Jio Open :'}>
+                            <InfoDisplay text={'Jio Open :'} style={{color: '#000000'}}>
                                 <Text style={textStyle}>12:20</Text>
                             </InfoDisplay>
                             <InfoDisplay text={'Jio Close :'}>

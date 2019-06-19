@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import JioList from '../components/MainPage/JioList'
 import { Input, Button } from '../components/common';
+import Router from './Router';
 
 class MainPage extends Component {
     state = { location: ''};

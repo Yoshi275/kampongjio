@@ -3,7 +3,8 @@
  */
 
 import {AppRegistry} from 'react-native';
-import MainPage from './src/screens/MainPage';
+import App from './src/App';
+import JioInfo from './src/components/JioInformation/JioInfo';
 // import {name as appName} from './app.json';
 
-AppRegistry.registerComponent('kampongjio', () => MainPage);
+AppRegistry.registerComponent('kampongjio', () => App);
