@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 
-const Input = ({ label, value, onChangeText, placeholder }) => {
+const BigInput = ({ label, value, onChangeText, placeholder }) => {
     const { inputStyle, labelStyle, containerStyle, inputContainerStyle } = styles;
 
     return (
@@ -20,7 +20,6 @@ const Input = ({ label, value, onChangeText, placeholder }) => {
 };
 
 const styles = {
-    //flex value is like proportion of space it is given, like input is 2/3 of space
     inputStyle: {
         paddingRight: 5,
         paddingLeft: 5,
@@ -28,28 +27,31 @@ const styles = {
         //lineHeight: 23,
     },
     inputContainerStyle: {
-        // marginBottom is not included because the cards have their own margins, take note
-        flex: 4,
+        //flex: 4,
         borderWidth : 1,
         borderRadius: 2,
         borderColor: '#000000',
         backgroundColor: '#FFFFFF',
-        marginTop: 5,
-        marginRight: 10,
-        elevation: 5
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 20,
+        marginRight: 20,
+        elevation: 5,
+        padding: 10,
+
+        alignSelf: 'stretch'
     },
     labelStyle: {
         //flex: 1,
-        fontSize: 18,
+        fontSize: 24,
         marginLeft: 10,
         marginRight: 10,
-        fontWeight: '400',
+        fontWeight: 'bold',
         color: '#FFFFFF'
     },
     containerStyle: {
-        flexDirection: 'row',
         alignItems: 'center'
     }
 };
 
-export { Input };
+export { BigInput };
