@@ -1,7 +1,8 @@
+// As of now, not used
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const InfoDisplay = ({ props, text, children }) => {
+const InfoDisplay = ({ text, children }) => {
     return(
         <View style={styles.containerStyle}>
             <Text style={styles.textStyle}>{text}</Text>

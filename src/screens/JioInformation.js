@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
-import { Input, Button, Card, CardSection } from '../components/common';
-import JioInfo from '../components/JioInformation/JioInfo';
+import { View } from 'react-native';
+import { Button } from '../components/common';
+import FullJioDetails from '../components/JioInformation/FullJioDetails';
 
 class JioInformation extends Component {
     render() {
         return(
             <View style={styles.containerStyle}>
-                <JioInfo />
+                <FullJioDetails />
                 <Button style={styles.buttonStyle}>+ JOIN JIO</Button>
             </View>
         );
