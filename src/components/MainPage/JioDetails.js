@@ -9,7 +9,6 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
-// source={{ uri: 'http://4.bp.blogspot.com/-Lrkp3LMtUpQ/VIsYN_JaIYI/AAAAAAAABHw/RMZ-dfvGlfc/s1600/IMG_0894.JPG'}}
 
 const JioDetails = () => {
     const { 
@@ -24,6 +23,11 @@ const JioDetails = () => {
         iconContainerStyle
     } = styles;
 
+    const store = 'Makisan';
+    const jioStatus = Open ;
+    const jioLocation = 'NUS Kent Ridge Hall';
+    const jioCloseTime = '12:45';
+    const jioArrivalTime = '13:20';
     return (
         <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
             <Card>
@@ -36,21 +40,21 @@ const JioDetails = () => {
                     </View> 
     
                     <View style={textContainerStyle}>
-                        <Text style={titleStyle}>Makisan</Text>
-                        <Text style={locationStyle}>NUS Kent Ridge Hall</Text>
+                        <Text style={titleStyle}>{store}</Text>
+                        <Text style={locationStyle}>{jioLocation}</Text>
                         <View style={timeStyle}>
-                            <Text style={timeTextStyle}>12:40</Text>
+                            <Text style={timeTextStyle}>{jioCloseTime}</Text>
                             <Text style={timeTextStyle}> | </Text>
-                            <Text style={timeTextStyle}>13:20</Text>
+                            <Text style={timeTextStyle}>{jioArrivalTime}</Text>
                         </View>
                     </View>
                     <View style={iconContainerStyle}>
                         <Image 
                         style={iconStyle}
-                        source={ Open } 
+                        source={jioStatus} 
                         />
                     </View>
-                    </CardSection>
+                </CardSection>
             </Card>
         </TouchableOpacity>
     );
