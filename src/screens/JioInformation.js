@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import { View } from 'react-native';
 import { Button } from '../components/common';
 import FullJioDetails from '../components/JioInformation/FullJioDetails';
@@ -8,7 +9,12 @@ class JioInformation extends Component {
         return(
             <View style={styles.containerStyle}>
                 <FullJioDetails />
-                <Button style={styles.buttonStyle}>+ JOIN JIO</Button>
+                <Button 
+                    onPress={() => { Actions.jioJoinerOrder() }}
+                    style={styles.buttonStyle}
+                >
+                    + JOIN JIO
+                </Button>
             </View>
         );
     };

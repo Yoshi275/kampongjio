@@ -2,6 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import MainPage from './MainPage';
 import JioInformation from './JioInformation';
+import JioJoinerOrder from './JioJoinerOrder';
 
 const RouterComponent = () => {
     return (
@@ -17,6 +18,11 @@ const RouterComponent = () => {
                     key="jioInformation"
                     component={JioInformation}
                     title="Jio Information"
+                />
+                <Scene
+                    key="jioJoinerOrder"
+                    component={JioJoinerOrder}
+                    title="Join Jio"
                 />
             </Scene>
         </Router>
