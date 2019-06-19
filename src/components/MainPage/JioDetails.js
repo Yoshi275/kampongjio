@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { Image, View, Text, TouchableHighlight } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
@@ -25,7 +25,7 @@ const JioDetails = () => {
     } = styles;
 
     return (
-        <TouchableHighlight onPress={() => { Actions.jioInformation() }}>
+        <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
             <Card>
                 <CardSection>
                     <View style={imageContainerStyle}>
@@ -52,7 +52,7 @@ const JioDetails = () => {
                     </View>
                     </CardSection>
             </Card>
-        </TouchableHighlight>
+        </TouchableOpacity>
     );
 };
 
