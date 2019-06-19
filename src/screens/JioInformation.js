@@ -9,10 +9,7 @@ class JioInformation extends Component {
         return(
             <View style={styles.containerStyle}>
                 <FullJioDetails />
-                <Button 
-                    onPress={() => { Actions.jioJoinerOrder() }}
-                    style={styles.buttonStyle}
-                >
+                <Button onPress={() => { Actions.jioJoinerOrder() }}>
                     + JOIN JIO
                 </Button>
             </View>
@@ -22,11 +19,8 @@ class JioInformation extends Component {
 
 const styles = {
     containerStyle: {
-        // flex is so that background color literally covers the whole background
-        // can be a potential problems if settings of common components are changes
         flex: 1,
         backgroundColor: '#2D9B83',
-        // flexDirection: 'column',
         justifyContent: 'space-between'
     },
 };

@@ -6,13 +6,13 @@ class JioJoinerOrder extends Component {
     state = { order: '', price: ''};
 
     render() {
-        const { containerStyle, restaurantStyle } = styles;
-        const restaurant = 'Makisan';
+        const { containerStyle, storeStyle } = styles;
+        const store = 'Makisan';
 
         return(
             <View style={containerStyle}>
                 <View>
-                    <Text style={restaurantStyle}>{restaurant}</Text>
+                    <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"
                         label="YOUR ORDER"
@@ -29,7 +29,7 @@ class JioJoinerOrder extends Component {
                 <Button>SUBMIT ORDER</Button>
             </View>
         );
-}
+    }
 }
 
 const styles = {
@@ -38,7 +38,7 @@ const styles = {
         backgroundColor: '#2D9B83',
         justifyContent: 'space-between'
     },
-    restaurantStyle: {
+    storeStyle: {
         textAlign: 'center',
         textTransform: 'uppercase',
         fontSize: 32,

@@ -29,7 +29,7 @@ const styles = {
     },
     inputContainerStyle: {
         // marginBottom is not included because the cards have their own margins, take note
-        flex: 4,
+        flex: 3.5,
         borderWidth : 1,
         borderRadius: 2,
         borderColor: '#000000',
@@ -39,7 +39,7 @@ const styles = {
         elevation: 5
     },
     labelStyle: {
-        //flex: 1,
+        flex: 1,
         fontSize: 18,
         marginLeft: 10,
         marginRight: 10,

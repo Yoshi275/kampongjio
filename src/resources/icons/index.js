@@ -4,3 +4,4 @@ export const Paid = require('./paid.png');
 export const Arrive = require('./arrive.png');
 export const Complete = require('./complete.png');
 export const Placeholder = require('./placeholder.png');
+export const Hourglass = require('./hourglass.png');

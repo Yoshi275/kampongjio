@@ -9,7 +9,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
-import { Makisan, Hourglass }  from '../../resources/images';
+import { Makisan }  from '../../resources/images';
+import { Hourglass } from '../../resources/icons';
 
 class FullJioDetails extends Component {
     render() {
@@ -20,20 +21,17 @@ class FullJioDetails extends Component {
             titleStyle,
             timeImageStyle,
             timeContainerStyle,
-            //timeTitleStyle,
             timeTextStyle,
-            timeBodyStyle,
-            //timeStyleLeft,
-            //timeStyleRight
          } = styles;
 
-        const coordinator = 'Cheryl';
-        const status = 'Jio Open';
-        const location = 'NUS Kent Ridge Hall';
-        const timeOpen = '12:20';
-        const timeClose = '12:45';
-        const timeArrival = '13:20';
-        const url = 'https://order.makisan.com/en_SG/';
+        const coordinatorName = 'Cheryl';
+        const phoneNumber = '9033 1173';
+        const jioStatus = 'Jio Open';
+        const jioLocation = 'NUS Kent Ridge Hall';
+        const jioOpenTime = '12:20';
+        const jioCloseTime = '12:45';
+        const jioArrivalTime = '13:20';
+        const jioMenuURL = 'https://order.makisan.com/en_SG/';
         const deliveryApp = 'GrabFood';
         const deliveryCost = '$2';
         const promoCode = 'FRESH20 (20%)';
@@ -50,32 +48,32 @@ class FullJioDetails extends Component {
 
                     <View>
                         <Text style={titleStyle}>Makisan</Text> 
-                        <Text style={textStyle}>Coordinator : {coordinator}</Text>
-                        <Text style={textStyle}>Phone Number</Text>
+                        <Text style={textStyle}>Coordinator : {coordinatorName}</Text>
+                        <Text style={textStyle}>{phoneNumber}</Text>
                         
                     </View>
                 </HeaderSection>
 
-                <Text style={textStyle}>Status : {status}</Text>
-                <Text style={textStyle}>Location : {location}</Text>
+                <Text style={textStyle}>Status : {jioStatus}</Text>
+                <Text style={textStyle}>Location : {jioLocation}</Text>
 
                 <View style={timeContainerStyle}>
                     <View>
                         <Image style={timeImageStyle} source={Hourglass} />    
                     </View>
 
-                    <View style={timeBodyStyle}>
-                        <Text style={timeTextStyle}>Jio Open : {timeOpen}</Text>
-                        <Text style={timeTextStyle}>Jio Close : {timeClose}</Text>
-                        <Text style={timeTextStyle}>Arrival Time : {timeArrival}</Text>
+                    <View>
+                        <Text style={timeTextStyle}>Jio Open : {jioOpenTime}</Text>
+                        <Text style={timeTextStyle}>Jio Close : {jioCloseTime}</Text>
+                        <Text style={timeTextStyle}>Arrival Time : {jioArrivalTime}</Text>
                     </View>
                 </View>
 
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
-                    <TouchableOpacity onPress={()=> Linking.openURL( url )}>
+                    <TouchableOpacity onPress={()=> Linking.openURL( jioMenuURL )}>
                         <Text style={[textStyle, {fontWeight: '800', textDecorationLine:'underline'}]}>
-                            {url}
+                            {jioMenuURL}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -147,19 +145,6 @@ const styles = {
     timeTitleContainerStyle: {
         alignItems: 'flex-start',
     },
-    timeBodyStyle: {
-        //fontColor: '#000000'    
-    },
-    timeStyleLeft: {
-        flex: 1,
-        paddingLeft: 20,
-        alignItems: 'flex-start'
-    },
-    timeStyleRight: {
-        flex: 1,
-        alignItems: 'flex-end',
-        paddingRight: 20
-    }
-}
+};
 
 export default FullJioDetails;
