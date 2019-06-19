@@ -29,7 +29,7 @@ class JioJoinerOrder extends Component {
                 <Button>SUBMIT ORDER</Button>
             </View>
         );
-}
+    }
 }
 
 const styles = {
