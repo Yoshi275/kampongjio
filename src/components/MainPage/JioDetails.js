@@ -4,7 +4,8 @@
 // Consider making the layout more dynamic when we start hooking it up to a database
 
 import React from 'react';
-import { Image, View, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { Image, View, Text, TouchableHighlight } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
@@ -24,32 +25,34 @@ const JioDetails = () => {
     } = styles;
 
     return (
-        <Card>
-            <CardSection>
-                <View style={imageContainerStyle}>
-                    <Image 
-                        style={imageStyle}
-                        source={ Makisan }
-                    />
-                </View> 
- 
-                <View style={textContainerStyle}>
-                    <Text style={titleStyle}>Makisan</Text>
-                    <Text style={locationStyle}>NUS Kent Ridge Hall</Text>
-                    <View style={timeStyle}>
-                        <Text style={timeTextStyle}>12:40</Text>
-                        <Text style={timeTextStyle}> | </Text>
-                        <Text style={timeTextStyle}>13:20</Text>
+        <TouchableHighlight onPress={() => { Actions.jioInformation() }}>
+            <Card>
+                <CardSection>
+                    <View style={imageContainerStyle}>
+                        <Image 
+                            style={imageStyle}
+                            source={ Makisan }
+                        />
+                    </View> 
+    
+                    <View style={textContainerStyle}>
+                        <Text style={titleStyle}>Makisan</Text>
+                        <Text style={locationStyle}>NUS Kent Ridge Hall</Text>
+                        <View style={timeStyle}>
+                            <Text style={timeTextStyle}>12:40</Text>
+                            <Text style={timeTextStyle}> | </Text>
+                            <Text style={timeTextStyle}>13:20</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={iconContainerStyle}>
-                    <Image 
-                    style={iconStyle}
-                    source={ Open } 
-                    />
-                </View>
-                </CardSection>
-        </Card>
+                    <View style={iconContainerStyle}>
+                        <Image 
+                        style={iconStyle}
+                        source={ Open } 
+                        />
+                    </View>
+                    </CardSection>
+            </Card>
+        </TouchableHighlight>
     );
 };
 

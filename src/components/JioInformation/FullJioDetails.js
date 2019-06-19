@@ -65,9 +65,21 @@ class FullJioDetails extends Component {
                     </View>
 
                     <View style={timeBodyStyle}>
+<<<<<<< HEAD:src/components/JioInformation/JioInfo.js
+                            <InfoDisplay text={'Jio Open :'} style={{color: '#000000'}}>
+                                <Text style={textStyle}>12:20</Text>
+                            </InfoDisplay>
+                            <InfoDisplay text={'Jio Close :'}>
+                                <Text style={textStyle}>12:45</Text>
+                            </InfoDisplay>
+                            <InfoDisplay text={'Arrival Time :'}>
+                                <Text style={textStyle}>13:20</Text>
+                            </InfoDisplay>
+=======
                         <Text style={timeTextStyle}>Jio Open : {timeOpen}</Text>
                         <Text style={timeTextStyle}>Jio Close : {timeClose}</Text>
                         <Text style={timeTextStyle}>Arrival Time : {timeArrival}</Text>
+>>>>>>> master:src/components/JioInformation/FullJioDetails.js
                     </View>
                 </View>
 
