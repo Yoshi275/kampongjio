@@ -3,10 +3,10 @@ import Router from './screens/Router';
 
 class App extends Component {
     render() {
-        return(
+        return (
             <Router />
-        )
-    };
+        );
+    }
 };
 
 export default App;
