@@ -7,28 +7,36 @@
 
 
 import React, { Component } from 'react';
-import { View, Text, Image, Linking } from 'react-native';
+import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
-import { InfoDisplay } from '../common';
-import { Makisan }  from '../../resources/images';
+import { Makisan, Hourglass }  from '../../resources/images';
 
-class JioInfo extends Component {
+class FullJioDetails extends Component {
     render() {
         const { 
             imageStyle,
             imageContainerStyle,
             textStyle,
             titleStyle,
-            timeTitleContainerStyle,
+            timeImageStyle,
             timeContainerStyle,
-            timeTitleStyle,
+            //timeTitleStyle,
             timeTextStyle,
             timeBodyStyle,
-            timeStyleLeft,
-            timeStyleRight
+            //timeStyleLeft,
+            //timeStyleRight
          } = styles;
 
-        const url = "https://order.makisan.com/en_SG/";
+        const coordinator = 'Cheryl';
+        const status = 'Jio Open';
+        const location = 'NUS Kent Ridge Hall';
+        const timeOpen = '12:20';
+        const timeClose = '12:45';
+        const timeArrival = '13:20';
+        const url = 'https://order.makisan.com/en_SG/';
+        const deliveryApp = 'GrabFood';
+        const deliveryCost = '$2';
+        const promoCode = 'FRESH20 (20%)';
 
         return(
             <View>
@@ -42,57 +50,43 @@ class JioInfo extends Component {
 
                     <View>
                         <Text style={titleStyle}>Makisan</Text> 
-                        <InfoDisplay text={'Coordinator :'}>
-                            <Text style={textStyle}>Cheryl</Text>
-                        </InfoDisplay>
+                        <Text style={textStyle}>Coordinator : {coordinator}</Text>
                         <Text style={textStyle}>Phone Number</Text>
                         
                     </View>
                 </HeaderSection>
 
-                <InfoDisplay text={'Status :'}>
-                    <Text style={textStyle}>Jio Open</Text>
-                </InfoDisplay>
-                <InfoDisplay text={'Location: '}>
-                    <Text style={textStyle}>NUS Kent Ridge Hall</Text>
-                </InfoDisplay>
+                <Text style={textStyle}>Status : {status}</Text>
+                <Text style={textStyle}>Location : {location}</Text>
 
                 <View style={timeContainerStyle}>
-                    <View style={timeTitleContainerStyle}>
-                        <Text style={timeTitleStyle}>TIME</Text>
+                    <View>
+                        <Image style={timeImageStyle} source={Hourglass} />    
                     </View>
 
                     <View style={timeBodyStyle}>
-                            <InfoDisplay text={'Jio Open :'}>
-                                <Text style={textStyle}>12:20</Text>
-                            </InfoDisplay>
-                            <InfoDisplay text={'Jio Close :'}>
-                                <Text style={textStyle}>12:45</Text>
-                            </InfoDisplay>
-                            <InfoDisplay text={'Arrival Time :'}>
-                                <Text style={textStyle}>13:20</Text>
-                            </InfoDisplay>
+                        <Text style={timeTextStyle}>Jio Open : {timeOpen}</Text>
+                        <Text style={timeTextStyle}>Jio Close : {timeClose}</Text>
+                        <Text style={timeTextStyle}>Arrival Time : {timeArrival}</Text>
                     </View>
                 </View>
 
-                <InfoDisplay text={'Menu :'}>
-                    <Text style={textStyle} onPress={()=> Linking.openURL( url )}>
-                        { url }
-                    </Text>
-                </InfoDisplay>
-                <InfoDisplay text={'Delivery App :'}>
-                    <Text style={textStyle}>Grab Food</Text>
-                </InfoDisplay>
-                <InfoDisplay text={'Delivery Cost (Total) :'}>
-                    <Text style={textStyle}>$2</Text>
-                </InfoDisplay>
-                <InfoDisplay text={'Promo Code :'}>
-                    <Text style={textStyle}>FRESH20 (20%)</Text>
-                </InfoDisplay>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={textStyle}>Menu : </Text>
+                    <TouchableOpacity onPress={()=> Linking.openURL( url )}>
+                        <Text style={[textStyle, {fontWeight: '800', textDecorationLine:'underline'}]}>
+                            {url}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <Text style={textStyle}>Delivery App : {deliveryApp}</Text>
+                <Text style={textStyle}>Delivery Cost (Total) : {deliveryCost}</Text>
+                <Text style={textStyle}>Promo Code : {promoCode}</Text>
             </View> 
         );
     };
 }
+
 
 const styles = {
     imageStyle: {
@@ -144,24 +138,17 @@ const styles = {
         // marginLeft: 15,
         // marginRight: 15,
         backgroundColor: '#F3A462',
+        flexDirection: 'row'
     },
-    timeTitleStyle: {
-        fontSize: 24,
-        color: '#000000',
-        fontWeight: 'bold',
-        marginLeft:5,
-        marginRight: 5,
-        borderWidth: 1.5,
-        borderColor: '#000000',
-        paddingLeft: 10,
-        paddingRight: 10 
-        
+    timeImageStyle: {
+        height: 100,
+        width: 100
     }, 
     timeTitleContainerStyle: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
     timeBodyStyle: {
-        fontColor: '#000000'    
+        //fontColor: '#000000'    
     },
     timeStyleLeft: {
         flex: 1,
@@ -175,4 +162,4 @@ const styles = {
     }
 }
 
-export default JioInfo;
+export default FullJioDetails;
