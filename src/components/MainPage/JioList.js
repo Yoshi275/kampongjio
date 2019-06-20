@@ -4,8 +4,7 @@
 // in the screen)
 
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
-//import { Card } from '../common';
+import { ScrollView } from 'react-native';
 import JioDetails from './JioDetails';
 
 class JioList extends Component {
