@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
 import { Makisan }  from '../../resources/images';
-import { Hourglass } from '../../resources/icons';
+import { TimeOrange } from '../common';
 
 class FullJioDetails extends Component {
     render() {
@@ -19,9 +19,6 @@ class FullJioDetails extends Component {
             imageContainerStyle,
             textStyle,
             titleStyle,
-            timeImageStyle,
-            timeContainerStyle,
-            timeTextStyle,
          } = styles;
 
         const coordinatorName = 'Cheryl';
@@ -57,17 +54,13 @@ class FullJioDetails extends Component {
                 <Text style={textStyle}>Status : {jioStatus}</Text>
                 <Text style={textStyle}>Location : {jioLocation}</Text>
 
-                <View style={timeContainerStyle}>
-                    <View>
-                        <Image style={timeImageStyle} source={Hourglass} />    
+                 <TimeOrange>
+                    <View style={{ flexDirection: 'column' }}>
+                        <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {jioOpenTime}</Text>
+                        <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {jioCloseTime}</Text>
+                        <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {jioArrivalTime}</Text>
                     </View>
-
-                    <View>
-                        <Text style={timeTextStyle}>Jio Open : {jioOpenTime}</Text>
-                        <Text style={timeTextStyle}>Jio Close : {jioCloseTime}</Text>
-                        <Text style={timeTextStyle}>Arrival Time : {jioArrivalTime}</Text>
-                    </View>
-                </View>
+                </TimeOrange>
 
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
@@ -84,7 +77,6 @@ class FullJioDetails extends Component {
         );
     };
 }
-
 
 const styles = {
     imageStyle: {
@@ -121,29 +113,6 @@ const styles = {
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.9,
         shadowRadius: 2
-    }, 
-    timeTextStyle: {
-        fontSize: 18,
-        color: '#000000',
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 3,
-        marginBottom: 3,
-    },
-    timeContainerStyle: {
-        paddingTop: 5,
-        paddingBottom: 5,
-        // marginLeft: 15,
-        // marginRight: 15,
-        backgroundColor: '#F3A462',
-        flexDirection: 'row'
-    },
-    timeImageStyle: {
-        height: 100,
-        width: 100
-    }, 
-    timeTitleContainerStyle: {
-        alignItems: 'flex-start',
     },
 };
 
