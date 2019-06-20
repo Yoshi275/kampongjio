@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Input, Button } from '../components/common';
-import { Hourglass } from '../resources/icons';
+import { Input, Button, TimeOrange } from '../components/common';
 
 class CoordinatorCreateJio extends Component {
     state = { 
@@ -20,8 +19,6 @@ class CoordinatorCreateJio extends Component {
         const { 
             storeStyle, 
             containerStyle, 
-            timeContainerStyle, 
-            timeImageStyle,
         } = styles;
 
         return(
@@ -63,10 +60,8 @@ class CoordinatorCreateJio extends Component {
                 value={this.state.promoCode}
                 onChangeText={location => this.setState({ promoCode })}
                 /> 
-                <View style={timeContainerStyle}>
-                    <Image style={timeImageStyle} source={Hourglass} />    
-
-                    <View style={{ flex: 3 }}>
+                <TimeOrange>    
+                    <View style={{flex: 1}}>
                         <Input 
                         style={{color: '#000000'}}
                         placeholder="00:00"
@@ -87,7 +82,8 @@ class CoordinatorCreateJio extends Component {
                         onChangeText={location => this.setState({ jioArrivalTime })}
                         /> 
                     </View>
-                </View>
+                </TimeOrange>
+
                 <Button>LET'S JIO!</Button>
             </View>
         );
@@ -114,24 +110,5 @@ const styles = {
         borderColor: '#FF7058',
         backgroundColor: '#F3A462',
     },
-    timeContainerStyle: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginTop: 10,
-        marginBottom: 10,
-        // marginLeft: 15,
-        // marginRight: 15,
-        backgroundColor: '#F3A462',
-        flexDirection: 'row',
-    },
-    timeImageStyle: {
-        flex: 1,
-        position: 'relative',
-        marginTop: 5, 
-        marginBottom: 5,
-        marginLeft: 5,
-        height: 90,
-        width: 90
-    }, 
 };
 export default CoordinatorCreateJio;
