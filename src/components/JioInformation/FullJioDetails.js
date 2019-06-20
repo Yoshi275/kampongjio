@@ -11,6 +11,16 @@ import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
 import { Makisan }  from '../../resources/images';
 import { TimeOrange } from '../common';
+import data from '../../data/AllJios.json';
+
+import {
+    JIO_COMPLETED, // to be for state constants
+    JIO_OPEN,
+    JIO_CLOSED,
+    JIO_PAID,
+    JIO_ARRIVED
+} from '../../data/jio-states'
+
 
 class FullJioDetails extends Component {
     render() {
@@ -21,17 +31,17 @@ class FullJioDetails extends Component {
             titleStyle,
          } = styles;
 
-        const coordinatorName = 'Cheryl';
-        const phoneNumber = '9033 1173';
-        const jioStatus = 'Jio Open';
-        const jioLocation = 'NUS Kent Ridge Hall';
-        const jioOpenTime = '12:20';
-        const jioCloseTime = '12:45';
-        const jioArrivalTime = '13:20';
-        const jioMenuURL = 'https://order.makisan.com/en_SG/';
-        const deliveryApp = 'GrabFood';
-        const deliveryCost = '$2';
-        const promoCode = 'FRESH20 (20%)';
+        const coordinatorName = data.allOrders.order1.coordinatorName;
+        const phoneNumber = data.allOrders.order1.phoneNumber;
+        const jioStatus = data.allOrders.order1.jioStatus;
+        const jioLocation = data.allOrders.order1.jioLocation;
+        const jioOpenTime = data.allOrders.order1.jioOpenTime;
+        const jioCloseTime = data.allOrders.order1.jioCloseTime;
+        const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
+        const jioMenuURL = data.allOrders.order1.jioMenuURL;
+        const deliveryApp = data.allOrders.order1.deliveryApp;
+        const deliveryCost = data.allOrders.order1.deliveryCost;
+        const promoCode = data.allOrders.order1.promoCode;
 
         return(
             <View>
@@ -51,7 +61,7 @@ class FullJioDetails extends Component {
                     </View>
                 </HeaderSection>
 
-                <Text style={textStyle}>Status : {jioStatus}</Text>
+                <Text style={textStyle}>Status : {jioStatus === JIO_OPEN ? 'Jio Open' : 'Jio Closed'}</Text>
                 <Text style={textStyle}>Location : {jioLocation}</Text>
 
                  <TimeOrange>
