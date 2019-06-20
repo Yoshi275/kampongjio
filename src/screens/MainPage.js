@@ -31,11 +31,9 @@ const styles = {
     containerStyle: {
         // flex is so that background color literally covers the whole background
         // can be a potential problems if settings of common components are changes
-        // Not sure why the button is able to be at the bottom
         flex: 1,
         backgroundColor: '#2D9B83',
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
+        justifyContent: 'space-between'
     }
 };
 
