@@ -9,6 +9,15 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
+import data from '../../data/AllJios.json';
+
+import {
+    JIO_COMPLETED, // to be for state constants
+    JIO_OPEN,
+    JIO_CLOSED,
+    JIO_PAID,
+    JIO_ARRIVED
+} from '../../data/jio-states'
 
 const JioDetails = () => {
     const { 
@@ -23,11 +32,11 @@ const JioDetails = () => {
         iconContainerStyle
     } = styles;
 
-    const store = 'Makisan';
-    const jioStatus = Open ;
-    const jioLocation = 'NUS Kent Ridge Hall';
-    const jioCloseTime = '12:45';
-    const jioArrivalTime = '13:20';
+    const store = data.allOrders.order1.store; // consider refactoring so it's just const store = store in future
+    const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
+    const jioLocation = data.allOrders.order1.jioLocation;
+    const jioCloseTime = data.allOrders.order1.jioCloseTime;
+    const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
     return (
         <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
             <Card>
@@ -51,7 +60,7 @@ const JioDetails = () => {
                     <View style={iconContainerStyle}>
                         <Image 
                         style={iconStyle}
-                        source={jioStatus} 
+                        source={jioStatusIcon} 
                         />
                     </View>
                 </CardSection>
