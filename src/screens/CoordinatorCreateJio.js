@@ -15,6 +15,9 @@ class CoordinatorCreateJio extends Component {
         jioArrivalTime: ''
     };
 
+    submit() {
+        // a method called after button is pressed
+    }
     render() {
         const { 
             storeStyle, 
@@ -84,7 +87,7 @@ class CoordinatorCreateJio extends Component {
                     </View>
                 </TimeOrange>
 
-                <Button>LET'S JIO!</Button>
+                <Button onPress={() => this.submit() }>LET'S JIO!</Button>
             </View>
         );
     }
