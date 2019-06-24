@@ -3,13 +3,14 @@
 // CloseJioTime, PickupTime, and StatusIcon
 // Consider making the layout more dynamic when we start hooking it up to a database
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
 import data from '../../data/AllJios.json';
+import { db } from '../../config';
 
 import {
     JIO_COMPLETED, // to be for state constants
@@ -19,54 +20,72 @@ import {
     JIO_ARRIVED
 } from '../../data/jio-states'
 
-const JioDetails = () => {
-    const { 
-        imageStyle, 
-        imageContainerStyle, 
-        titleStyle, 
-        locationStyle,
-        timeTextStyle, 
-        timeStyle, 
-        textContainerStyle,
-        iconStyle,
-        iconContainerStyle
-    } = styles;
+class JioDetails extends Component {
+    state = { order: {} }
 
-    const store = data.allOrders.order1.store; // consider refactoring so it's just const store = store in future
-    const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
-    const jioLocation = data.allOrders.order1.jioLocation;
-    const jioCloseTime = data.allOrders.order1.jioCloseTime;
-    const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
-    return (
-        <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
-            <Card>
-                <CardSection>
-                    <View style={imageContainerStyle}>
-                        <Image 
-                            style={imageStyle}
-                            source={ Makisan }
-                        />
-                    </View> 
+    componentDidMount() { // this directly adds order2 details in this file. eventually all info should come from jioInfo
+        db
+            .ref('/allOrders/order2')
+            .on('value', snapshot => {
+                let order = snapshot.val();
+                this.setState({ order : order });
+                console.log(order);
+                console.log(order.store);
+            })
+    }
+
+    render() {
+
+        const { 
+            imageStyle, 
+            imageContainerStyle, 
+            titleStyle, 
+            locationStyle,
+            timeTextStyle, 
+            timeStyle, 
+            textContainerStyle,
+            iconStyle,
+            iconContainerStyle
+        } = styles;
     
-                    <View style={textContainerStyle}>
-                        <Text style={titleStyle}>{store}</Text>
-                        <Text style={locationStyle}>{jioLocation}</Text>
-                        <View style={timeStyle}>
-                            <Text style={timeTextStyle}>{jioCloseTime}</Text>
-                            <Text style={timeTextStyle}> | </Text>
-                            <Text style={timeTextStyle}>{jioArrivalTime}</Text>
+        //const store = data.allOrders.order1.store; // consider refactoring so it's just const store = store in future
+        const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
+        const jioImage = Makisan; // please use conditional formatting based on name of store
+        //const jioLocation = data.allOrders.order1.jioLocation;
+        //const jioCloseTime = data.allOrders.order1.jioCloseTime;
+        //const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
+
+        return (
+            <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
+                <Card>
+                    <CardSection>
+                        <View style={imageContainerStyle}>
+                            <Image 
+                                style={imageStyle}
+                                source={ jioImage }
+                            />
+                        </View> 
+        
+                        <View style={textContainerStyle}>
+                            <Text style={titleStyle}>{this.state.order.store}</Text>
+                            <Text style={locationStyle}>{this.state.order.jioLocation}</Text>
+                            <View style={timeStyle}>
+                                <Text style={timeTextStyle}>{this.state.order.jioCloseTime}</Text>
+                                <Text style={timeTextStyle}> | </Text>
+                                <Text style={timeTextStyle}>{this.state.order.jioArrivalTime}</Text>
+                            </View>
                         </View>
-                    </View>
-                    <View style={iconContainerStyle}>
-                        <Image 
-                        style={iconStyle}
-                        source={jioStatusIcon} 
-                        />
-                    </View>
-                </CardSection>
-            </Card>
-        </TouchableOpacity>
-    );
+                        <View style={iconContainerStyle}>
+                            <Image 
+                            style={iconStyle}
+                            source={jioStatusIcon} 
+                            />
+                        </View>
+                    </CardSection>
+                </Card>
+            </TouchableOpacity>
+        );
+    }
 };
 
 const styles = {
