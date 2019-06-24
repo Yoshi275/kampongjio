@@ -6,8 +6,18 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import JioDetails from './JioDetails';
+import firebase from 'firebase';
 
 class JioList extends Component {
+    readData() {
+        firebase
+            .database()
+            .ref('kampongjio/allOrders/order1')
+            .on('value', function(snapshot) {
+                console.log(snapshot.val());
+            });
+    }
+
     render() {
         return(
             <ScrollView>
