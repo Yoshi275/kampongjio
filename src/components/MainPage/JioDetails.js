@@ -10,7 +10,6 @@ import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
 import data from '../../data/AllJios.json';
-import { db } from '../../config';
 
 import {
     JIO_COMPLETED, // to be for state constants
@@ -21,25 +20,18 @@ import {
 } from '../../data/jio-states'
 
 class JioDetails extends Component {
-    state = { orders: {} }
+    state = { order: {} }
 
-    componentDidMount() {
+    componentDidMount() { // this directly adds order2 details in this file. eventually all info should come from jioInfo
         db
             .ref('/allOrders/order2')
             .on('value', snapshot => {
-                let orders = snapshot.val();
-                //let orders = Object.values(data);
-                this.setState({ orders : orders });
-                console.log(orders);
-                console.log(orders.store);
+                let order = snapshot.val();
+                this.setState({ order : order });
+                console.log(order);
+                console.log(order.store);
             })
     }
-
-    addItem(item) {
-        db.ref('/allOrders').push({
-            name: item
-        });
-    };
 
     render() {
 
@@ -55,11 +47,12 @@ class JioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        const store = data.allOrders.order1.store; // consider refactoring so it's just const store = store in future
+        //const store = this.state.orders.store; // consider refactoring so it's just const store = store in future
         const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
-        const jioLocation = data.allOrders.order1.jioLocation;
-        const jioCloseTime = data.allOrders.order1.jioCloseTime;
-        const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
+        const jioImage = Makisan; // please use conditional formatting based on name of store
+        //const jioLocation = data.allOrders.order1.jioLocation;
+        //const jioCloseTime = data.allOrders.order1.jioCloseTime;
+        //const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
 
         return (
             <TouchableOpacity onPress={() => { this.addItem("CHEESE") }}>
@@ -68,17 +61,17 @@ class JioDetails extends Component {
                         <View style={imageContainerStyle}>
                             <Image 
                                 style={imageStyle}
-                                source={ Makisan }
+                                source={ jioImage }
                             />
                         </View> 
         
                         <View style={textContainerStyle}>
                             <Text style={titleStyle}>{this.state.orders.store}</Text>
-                            <Text style={locationStyle}>{jioLocation}</Text>
+                            <Text style={locationStyle}>{this.state.orders.jioLocation}</Text>
                             <View style={timeStyle}>
-                                <Text style={timeTextStyle}>{jioCloseTime}</Text>
+                                <Text style={timeTextStyle}>{this.state.orders.jioCloseTime}</Text>
                                 <Text style={timeTextStyle}> | </Text>
-                                <Text style={timeTextStyle}>{jioArrivalTime}</Text>
+                                <Text style={timeTextStyle}>{this.state.orders.jioArrivalTime}</Text>
                             </View>
                         </View>
                         <View style={iconContainerStyle}>

@@ -6,16 +6,19 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import JioDetails from './JioDetails';
-import firebase from 'firebase';
+import { db } from '../../config';
 
 class JioList extends Component {
-    readData() {
-        firebase
-            .database()
-            .ref('kampongjio/allOrders/order1')
-            .on('value', function(snapshot) {
-                console.log(snapshot.val());
-            });
+    state = { allOrders: {} }
+
+    componentDidMount() { // this adds ALL ORDERS + details eg. this.state.allOrders.order1.store should open "Makisan"
+        db
+            .ref('/allOrders/order2')
+            .on('value', snapshot => {
+                let allOrders = snapshot.val();
+                this.setState({ allOrders });
+                console.log(allOrders);
+            })
     }
 
     render() {
