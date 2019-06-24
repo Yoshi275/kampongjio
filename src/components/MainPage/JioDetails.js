@@ -10,6 +10,7 @@ import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
 import data from '../../data/AllJios.json';
+import { db } from '../../config';
 
 import {
     JIO_COMPLETED, // to be for state constants
@@ -47,7 +48,7 @@ class JioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        //const store = this.state.orders.store; // consider refactoring so it's just const store = store in future
+        //const store = data.allOrders.order1.store; // consider refactoring so it's just const store = store in future
         const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
         const jioImage = Makisan; // please use conditional formatting based on name of store
         //const jioLocation = data.allOrders.order1.jioLocation;
@@ -55,7 +56,7 @@ class JioDetails extends Component {
         //const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
 
         return (
-            <TouchableOpacity onPress={() => { this.addItem("CHEESE") }}>
+            <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
                 <Card>
                     <CardSection>
                         <View style={imageContainerStyle}>
@@ -66,12 +67,12 @@ class JioDetails extends Component {
                         </View> 
         
                         <View style={textContainerStyle}>
-                            <Text style={titleStyle}>{this.state.orders.store}</Text>
-                            <Text style={locationStyle}>{this.state.orders.jioLocation}</Text>
+                            <Text style={titleStyle}>{this.state.order.store}</Text>
+                            <Text style={locationStyle}>{this.state.order.jioLocation}</Text>
                             <View style={timeStyle}>
-                                <Text style={timeTextStyle}>{this.state.orders.jioCloseTime}</Text>
+                                <Text style={timeTextStyle}>{this.state.order.jioCloseTime}</Text>
                                 <Text style={timeTextStyle}> | </Text>
-                                <Text style={timeTextStyle}>{this.state.orders.jioArrivalTime}</Text>
+                                <Text style={timeTextStyle}>{this.state.order.jioArrivalTime}</Text>
                             </View>
                         </View>
                         <View style={iconContainerStyle}>

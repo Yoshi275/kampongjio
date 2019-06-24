@@ -13,7 +13,7 @@ class JioList extends Component {
 
     componentDidMount() { // this adds ALL ORDERS + details eg. this.state.allOrders.order1.store should open "Makisan"
         db
-            .ref('/allOrders/order2')
+            .ref('/allOrders')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
