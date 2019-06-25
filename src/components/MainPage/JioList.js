@@ -4,12 +4,13 @@
 // in the screen)
 
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import JioDetails from './JioDetails';
 import { db } from '../../config';
+import data from '../../data/AllJios.json';
 
 class JioList extends Component {
-    state = { allOrders: {} }
+    state = { allOrders: {}, orderOne: {}, orderTwo: {}, orderThree: {} };
 
     componentDidMount() { // this adds ALL ORDERS + details eg. this.state.allOrders.order1.store should open "Makisan"
         db
@@ -17,22 +18,42 @@ class JioList extends Component {
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
+                this.setState({ orderOne: allOrders.order1 });
+                this.setState({ orderTwo: allOrders.order2 });
+                this.setState({ orderThree: allOrders.order3 });
                 console.log(allOrders);
-            })
+            });
+        // fetch(data)
+        //     .then((response) => response.json())
+        //     .then((responseData) => this.setState({ allOrders: data}))
+    }
+
+    renderJio() {
+        // console.log(this.state.allOrders.order1.coordinaterName);
+        // console.log(this.state.check);
+        return (
+             <JioDetails print={'print'} order={this.state.orderOne}/>
+            // A new method doesn't allow the rendering of two components {/* <JioDetails print={'print'} order={this.state.allOrders}/> */}
+            );
+            // return this.state.albums.map(album => 
+            //     <AlbumDetail key={album.title} album={album}/>
+            // );
+            
     }
 
     render() {
         return(
             <ScrollView>
-                <JioDetails />
-                <JioDetails />
-                <JioDetails />
-                <JioDetails />
-                <JioDetails />
-                <JioDetails />
+                {/* { this.renderJio() }  */}
+                <JioDetails order={this.state.orderOne} />
+                <JioDetails order={this.state.orderTwo} />
+                <JioDetails order={this.state.orderThree} />
+                <JioDetails order={this.state.allOrders} /> 
+                {/* <Text>{this.state.allOrders.store}</Text> */}
             </ScrollView>
         );
     }
 }
+
 
 export default JioList;

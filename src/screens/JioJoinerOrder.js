@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { BigInput, Button } from '../components/common';
 
 class JioJoinerOrder extends Component {
-    state = { order: '', price: ''};
+    state = { foodChoices: '', price: '', specialRequests: ''};
 
     render() {
         const { containerStyle, storeStyle } = styles;
@@ -16,14 +16,20 @@ class JioJoinerOrder extends Component {
                     <BigInput 
                         placeholder="What do I want to order?"
                         label="YOUR ORDER"
-                        value={this.state.order}
-                        onChangeText={order => this.setState({ order })}
+                        value={this.state.foodChoices}
+                        onChangeText={foodChoices => this.setState({ foodChoices })}
                     /> 
                     <BigInput 
                         placeholder="How much does everything cost?"
                         label="PRICE"
                         value={this.state.price}
                         onChangeText={order => this.setState({ price })}
+                    /> 
+                    <BigInput 
+                        placeholder="Any special requests?"
+                        label="SPECIAL REQUESTS"
+                        value={this.state.specialRequests}
+                        onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
                 </View>
                 <Button>SUBMIT ORDER</Button>

@@ -21,21 +21,24 @@ import {
 } from '../../data/jio-states'
 
 class JioDetails extends Component {
-    state = { order: {} }
+    // state = { order: '' };
+    
+    // // constructor(order) {
+    // //     super(order);
+    // // }
 
-    componentDidMount() { // this directly adds order2 details in this file. eventually all info should come from jioInfo
-        db
-            .ref('/allOrders/order2')
-            .on('value', snapshot => {
-                let order = snapshot.val();
-                this.setState({ order : order });
-                console.log(order);
-                console.log(order.store);
-            })
-    }
+    // componentDidMount() { // this directly adds order2 details in this file. eventually all info should come from jioInfo
+    //     db
+    //         .ref('/allOrders/order3')
+    //         .on('value', snapshot => {
+    //             let order = snapshot.val();
+    //             this.setState({ order : order });
+    //             console.log(order);
+    //             console.log(order.store);
+    //         });
+    // }
 
     render() {
-
         const { 
             imageStyle, 
             imageContainerStyle, 
@@ -67,12 +70,12 @@ class JioDetails extends Component {
                         </View> 
         
                         <View style={textContainerStyle}>
-                            <Text style={titleStyle}>{this.state.order.store}</Text>
-                            <Text style={locationStyle}>{this.state.order.jioLocation}</Text>
+                            <Text style={titleStyle}>{this.props.order.store}</Text>
+                            <Text style={locationStyle}>{this.props.order.jioLocation}</Text>
                             <View style={timeStyle}>
-                                <Text style={timeTextStyle}>{this.state.order.jioCloseTime}</Text>
+                                <Text style={timeTextStyle}>{this.props.order.jioCloseTime}</Text>
                                 <Text style={timeTextStyle}> | </Text>
-                                <Text style={timeTextStyle}>{this.state.order.jioArrivalTime}</Text>
+                                <Text style={timeTextStyle}>{this.props.order.jioArrivalTime}</Text>
                             </View>
                         </View>
                         <View style={iconContainerStyle}>
