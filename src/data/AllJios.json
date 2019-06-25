@@ -1,6 +1,6 @@
 {
-    "allOrders" : {
-      	"order1" : {
+	"allOrders" : [
+		{		
 			"store" : "Makisan",
 			"coordinatorName" : "Cheryl",
 			"phoneNumber" : 99123456,
@@ -44,8 +44,8 @@
 					"price" : "$27.60"
 				}
 			}
-      	},
-      	"order2" : {
+	},
+      	 {
 			"store" : "Ameens",
 			"coordinatorName" : "Venny",
 			"phoneNumber" : 91234567,
@@ -84,7 +84,7 @@
 				}
 			}
       	},
-      	"order3" : {
+      	 {
 			"store" : "Macdonalds",
 			"coordinatorName" : "Rafi",
 			"phoneNumber" : 99998888,
@@ -124,5 +124,7 @@
 				}
 			}
       	}
-    }
+    
+	
+	]
 }
