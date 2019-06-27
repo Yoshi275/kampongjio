@@ -75,7 +75,7 @@
 					"specialRequests" : "ONLY CHICKEN! NO SAUCE!"
 				},
 				{
-					"orderNo" : 2
+					"orderNo" : 2,
 					"joinerName" : "Eric",
 					"foodChoices" : [
 						"Carbonara"

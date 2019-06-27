@@ -31,6 +31,8 @@ class JioList extends Component {
                 this.setState({ orderThree: allOrders[2] });
                 console.log(this.state.allOrders);
                 console.log(this.state.orderOne);
+                this.order = allOrders;
+                console.log(this.order);
             });
     }
 
@@ -45,6 +47,8 @@ class JioList extends Component {
     }
 
     render() {
+        let order = [];
+
         return(
             <ScrollView>
                 {/* { this.renderJio() }  */}
