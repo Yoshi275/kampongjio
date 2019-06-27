@@ -14,8 +14,9 @@
 			"deliveryApp" : "GrabFood",
 			"deliveryCost" : "$2",
 			"promoCode" : "ILOVESUSHI (20%)",
-			"foodOrders" : {
-				"foodOrder1" : {
+			"foodOrders" : [
+				{
+					"orderNo" : 1,
 					"joinerName" : "Adam",
 					"foodChoices" : [
 						"Salmon Delight",
@@ -25,7 +26,8 @@
 					"price" : "$19.80",
 					"specialRequests" : "Honestly no need for sushi bah."
 				},
-				"foodOrder2" : {
+				{
+					"orderNo" : 2,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
 						"Yucky Veggie Delight",
@@ -35,7 +37,8 @@
 					],
 					"price" : "$15.30"
 				},
-				"foodOrder3" : {
+				{
+					"orderNo" : 3,
 					"joinerName" : "Venny",
 					"foodChoices" : [
 						"Too Cool for Food Puns",
@@ -44,7 +47,7 @@
 					],
 					"price" : "$27.60"
 				}
-			}
+			]
 		},
 		{
 			"orderId" : 2,
@@ -60,8 +63,9 @@
 			"deliveryApp" : "FoodPanda",
 			"deliveryCost" : "$5",
 			"promoCode" : "SUPPERJIOSIOL (40%)",
-			"foodOrders" : {
-				"foodOrder1" : {
+			"foodOrders" : [
+				{
+					"orderNo" : 1,
 					"joinerName" : "Ahmed",
 					"foodChoices" : [
 						"Fried Chicken",
@@ -70,21 +74,23 @@
 					"price" : "$8.80",
 					"specialRequests" : "ONLY CHICKEN! NO SAUCE!"
 				},
-				"foodOrder2" : {
+				{
+					"orderNo" : 2
 					"joinerName" : "Eric",
 					"foodChoices" : [
 						"Carbonara"
 					],
 					"price" : "$6.40"
 				},
-				"foodOrder3" : {
+				{
+					"orderNo" : 3,
 					"joinerName" : "Hui Ren",
 					"foodChoices" : [
 						"Cheese Fries (L)"
 					],
 					"price" : "$5.00"
 				}
-			}
+			]
       	},
       	{
 			"orderId" : 3,
@@ -100,8 +106,9 @@
 			"deliveryApp" : "Deliveroo",
 			"deliveryCost" : "$2",
 			"promoCode" : "CARBSCARBSCARBS (40%)",
-			"foodOrders" : {
-				"foodOrder1" : {
+			"foodOrders" : [
+				{
+					"orderNo" : 1,
 					"joinerName" : "Dhameem",
 					"foodChoices" : [
 						"McChicken Meal"
@@ -109,7 +116,8 @@
 					"price" : "$8.80",
 					"specialRequests" : "No Sauce"
 				},
-				"foodOrder2" : {
+				{
+					"orderNo" : 2,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
 						"Filet-o-Fish Meal",
@@ -118,14 +126,15 @@
 					"price" : "$6.40",
 					"specialRequests" : "No tartar sauce, no ice"
 				},
-				"foodOrder3" : {
+				{
+					"orderNo" : 3,
 					"joinerName" : "Jonina",
 					"foodChoices" : [
 						"Mineral Water"
 					],
 					"price" : "$3.00"
 				}
-			}
+			]
       	}
 	]
 }
