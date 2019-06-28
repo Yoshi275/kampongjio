@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
 import { View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Button } from '../components/common';
 import FullJioDetails from '../components/JioInformation/FullJioDetails';
 

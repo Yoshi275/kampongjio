@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
 
@@ -23,12 +24,11 @@ class JioJoinerOrder extends Component {
             .push(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
+                Actions.mainPage(); // TODO: Add some way to confirm that order has been made.
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
             })
-
-        // TODO: Navigate away after submitting the order
     }
 
     render() {
