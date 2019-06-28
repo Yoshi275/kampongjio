@@ -16,7 +16,7 @@
 			"promoCode" : "ILOVESUSHI (20%)",
 			"foodOrders" : [
 				{
-					"orderNo" : 1,
+					"foodOrderNo" : 1,
 					"joinerName" : "Adam",
 					"foodChoices" : [
 						"Salmon Delight",
@@ -27,7 +27,7 @@
 					"specialRequests" : "Honestly no need for sushi bah."
 				},
 				{
-					"orderNo" : 2,
+					"foodOrderNo" : 2,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
 						"Yucky Veggie Delight",
@@ -38,7 +38,7 @@
 					"price" : "$15.30"
 				},
 				{
-					"orderNo" : 3,
+					"foodOrderNo" : 3,
 					"joinerName" : "Venny",
 					"foodChoices" : [
 						"Too Cool for Food Puns",
@@ -65,7 +65,7 @@
 			"promoCode" : "SUPPERJIOSIOL (40%)",
 			"foodOrders" : [
 				{
-					"orderNo" : 1,
+					"foodOrderNo" : 1,
 					"joinerName" : "Ahmed",
 					"foodChoices" : [
 						"Fried Chicken",
@@ -75,7 +75,7 @@
 					"specialRequests" : "ONLY CHICKEN! NO SAUCE!"
 				},
 				{
-					"orderNo" : 2,
+					"foodOrderNo" : 2,
 					"joinerName" : "Eric",
 					"foodChoices" : [
 						"Carbonara"
@@ -83,7 +83,7 @@
 					"price" : "$6.40"
 				},
 				{
-					"orderNo" : 3,
+					"foodOrderNo" : 3,
 					"joinerName" : "Hui Ren",
 					"foodChoices" : [
 						"Cheese Fries (L)"
@@ -108,7 +108,7 @@
 			"promoCode" : "CARBSCARBSCARBS (40%)",
 			"foodOrders" : [
 				{
-					"orderNo" : 1,
+					"foodOrderNo" : 1,
 					"joinerName" : "Dhameem",
 					"foodChoices" : [
 						"McChicken Meal"
@@ -117,7 +117,7 @@
 					"specialRequests" : "No Sauce"
 				},
 				{
-					"orderNo" : 2,
+					"foodOrderNo" : 2,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
 						"Filet-o-Fish Meal",
@@ -127,7 +127,7 @@
 					"specialRequests" : "No tartar sauce, no ice"
 				},
 				{
-					"orderNo" : 3,
+					"foodOrderNo" : 3,
 					"joinerName" : "Jonina",
 					"foodChoices" : [
 						"Mineral Water"

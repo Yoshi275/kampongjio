@@ -5,13 +5,17 @@ import { BigInput, Button } from '../components/common';
 import { db } from '../config';
 
 class JioJoinerOrder extends Component {
-    state = { foodChoices: '', price: '', specialRequests: ''};
+    state = { 
+        foodChoices: '', 
+        price: '', 
+        specialRequests: ''
+    };
 
     handleSubmit() {
         let postData = {
             foodChoices: this.state.foodChoices,
             joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
-            orderNo: 4, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+            foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
             price: '8.80', // TODO: Until price var is fixed, this will have to do
             specialRequests: this.state.specialRequests,
         }
