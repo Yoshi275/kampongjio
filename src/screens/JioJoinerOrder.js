@@ -53,7 +53,7 @@ class JioJoinerOrder extends Component {
                         placeholder="How much does everything cost?"
                         label="PRICE"
                         value={this.state.price}
-                        onChangeText={order => this.setState({ price })}
+                        onChangeText={price => this.setState({ price })}
                         // TODO: typing into this element results in crashing. can we fix this?
                         // TODO: this should be a number input? can we find some other input for this? whatever looks nice
                     /> 
