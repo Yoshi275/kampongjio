@@ -20,10 +20,10 @@ class CoordinatorCreateJio extends Component {
     handleSubmit() {
         // a method called after button is pressed
         let postData = {
-            orderId: 9999,
-            store: this.state.store,
-            coordinatorName: '<INSERT NAME>',
-            phoneNumber: 99998888,
+            orderId: 9999, // TODO: generate this somehow in future
+            store: this.state.store, 
+            coordinatorName: '<INSERT NAME>', // TODO: get info from user account
+            phoneNumber: 99998888, // TODO: get info from user account
             jioStatus: 'jioOpen',
             jioLocation: this.state.jioLocation,
             jioOpenTime: this.state.jioOpenTime,
@@ -33,6 +33,7 @@ class CoordinatorCreateJio extends Component {
             deliveryApp: this.state.deliveryApp,
             deliveryCost: this.state.deliveryCost,
             promoCode: this.state.promoCode,
+            foodOrders: [],
         }
 
         let dbLocation = '/allOrders/';
@@ -56,7 +57,7 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
-                <Text style={storeStyle}>YOUR NEW JIO</Text>
+                <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
                     placeholder="Where do I want to eat from?"
                     label="Store*"
