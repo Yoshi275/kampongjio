@@ -22,7 +22,7 @@ class JioJoinerOrder extends Component {
 
     render() {
         const { containerStyle, storeStyle } = styles;
-        const store = 'Makisan';
+        const store = this.props.order.store;
 
         return(
             <View style={containerStyle}>
