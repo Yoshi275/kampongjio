@@ -31,13 +31,13 @@ class JioList extends Component {
                 this.order = allOrders;
                 console.log(this.state.allOrders);
                 console.log(this.state.orderOne);
-            })
-            .then((success) => {
-                console.log('Success Message: ', success) // success callback
-            })
-            .catch((error) => {
-                console.log('Error Message: ', error) // error callback
             });
+            // .then((success) => {
+            //     console.log('Success Message: ', success) // success callback
+            // })
+            // .catch((error) => {
+            //     console.log('Error Message: ', error) // error callback
+            // });
     }
 
     renderJio() {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
-import console = require('console');
 
 class JioJoinerOrder extends Component {
     state = { foodChoices: '', price: '', specialRequests: ''};
@@ -11,13 +10,16 @@ class JioJoinerOrder extends Component {
         let postData = {
             foodChoices: this.state.foodChoices,
             joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
-            orderNo: 4, // TODO: this should be dynamically generated somehow
+            orderNo: 4, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
             price: '8.80', // TODO: Until price var is fixed, this will have to do
             specialRequests: this.state.specialRequests,
         }
 
+        let orderId = this.props.order.orderId - 1; // for accessing the array
+        let dbLocation = '/allOrders/' + orderId + '/foodOrders/';
+
         db
-            .ref('/allOrders')
+            .ref(dbLocation)
             .push(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
@@ -25,6 +27,8 @@ class JioJoinerOrder extends Component {
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
             })
+
+        // TODO: Navigate away after submitting the order
     }
 
     render() {
