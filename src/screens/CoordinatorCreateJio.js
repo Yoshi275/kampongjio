@@ -57,61 +57,61 @@ class CoordinatorCreateJio extends Component {
             <View style={containerStyle}>
                 <Text style={storeStyle}>YOUR NEW JIO</Text>
                 <Input 
-                placeholder="Where do I want to eat from?"
-                label="Store*"
-                value={this.state.store}
-                onChangeText={location => this.setState({ store })}
+                    placeholder="Where do I want to eat from?"
+                    label="Store*"
+                    value={this.state.store}
+                    onChangeText={store => this.setState({ store })}
                 /> 
                 <Input 
-                placeholder="What do they serve?"
-                label="Menu*"
-                value={this.state.jioMenuURL}
-                onChangeText={location => this.setState({ jioMenuURL })}
+                    placeholder="What do they serve?"
+                    label="Menu*"
+                    value={this.state.jioMenuURL}
+                    onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
                 /> 
                 <Input 
-                placeholder="Where should they pick up the food?"
-                label="Location*"
-                value={this.state.jioLocation}
-                onChangeText={location => this.setState({ jioLocation })}
+                    placeholder="Where should they pick up the food?"
+                    label="Location*"
+                    value={this.state.jioLocation}
+                    onChangeText={jioLocation => this.setState({ jioLocation })}
                 /> 
                 <Input 
-                placeholder="What app am I ordering from?"
-                label="Delivery App*"
-                value={this.state.deliveryApp}
-                onChangeText={location => this.setState({ deliveryApp })}
+                    placeholder="What app am I ordering from?"
+                    label="Delivery App*"
+                    value={this.state.deliveryApp}
+                    onChangeText={deliveryApp => this.setState({ deliveryApp })}
                 /> 
                 <Input 
-                placeholder="Where do I want to eat from?"
-                label="Delivery Cost*"
-                value={this.state.deliveryCost}
-                onChangeText={location => this.setState({ deliveryCost })}
+                    placeholder="Where do I want to eat from?"
+                    label="Delivery Cost*"
+                    value={this.state.deliveryCost}
+                    onChangeText={deliveryCost => this.setState({ deliveryCost })}
                 /> 
                 <Input 
-                placeholder="What is the promo code (how many % off)?"
-                label="Promo Code*"
-                value={this.state.promoCode}
-                onChangeText={location => this.setState({ promoCode })}
+                    placeholder="What is the promo code (how many % off)?"
+                    label="Promo Code*"
+                    value={this.state.promoCode}
+                    onChangeText={promoCode => this.setState({ promoCode })}
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 1}}>
                         <Input 
-                        style={{color: '#000000'}}
-                        placeholder="00:00"
-                        label="Jio Open*"
-                        value={this.state.jioOpenTime}
-                        onChangeText={location => this.setState({ jioOpenTime })}
+                            style={{color: '#000000'}}
+                            placeholder="00:00"
+                            label="Jio Open*"
+                            value={this.state.jioOpenTime}
+                            onChangeText={jioOpenTime => this.setState({ jioOpenTime })}
                         /> 
                         <Input 
-                        placeholder="00:00"
-                        label="Jio Close*"
-                        value={this.state.jioCloseTime}
-                        onChangeText={location => this.setState({ jioCloseTime })}
+                            placeholder="00:00"
+                            label="Jio Close*"
+                            value={this.state.jioCloseTime}
+                            onChangeText={jioCloseTime => this.setState({ jioCloseTime })}
                         /> 
                         <Input 
-                        placeholder="00:00"
-                        label="Arrival Time*"
-                        value={this.state.jioArrivalTime}
-                        onChangeText={location => this.setState({ jioArrivalTime })}
+                            placeholder="00:00"
+                            label="Arrival Time*"
+                            value={this.state.jioArrivalTime}
+                            onChangeText={jioArrivalTime => this.setState({ jioArrivalTime })}
                         /> 
                     </View>
                 </TimeOrange>
