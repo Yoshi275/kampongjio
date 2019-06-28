@@ -83,7 +83,7 @@ class CoordinatorCreateJio extends Component {
                     onChangeText={deliveryApp => this.setState({ deliveryApp })}
                 /> 
                 <Input 
-                    placeholder="Where do I want to eat from?"
+                    placeholder="How much is delivery?"
                     label="Delivery Cost*"
                     value={this.state.deliveryCost}
                     onChangeText={deliveryCost => this.setState({ deliveryCost })}
