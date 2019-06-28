@@ -20,8 +20,8 @@ class JioJoinerOrder extends Component {
             specialRequests: this.state.specialRequests,
         }
 
-        let orderId = this.props.order.orderId - 1; // for accessing the array, has to be changed in the future
-        let dbLocation = '/allOrders/' + orderId + '/foodOrders/';
+        let foodOrderId = this.props.foodOrderId; // for accessing the array, has to be changed in the future
+        let dbLocation = '/allOrders/' + foodOrderId + '/foodOrders/';
 
         db
             .ref(dbLocation)
@@ -38,10 +38,15 @@ class JioJoinerOrder extends Component {
     render() {
         const { containerStyle, storeStyle } = styles;
         const store = this.props.order.store;
+        const foodOrderId = this.props.foodOrderId;
+
+        console.log('Logging Order ID: ');
+        console.log(this.props.foodOrderId);
 
         return(
             <View style={containerStyle}>
                 <View>
+                    <Text>{foodOrderId}</Text>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"

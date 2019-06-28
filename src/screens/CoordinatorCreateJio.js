@@ -16,6 +16,7 @@ class CoordinatorCreateJio extends Component {
         jioCloseTime: '',
         jioArrivalTime: '',
         order: {},
+        firebaseOrderId: 'hello',
     };
 
     handleSubmit() {
@@ -44,9 +45,14 @@ class CoordinatorCreateJio extends Component {
         db
             .ref(dbLocation)
             .push(postData)
-            .then((success) => {
-                console.log('Success Message: ', success) // success callback
-                Actions.jioJoinerOrder({ order: this.state.order });
+            .then((response) => {
+                console.log('Success Message: ', response) // success callback
+                this.setState({ firebaseOrderId: response.getKey() });
+                console.log(this.state.firebaseOrderId);
+                Actions.jioJoinerOrder({ 
+                    order: this.state.order, 
+                    foodOrderId: this.state.firebaseOrderId
+                });
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
@@ -60,7 +66,7 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
-                <Text>{this.state.order.phoneNumber}</Text>
+                <Text>{this.state.firebaseOrderId}</Text>
                 <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
                     placeholder="Where do I want to eat from?"
