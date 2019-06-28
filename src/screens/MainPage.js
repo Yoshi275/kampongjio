@@ -3,6 +3,7 @@
 // Remember to add onPress as props in Button once Navigation has been figured out
 
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import { View } from 'react-native';
 import JioList from '../components/MainPage/JioList'
 import { Input, Button } from '../components/common';
@@ -21,7 +22,9 @@ class MainPage extends Component {
                 onChangeText={location => this.setState({ location })}
             /> 
             <JioList />
-            <Button>+  JIO</Button>
+            <Button onPress={() => { Actions.coordinatorCreateJio() }}>
+                +  JIO
+            </Button>
         </View>
         );
     }
