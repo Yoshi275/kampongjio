@@ -19,20 +19,18 @@ class JioList extends Component {
         orderThree: {} 
     };
     
-    componentDidMount() { // this adds ALL ORDERS + details eg. this.state.allOrders.order1.store should open "Makisan"
+    componentDidMount() { // TODO: somehow pass info on all orders
         db
             .ref('/allOrders')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
-                console.log(allOrders);
                 this.setState({ allOrders });
                 this.setState({ orderOne: allOrders[0] });
                 this.setState({ orderTwo: allOrders[1] });
                 this.setState({ orderThree: allOrders[2] });
+                this.order = allOrders;
                 console.log(this.state.allOrders);
                 console.log(this.state.orderOne);
-                this.order = allOrders;
-                console.log(this.order);
             });
     }
 

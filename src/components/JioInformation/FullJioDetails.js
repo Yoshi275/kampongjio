@@ -11,7 +11,6 @@ import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
 import { Makisan }  from '../../resources/images';
 import { TimeOrange } from '../common';
-import data from '../../data/AllJios.json';
 
 import {
     JIO_COMPLETED, // to be for state constants
@@ -31,18 +30,6 @@ class FullJioDetails extends Component {
             titleStyle,
          } = styles;
 
-        const coordinatorName = data.allOrders.order1.coordinatorName;
-        const phoneNumber = data.allOrders.order1.phoneNumber;
-        const jioStatus = data.allOrders.order1.jioStatus;
-        const jioLocation = data.allOrders.order1.jioLocation;
-        const jioOpenTime = data.allOrders.order1.jioOpenTime;
-        const jioCloseTime = data.allOrders.order1.jioCloseTime;
-        const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
-        const jioMenuURL = data.allOrders.order1.jioMenuURL;
-        const deliveryApp = data.allOrders.order1.deliveryApp;
-        const deliveryCost = data.allOrders.order1.deliveryCost;
-        const promoCode = data.allOrders.order1.promoCode;
-
         return(
             <View>
                 <HeaderSection>
@@ -54,38 +41,39 @@ class FullJioDetails extends Component {
                     </View>
 
                     <View>
-                        <Text style={titleStyle}>Makisan</Text> 
-                        <Text style={textStyle}>Coordinator : {coordinatorName}</Text>
-                        <Text style={textStyle}>{phoneNumber}</Text>
+                        <Text style={titleStyle}>{this.props.order.store}</Text> 
+                        <Text style={textStyle}>Coordinator : {this.props.order.coordinatorName}</Text>
+                        <Text style={textStyle}>{this.props.order.phoneNumber}</Text>
                         
                     </View>
                 </HeaderSection>
 
-                <Text style={textStyle}>Status : {jioStatus === JIO_OPEN ? 'Jio Open' : 'Jio Closed'}</Text>
-                <Text style={textStyle}>Location : {jioLocation}</Text>
+                <Text style={textStyle}>Status : {this.props.order.jioStatus === "jioOpen" ? 'Jio Open' : 'Jio Closed'}</Text>
+                <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>
 
                  <TimeOrange>
                     <View style={{ flexDirection: 'column' }}>
-                        <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {jioOpenTime}</Text>
-                        <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {jioCloseTime}</Text>
-                        <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {jioArrivalTime}</Text>
+                        <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {this.props.order.jioOpenTime}</Text>
+                        <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {this.props.order.jioCloseTime}</Text>
+                        <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {this.props.order.jioArrivalTime}</Text>
                     </View>
                 </TimeOrange>
 
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
-                    <TouchableOpacity onPress={()=> Linking.openURL( jioMenuURL )}>
+                    <TouchableOpacity onPress={()=> Linking.openURL( this.props.order.jioMenuURL )}>
                         <Text style={[textStyle, {fontWeight: '800', textDecorationLine:'underline'}]}>
-                            {jioMenuURL}
+                            {this.props.order.jioMenuURL}
                         </Text>
+                        {/* TODO: Menu link gets cut off at end of app. Can we wrap text? Or use hyperlink? */}
                     </TouchableOpacity>
                 </View>
-                <Text style={textStyle}>Delivery App : {deliveryApp}</Text>
-                <Text style={textStyle}>Delivery Cost (Total) : {deliveryCost}</Text>
-                <Text style={textStyle}>Promo Code : {promoCode}</Text>
+                <Text style={textStyle}>Delivery App : {this.props.order.deliveryApp}</Text>
+                <Text style={textStyle}>Delivery Cost (Total) : {this.props.order.deliveryCost}</Text>
+                <Text style={textStyle}>Promo Code : {this.props.order.promoCode}</Text>
             </View> 
         );
-    };
+    }
 }
 
 const styles = {
@@ -99,8 +87,8 @@ const styles = {
         fontWeight: 'bold',
         marginLeft:5,
         marginRight: 5
-        //fontFamily: 'KaushanScript-Regular'
-        //no error, but the font cannot show up
+        //fontFamily: 'KaushanScript-Regular' 
+        // TODO: have font show up. not working?
     },
     textStyle: {
         fontSize: 18,
