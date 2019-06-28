@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
+import console = require('console');
 
 class JioJoinerOrder extends Component {
     state = { foodChoices: '', price: '', specialRequests: ''};
@@ -9,15 +10,21 @@ class JioJoinerOrder extends Component {
     handleSubmit() {
         let postData = {
             foodChoices: this.state.foodChoices,
-            joinerName: 'Cheryl',
-            orderNo: 4,
-            price: '8.80',
+            joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
+            orderNo: 4, // TODO: this should be dynamically generated somehow
+            price: '8.80', // TODO: Until price var is fixed, this will have to do
             specialRequests: this.state.specialRequests,
         }
 
         db
             .ref('/allOrders')
             .push(postData)
+            .then((success) => {
+                console.log('Success Message: ', success) // success callback
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
     }
 
     render() {
@@ -27,7 +34,6 @@ class JioJoinerOrder extends Component {
         return(
             <View style={containerStyle}>
                 <View>
-                    <Text>{this.props.order.coordinatorName}</Text>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"
@@ -41,6 +47,7 @@ class JioJoinerOrder extends Component {
                         value={this.state.price}
                         onChangeText={order => this.setState({ price })}
                         // TODO: typing into this element results in crashing. can we fix this?
+                        // TODO: this should be a number input? can we find some other input for this? whatever looks nice
                     /> 
                     <BigInput 
                         placeholder="Any special requests?"
