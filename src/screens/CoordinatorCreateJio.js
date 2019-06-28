@@ -14,12 +14,13 @@ class CoordinatorCreateJio extends Component {
         promoCode: '',
         jioOpenTime: '',
         jioCloseTime: '',
-        jioArrivalTime: ''
+        jioArrivalTime: '',
+        order: {},
     };
 
     handleSubmit() {
         // a method called after button is pressed
-        let postData = {
+        const postData = {
             orderId: 9999, // TODO: generate this somehow in future
             store: this.state.store, 
             coordinatorName: '<INSERT NAME>', // TODO: get info from user account
@@ -36,14 +37,16 @@ class CoordinatorCreateJio extends Component {
             foodOrders: [],
         }
 
-        let dbLocation = '/allOrders/';
+        const dbLocation = '/allOrders/';
+
+        this.setState({ order: postData });
 
         db
             .ref(dbLocation)
             .push(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
-                Actions.mainPage(); // TODO: Add some way to confirm that jio has been created/switch to dashboard when it's ready
+                Actions.jioJoinerOrder({ order: this.state.order });
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
@@ -57,6 +60,7 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
+                <Text>{this.state.order.phoneNumber}</Text>
                 <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
                     placeholder="Where do I want to eat from?"
