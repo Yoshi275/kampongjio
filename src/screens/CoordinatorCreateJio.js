@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Input, Button, TimeOrange } from '../components/common';
+import { db } from '../config';
 
 class CoordinatorCreateJio extends Component {
     state = { 
@@ -15,8 +16,36 @@ class CoordinatorCreateJio extends Component {
         jioArrivalTime: ''
     };
 
-    submit() {
+    handleSubmit() {
         // a method called after button is pressed
+        let postData = {
+            orderId: 9999,
+            store: this.state.store,
+            coordinatorName: '<INSERT NAME>',
+            phoneNumber: 99998888,
+            jioStatus: 'jioOpen',
+            jioLocation: this.state.jioLocation,
+            jioOpenTime: this.state.jioOpenTime,
+            jioCloseTime: this.state.jioCloseTime,
+            jioArrivalTime: this.state.jioArrivalTime,
+            jioMenuURL: this.state.jioMenuURL,
+            deliveryApp: this.state.deliveryApp,
+            deliveryCost: this.state.deliveryCost,
+            promoCode: this.state.promoCode,
+        }
+
+        let dbLocation = '/allOrders/';
+
+        db
+            .ref(dbLocation)
+            .push(postData)
+            .then((success) => {
+                console.log('Success Message: ', success) // success callback
+                Actions.mainPage(); // TODO: Add some way to confirm that jio has been created/switch to dashboard when it's ready
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
     }
     render() {
         const { 
@@ -87,7 +116,7 @@ class CoordinatorCreateJio extends Component {
                     </View>
                 </TimeOrange>
 
-                <Button onPress={() => this.submit() }>LET'S JIO!</Button>
+                <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
             </View>
         );
     }
