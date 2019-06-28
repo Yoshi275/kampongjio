@@ -24,7 +24,7 @@ class JioJoinerOrder extends Component {
             .push(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
-                Actions.mainPage(); // TODO: Add some way to confirm that order has been made.
+                Actions.mainPage(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
