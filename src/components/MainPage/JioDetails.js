@@ -21,22 +21,6 @@ import {
 } from '../../data/jio-states'
 
 class JioDetails extends Component {
-    // state = { order: '' };
-    
-    // // constructor(order) {
-    // //     super(order);
-    // // }
-
-    // componentDidMount() { // this directly adds order2 details in this file. eventually all info should come from jioInfo
-    //     db
-    //         .ref('/allOrders/order3')
-    //         .on('value', snapshot => {
-    //             let order = snapshot.val();
-    //             this.setState({ order : order });
-    //             console.log(order);
-    //             console.log(order.store);
-    //         });
-    // }
 
     render() {
         const { 
@@ -51,12 +35,13 @@ class JioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        //const store = data.allOrders.order1.store; // consider refactoring so it's just const store = store in future
         const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
         const jioImage = Makisan; // please use conditional formatting based on name of store
-        //const jioLocation = data.allOrders.order1.jioLocation;
-        //const jioCloseTime = data.allOrders.order1.jioCloseTime;
-        //const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
+        /* eg. const jioImage = this.props.order.store === 'Makisan' 
+                    ? Makisan
+                    : this.props.order.store === 'Ameens'
+                        ? Ameens
+                        : Macdonalds */
 
         return (
             <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
