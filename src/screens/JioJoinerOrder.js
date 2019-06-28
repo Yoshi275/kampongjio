@@ -20,7 +20,7 @@ class JioJoinerOrder extends Component {
             specialRequests: this.state.specialRequests,
         }
 
-        let orderId = this.props.order.orderId - 1; // for accessing the array
+        let orderId = this.props.order.orderId - 1; // for accessing the array, has to be changed in the future
         let dbLocation = '/allOrders/' + orderId + '/foodOrders/';
 
         db
