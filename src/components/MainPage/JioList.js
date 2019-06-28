@@ -29,10 +29,7 @@ class JioList extends Component {
                 this.setState({ orderOne: allOrders[0] });
                 this.setState({ orderTwo: allOrders[1] });
                 this.setState({ orderThree: allOrders[2] });
-                console.log(this.state.allOrders);
-                console.log(this.state.orderOne);
                 this.order = allOrders;
-                console.log(this.order);
             });
     }
 

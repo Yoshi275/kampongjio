@@ -8,13 +8,13 @@ class JioInformation extends Component {
     render() {
         return(
             <View style={styles.containerStyle}>
-                <FullJioDetails />
+                <FullJioDetails order={this.props.order}/>
                 <Button onPress={() => { Actions.jioJoinerOrder() }}>
                     + JOIN JIO
                 </Button>
             </View>
         );
-    };
+    }
 }
 
 const styles = {

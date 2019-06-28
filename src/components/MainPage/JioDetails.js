@@ -59,7 +59,7 @@ class JioDetails extends Component {
         //const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
 
         return (
-            <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
+            <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
                 <Card>
                     <CardSection>
                         <View style={imageContainerStyle}>
@@ -89,7 +89,7 @@ class JioDetails extends Component {
             </TouchableOpacity>
         );
     }
-};
+}
 
 const styles = {
     textContainerStyle: {
