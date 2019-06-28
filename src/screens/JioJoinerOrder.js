@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { BigInput, Button } from '../components/common';
+import { db } from '../config';
 
 class JioJoinerOrder extends Component {
     state = { foodChoices: '', price: '', specialRequests: ''};
+
+    handleSubmit() {
+        let postData = {
+            foodChoices: this.state.foodChoices,
+            joinerName: 'Cheryl',
+            orderNo: 4,
+            price: '8.80',
+            specialRequests: this.state.specialRequests,
+        }
+
+        db
+            .ref('/allOrders')
+            .push(postData)
+    }
 
     render() {
         const { containerStyle, storeStyle } = styles;
@@ -12,6 +27,7 @@ class JioJoinerOrder extends Component {
         return(
             <View style={containerStyle}>
                 <View>
+                    <Text>{this.props.order.coordinatorName}</Text>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"
@@ -33,7 +49,7 @@ class JioJoinerOrder extends Component {
                         onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
                 </View>
-                <Button>SUBMIT ORDER</Button>
+                <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
             </View>
         );
     }
