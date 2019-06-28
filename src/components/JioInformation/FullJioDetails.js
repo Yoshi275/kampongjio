@@ -11,7 +11,6 @@ import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
 import { Makisan }  from '../../resources/images';
 import { TimeOrange } from '../common';
-import data from '../../data/AllJios.json';
 
 import {
     JIO_COMPLETED, // to be for state constants
@@ -30,18 +29,6 @@ class FullJioDetails extends Component {
             textStyle,
             titleStyle,
          } = styles;
-
-        // const coordinatorName = data.allOrders.order1.coordinatorName;
-        // const phoneNumber = data.allOrders.order1.phoneNumber;
-        const jioStatus = data.allOrders[0].jioStatus; // need to shift state in future
-        // const jioLocation = data.allOrders.order1.jioLocation;
-        // const jioOpenTime = data.allOrders.order1.jioOpenTime;
-        // const jioCloseTime = data.allOrders.order1.jioCloseTime;
-        // const jioArrivalTime = data.allOrders.order1.jioArrivalTime;
-        // const jioMenuURL = data.allOrders.order1.jioMenuURL;
-        // const deliveryApp = data.allOrders.order1.deliveryApp;
-        // const deliveryCost = data.allOrders.order1.deliveryCost;
-        // const promoCode = data.allOrders.order1.promoCode;
 
         return(
             <View>
@@ -78,6 +65,7 @@ class FullJioDetails extends Component {
                         <Text style={[textStyle, {fontWeight: '800', textDecorationLine:'underline'}]}>
                             {this.props.order.jioMenuURL}
                         </Text>
+                        {/* TODO: Menu link gets cut off at end of app. Can we wrap text? Or use hyperlink? */}
                     </TouchableOpacity>
                 </View>
                 <Text style={textStyle}>Delivery App : {this.props.order.deliveryApp}</Text>
@@ -99,8 +87,8 @@ const styles = {
         fontWeight: 'bold',
         marginLeft:5,
         marginRight: 5
-        //fontFamily: 'KaushanScript-Regular'
-        //no error, but the font cannot show up
+        //fontFamily: 'KaushanScript-Regular' 
+        // TODO: have font show up. not working?
     },
     textStyle: {
         fontSize: 18,
