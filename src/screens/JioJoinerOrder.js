@@ -1,32 +1,75 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { BigInput, Button } from '../components/common';
+import { db } from '../config';
 
 class JioJoinerOrder extends Component {
-    state = { order: '', price: ''};
+    state = { 
+        foodChoices: '', 
+        price: '', 
+        specialRequests: ''
+    };
+
+    handleSubmit() {
+        let postData = {
+            foodChoices: this.state.foodChoices,
+            joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
+            foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+            price: '8.80', // TODO: Until price var is fixed, this will have to do
+            specialRequests: this.state.specialRequests,
+        }
+
+        let foodOrderId = this.props.foodOrderId; // for accessing the array, has to be changed in the future
+        let dbLocation = '/allOrders/' + foodOrderId + '/foodOrders/';
+
+        db
+            .ref(dbLocation)
+            .push(postData)
+            .then((success) => {
+                console.log('Success Message: ', success) // success callback
+                Actions.mainPage(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
 
     render() {
         const { containerStyle, storeStyle } = styles;
-        const store = 'Makisan';
+        const store = this.props.order.store;
+        const foodOrderId = this.props.foodOrderId;
+
+        console.log('Logging Order ID: ');
+        console.log(this.props.foodOrderId);
 
         return(
             <View style={containerStyle}>
                 <View>
+                    <Text>{foodOrderId}</Text>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"
                         label="YOUR ORDER"
-                        value={this.state.order}
-                        onChangeText={order => this.setState({ order })}
+                        value={this.state.foodChoices}
+                        onChangeText={foodChoices => this.setState({ foodChoices })}
                     /> 
                     <BigInput 
                         placeholder="How much does everything cost?"
                         label="PRICE"
                         value={this.state.price}
-                        onChangeText={order => this.setState({ price })}
+                        onChangeText={price => this.setState({ price })}
+                        // TODO: typing into this element results in crashing. can we fix this?
+                        // TODO: this should be a number input? can we find some other input for this? whatever looks nice
+                    /> 
+                    <BigInput 
+                        placeholder="Any special requests?"
+                        label="SPECIAL REQUESTS"
+                        value={this.state.specialRequests}
+                        onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
                 </View>
-                <Button>SUBMIT ORDER</Button>
+                <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
             </View>
         );
     }

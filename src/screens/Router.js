@@ -3,6 +3,7 @@ import { Scene, Router } from 'react-native-router-flux';
 import MainPage from './MainPage';
 import JioInformation from './JioInformation';
 import JioJoinerOrder from './JioJoinerOrder';
+import CoordinatorCreateJio from './CoordinatorCreateJio';
 
 const RouterComponent = () => {
     return (
@@ -23,6 +24,11 @@ const RouterComponent = () => {
                     key="jioJoinerOrder"
                     component={JioJoinerOrder}
                     title="Join Jio"
+                />
+                <Scene
+                    key="coordinatorCreateJio"
+                    component={CoordinatorCreateJio}
+                    title="Create New Jio"
                 />
             </Scene>
         </Router>

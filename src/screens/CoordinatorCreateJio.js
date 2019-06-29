@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
+import { db } from '../config';
 
 class CoordinatorCreateJio extends Component {
     state = { 
@@ -12,9 +14,51 @@ class CoordinatorCreateJio extends Component {
         promoCode: '',
         jioOpenTime: '',
         jioCloseTime: '',
-        jioArrivalTime: ''
+        jioArrivalTime: '',
+        order: {},
+        firebaseOrderId: 'hello',
     };
 
+    handleSubmit() {
+        // a method called after button is pressed
+        const postData = {
+            orderId: 9999, // TODO: generate this somehow in future
+            store: this.state.store, 
+            coordinatorName: '<INSERT NAME>', // TODO: get info from user account
+            phoneNumber: 99998888, // TODO: get info from user account
+            jioStatus: 'jioOpen',
+            jioLocation: this.state.jioLocation,
+            jioOpenTime: this.state.jioOpenTime,
+            jioCloseTime: this.state.jioCloseTime,
+            jioArrivalTime: this.state.jioArrivalTime,
+            jioMenuURL: this.state.jioMenuURL,
+            deliveryApp: this.state.deliveryApp,
+            deliveryCost: this.state.deliveryCost,
+            promoCode: this.state.promoCode,
+            foodOrders: [],
+        }
+
+        const dbLocation = '/allOrders/';
+
+        this.setState({ order: postData });
+
+        db
+            .ref(dbLocation)
+            .push(postData)
+            .then((response) => {
+                console.log('Success Message: ', response) // success callback
+                this.setState({ firebaseOrderId: response.getKey() });
+                console.log(this.state.firebaseOrderId);
+                Actions.jioJoinerOrder({ 
+                    order: this.state.order, 
+                    foodOrderId: this.state.firebaseOrderId
+                });
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
+    
     render() {
         const { 
             storeStyle, 
@@ -23,68 +67,71 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
-                <Text style={storeStyle}>YOUR NEW JIO</Text>
+            {/* <KeyboardAvoidingView enabled> */}
+                <Text>{this.state.firebaseOrderId}</Text>
+                <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
-                placeholder="Where do I want to eat from?"
-                label="Store*"
-                value={this.state.store}
-                onChangeText={location => this.setState({ store })}
+                    placeholder="Where do I want to eat from?"
+                    label="Store*"
+                    value={this.state.store}
+                    onChangeText={store => this.setState({ store })}
                 /> 
                 <Input 
-                placeholder="What do they serve?"
-                label="Menu*"
-                value={this.state.jioMenuURL}
-                onChangeText={location => this.setState({ jioMenuURL })}
+                    placeholder="What do they serve?"
+                    label="Menu*"
+                    value={this.state.jioMenuURL}
+                    onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
                 /> 
                 <Input 
-                placeholder="Where should they pick up the food?"
-                label="Location*"
-                value={this.state.jioLocation}
-                onChangeText={location => this.setState({ jioLocation })}
+                    placeholder="Where should they pick up the food?"
+                    label="Location*"
+                    value={this.state.jioLocation}
+                    onChangeText={jioLocation => this.setState({ jioLocation })}
                 /> 
                 <Input 
-                placeholder="What app am I ordering from?"
-                label="Delivery App*"
-                value={this.state.deliveryApp}
-                onChangeText={location => this.setState({ deliveryApp })}
+                    placeholder="What app am I ordering from?"
+                    label="Delivery App*"
+                    value={this.state.deliveryApp}
+                    onChangeText={deliveryApp => this.setState({ deliveryApp })}
                 /> 
                 <Input 
-                placeholder="Where do I want to eat from?"
-                label="Delivery Cost*"
-                value={this.state.deliveryCost}
-                onChangeText={location => this.setState({ deliveryCost })}
+                    placeholder="How much is delivery?"
+                    label="Delivery Cost*"
+                    value={this.state.deliveryCost}
+                    onChangeText={deliveryCost => this.setState({ deliveryCost })}
                 /> 
                 <Input 
-                placeholder="What is the promo code (how many % off)?"
-                label="Promo Code*"
-                value={this.state.promoCode}
-                onChangeText={location => this.setState({ promoCode })}
+                    placeholder="What is the promo code (how many % off)?"
+                    label="Promo Code*"
+                    value={this.state.promoCode}
+                    onChangeText={promoCode => this.setState({ promoCode })}
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 1}}>
                         <Input 
-                        style={{color: '#000000'}}
-                        placeholder="00:00"
-                        label="Jio Open*"
-                        value={this.state.jioOpenTime}
-                        onChangeText={location => this.setState({ jioOpenTime })}
+                            style={{color: '#000000'}}
+                            placeholder="00:00"
+                            label="Jio Open*"
+                            value={this.state.jioOpenTime}
+                            onChangeText={jioOpenTime => this.setState({ jioOpenTime })}
                         /> 
                         <Input 
-                        placeholder="00:00"
-                        label="Jio Close*"
-                        value={this.state.jioCloseTime}
-                        onChangeText={location => this.setState({ jioCloseTime })}
+                            placeholder="00:00"
+                            label="Jio Close*"
+                            value={this.state.jioCloseTime}
+                            onChangeText={jioCloseTime => this.setState({ jioCloseTime })}
                         /> 
                         <Input 
-                        placeholder="00:00"
-                        label="Arrival Time*"
-                        value={this.state.jioArrivalTime}
-                        onChangeText={location => this.setState({ jioArrivalTime })}
+                            placeholder="00:00"
+                            label="Arrival Time*"
+                            value={this.state.jioArrivalTime}
+                            onChangeText={jioArrivalTime => this.setState({ jioArrivalTime })}
                         /> 
                     </View>
                 </TimeOrange>
 
-                <Button>LET'S JIO!</Button>
+                <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
+            {/* </KeyboardAvoidingView> */}
             </View>
         );
     }

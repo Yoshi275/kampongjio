@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
 import { View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Button } from '../components/common';
 import FullJioDetails from '../components/JioInformation/FullJioDetails';
 
@@ -8,13 +8,13 @@ class JioInformation extends Component {
     render() {
         return(
             <View style={styles.containerStyle}>
-                <FullJioDetails />
-                <Button onPress={() => { Actions.jioJoinerOrder() }}>
+                <FullJioDetails order={this.props.order}/>
+                <Button onPress={() => { Actions.jioJoinerOrder({ order : this.props.order }) }}>
                     + JOIN JIO
                 </Button>
             </View>
         );
-    };
+    }
 }
 
 const styles = {

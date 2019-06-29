@@ -1,0 +1,140 @@
+{
+	"allOrders" : [
+		{		
+			"orderId" : 1,
+			"store" : "Makisan",
+			"coordinatorName" : "Cheryl",
+			"phoneNumber" : 99123456,
+			"jioStatus" : "jioOpen",
+			"jioLocation" : "NUS Kent Ridge Hall",
+			"jioOpenTime" : "12:20",
+			"jioCloseTime" : "12:45",
+			"jioArrivalTime" : "13:20",
+			"jioMenuURL" : "https://www.makisan.com/forms/Maki-San-Sushi.pdf",
+			"deliveryApp" : "GrabFood",
+			"deliveryCost" : "$2",
+			"promoCode" : "ILOVESUSHI (20%)",
+			"foodOrders" : [
+				{
+					"foodOrderNo" : 1,
+					"joinerName" : "Adam",
+					"foodChoices" : [
+						"Salmon Delight",
+						"Even More Salmon",
+						"Salmanthisisthebestthingever"
+					],
+					"price" : "$19.80",
+					"specialRequests" : "Honestly no need for sushi bah."
+				},
+				{
+					"foodOrderNo" : 2,
+					"joinerName" : "Cheryl",
+					"foodChoices" : [
+						"Yucky Veggie Delight",
+						"CelerEW WHO EATS THIS",
+						"A Really Fungi",
+						"I'm on a Sushi Roll"
+					],
+					"price" : "$15.30"
+				},
+				{
+					"foodOrderNo" : 3,
+					"joinerName" : "Venny",
+					"foodChoices" : [
+						"Too Cool for Food Puns",
+						"Duck! It's a sushi!",
+						"I got tired of punning sushi rolls"
+					],
+					"price" : "$27.60"
+				}
+			]
+		},
+		{
+			"orderId" : 2,
+			"store" : "Ameens",
+			"coordinatorName" : "Venny",
+			"phoneNumber" : 91234567,
+			"jioStatus" : "jioOpen",
+			"jioLocation" : "University Scholars Programme",
+			"jioOpenTime" : "13:30",
+			"jioCloseTime" : "14:45",
+			"jioArrivalTime" : "15:50",
+			"jioMenuURL" : "https://www.alamaanrestaurant.com.sg/",
+			"deliveryApp" : "FoodPanda",
+			"deliveryCost" : "$5",
+			"promoCode" : "SUPPERJIOSIOL (40%)",
+			"foodOrders" : [
+				{
+					"foodOrderNo" : 1,
+					"joinerName" : "Ahmed",
+					"foodChoices" : [
+						"Fried Chicken",
+						"Coke and Rum"
+					],
+					"price" : "$8.80",
+					"specialRequests" : "ONLY CHICKEN! NO SAUCE!"
+				},
+				{
+					"foodOrderNo" : 2,
+					"joinerName" : "Eric",
+					"foodChoices" : [
+						"Carbonara"
+					],
+					"price" : "$6.40"
+				},
+				{
+					"foodOrderNo" : 3,
+					"joinerName" : "Hui Ren",
+					"foodChoices" : [
+						"Cheese Fries (L)"
+					],
+					"price" : "$5.00"
+				}
+			]
+      	},
+      	{
+			"orderId" : 3,
+			"store" : "Macdonalds",
+			"coordinatorName" : "Rafi",
+			"phoneNumber" : 99998888,
+			"jioStatus" : "jioOpen",
+			"jioLocation" : "Theme Room 2, Learn Lobes",
+			"jioOpenTime" : "21:30",
+			"jioCloseTime" : "22:15",
+			"jioArrivalTime" : "23:00",
+			"jioMenuURL" : "https://www.mcdelivery.com.sg/sg/menu.html/",
+			"deliveryApp" : "Deliveroo",
+			"deliveryCost" : "$2",
+			"promoCode" : "CARBSCARBSCARBS (40%)",
+			"foodOrders" : [
+				{
+					"foodOrderNo" : 1,
+					"joinerName" : "Dhameem",
+					"foodChoices" : [
+						"McChicken Meal"
+					],
+					"price" : "$8.80",
+					"specialRequests" : "No Sauce"
+				},
+				{
+					"foodOrderNo" : 2,
+					"joinerName" : "Cheryl",
+					"foodChoices" : [
+						"Filet-o-Fish Meal",
+						"Coke Zero (L)"
+					],
+					"price" : "$6.40",
+					"specialRequests" : "No tartar sauce, no ice"
+				},
+				{
+					"foodOrderNo" : 3,
+					"joinerName" : "Jonina",
+					"foodChoices" : [
+						"Mineral Water"
+					],
+					"price" : "$3.00"
+				}
+			]
+      	}
+	]
+}

@@ -3,62 +3,78 @@
 // CloseJioTime, PickupTime, and StatusIcon
 // Consider making the layout more dynamic when we start hooking it up to a database
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Open } from '../../resources/icons';
 import { Makisan }  from '../../resources/images';
+import data from '../../data/AllJios.json';
+import { db } from '../../config';
 
-const JioDetails = () => {
-    const { 
-        imageStyle, 
-        imageContainerStyle, 
-        titleStyle, 
-        locationStyle,
-        timeTextStyle, 
-        timeStyle, 
-        textContainerStyle,
-        iconStyle,
-        iconContainerStyle
-    } = styles;
+import {
+    JIO_COMPLETED, // to be for state constants
+    JIO_OPEN,
+    JIO_CLOSED,
+    JIO_PAID,
+    JIO_ARRIVED
+} from '../../data/jio-states'
 
-    const store = 'Makisan';
-    const jioStatus = Open ;
-    const jioLocation = 'NUS Kent Ridge Hall';
-    const jioCloseTime = '12:45';
-    const jioArrivalTime = '13:20';
-    return (
-        <TouchableOpacity onPress={() => { Actions.jioInformation() }}>
-            <Card>
-                <CardSection>
-                    <View style={imageContainerStyle}>
-                        <Image 
-                            style={imageStyle}
-                            source={ Makisan }
-                        />
-                    </View> 
+class JioDetails extends Component {
+
+    render() {
+        const { 
+            imageStyle, 
+            imageContainerStyle, 
+            titleStyle, 
+            locationStyle,
+            timeTextStyle, 
+            timeStyle, 
+            textContainerStyle,
+            iconStyle,
+            iconContainerStyle
+        } = styles;
     
-                    <View style={textContainerStyle}>
-                        <Text style={titleStyle}>{store}</Text>
-                        <Text style={locationStyle}>{jioLocation}</Text>
-                        <View style={timeStyle}>
-                            <Text style={timeTextStyle}>{jioCloseTime}</Text>
-                            <Text style={timeTextStyle}> | </Text>
-                            <Text style={timeTextStyle}>{jioArrivalTime}</Text>
+        const jioStatusIcon = Open; // please use conditional formatting. based on state, load relevant icon
+        const jioImage = Makisan; // please use conditional formatting based on name of store
+        /* eg. const jioImage = this.props.order.store === 'Makisan' 
+                    ? Makisan
+                    : this.props.order.store === 'Ameens'
+                        ? Ameens
+                        : Macdonalds */
+
+        return (
+            <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
+                <Card>
+                    <CardSection>
+                        <View style={imageContainerStyle}>
+                            <Image 
+                                style={imageStyle}
+                                source={ jioImage }
+                            />
+                        </View> 
+        
+                        <View style={textContainerStyle}>
+                            <Text style={titleStyle}>{this.props.order.store}</Text>
+                            <Text style={locationStyle}>{this.props.order.jioLocation}</Text>
+                            <View style={timeStyle}>
+                                <Text style={timeTextStyle}>{this.props.order.jioCloseTime}</Text>
+                                <Text style={timeTextStyle}> | </Text>
+                                <Text style={timeTextStyle}>{this.props.order.jioArrivalTime}</Text>
+                            </View>
                         </View>
-                    </View>
-                    <View style={iconContainerStyle}>
-                        <Image 
-                        style={iconStyle}
-                        source={jioStatus} 
-                        />
-                    </View>
-                </CardSection>
-            </Card>
-        </TouchableOpacity>
-    );
-};
+                        <View style={iconContainerStyle}>
+                            <Image 
+                            style={iconStyle}
+                            source={jioStatusIcon} 
+                            />
+                        </View>
+                    </CardSection>
+                </Card>
+            </TouchableOpacity>
+        );
+    }
+}
 
 const styles = {
     textContainerStyle: {
