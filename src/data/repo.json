@@ -1,0 +1,93 @@
+"foodOrders" : [
+    {
+        "orderNo" : 1,
+        "joinerName" : "Adam",
+        "foodChoices" : [
+            "Salmon Delight",
+            "Even More Salmon",
+            "Salmanthisisthebestthingever"
+        ],
+        "price" : "$19.80",
+        "specialRequests" : "Honestly no need for sushi bah."
+    },
+    {
+        "orderNo" : 2,
+        "joinerName" : "Cheryl",
+        "foodChoices" : [
+            "Yucky Veggie Delight",
+            "CelerEW WHO EATS THIS",
+            "A Really Fungi",
+            "I'm on a Sushi Roll"
+        ],
+        "price" : "$15.30"
+    },
+    {
+        "orderNo" : 3,
+        "joinerName" : "Venny",
+        "foodChoices" : [
+            "Too Cool for Food Puns",
+            "Duck! It's a sushi!",
+            "I got tired of punning sushi rolls"
+        ],
+        "price" : "$27.60"
+    }
+]
+
+"foodOrders" : [
+    {
+        "orderNo" : 1,
+        "joinerName" : "Ahmed",
+        "foodChoices" : [
+            "Fried Chicken",
+            "Coke and Rum"
+        ],
+        "price" : "$8.80",
+        "specialRequests" : "ONLY CHICKEN! NO SAUCE!"
+    },
+    {
+        "orderNo" : 2
+        "joinerName" : "Eric",
+        "foodChoices" : [
+            "Carbonara"
+        ],
+        "price" : "$6.40"
+    },
+    {
+        "orderNo" : 3,
+        "joinerName" : "Hui Ren",
+        "foodChoices" : [
+            "Cheese Fries (L)"
+        ],
+        "price" : "$5.00"
+    }
+]
+
+"foodOrders" : [
+    {
+        "orderNo" : 1,
+        "joinerName" : "Dhameem",
+        "foodChoices" : [
+            "McChicken Meal"
+        ],
+        "price" : "$8.80",
+        "specialRequests" : "No Sauce"
+    },
+    {
+        "orderNo" : 2,
+        "joinerName" : "Cheryl",
+        "foodChoices" : [
+            "Filet-o-Fish Meal",
+            "Coke Zero (L)"
+        ],
+        "price" : "$6.40",
+        "specialRequests" : "No tartar sauce, no ice"
+    },
+    {
+        "orderNo" : 3,
+        "joinerName" : "Jonina",
+        "foodChoices" : [
+            "Mineral Water"
+        ],
+        "price" : "$3.00"
+    }
+]

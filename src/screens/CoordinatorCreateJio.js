@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
 import { db } from '../config';
@@ -58,6 +58,7 @@ class CoordinatorCreateJio extends Component {
                 console.log('Error Message: ', error) // error callback
             })
     }
+    
     render() {
         const { 
             storeStyle, 
@@ -66,6 +67,7 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
+            {/* <KeyboardAvoidingView enabled> */}
                 <Text>{this.state.firebaseOrderId}</Text>
                 <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
@@ -129,6 +131,7 @@ class CoordinatorCreateJio extends Component {
                 </TimeOrange>
 
                 <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
+            {/* </KeyboardAvoidingView> */}
             </View>
         );
     }
