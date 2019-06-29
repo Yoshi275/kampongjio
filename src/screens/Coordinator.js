@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
-import { Button } from '../components/common';
+import { Button, NavBar } from '../components/common';
 import { Open } from '../resources/icons';
 import CoordinatorFullJio from '../components/Coordinator/CoordinatorFullJio';
 
@@ -18,9 +18,14 @@ class Coordinator extends Component {
 
         return(
             <View style={containerStyle}>
-                <Text style={storeStyle}>{store}</Text>
-                <CoordinatorFullJio />
-                <Button>CLOSE ORDER</Button>
+                <View>
+                    <Text style={storeStyle}>{store}</Text>
+                    <CoordinatorFullJio />
+                </View>
+                <View>
+                    <Button>CLOSE ORDER</Button>
+                <NavBar />
+                </View>
             </View>
         );
     }

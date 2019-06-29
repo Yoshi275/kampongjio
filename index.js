@@ -10,7 +10,7 @@ import {name as appName} from './app.json';
 AppRegistry.registerComponent('kampongjio', () => App);
 
 // import {AppRegistry} from 'react-native';
-// import MainPage from './src/screens/MainPage';
+// import Coordinator from './src/screens/Coordinator';
 // import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent('kampongjio', () => MainPage);
+// AppRegistry.registerComponent('kampongjio', () => Coordinator);

@@ -7,8 +7,9 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
+import PayButton from './PayButton';
 import { Open, Close, Arrive, Paid, Complete, Food } from '../../resources/icons';
-import { Makisan, AlAmaan, McDonalds }  from '../../resources/images';
+import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
 import data from '../../data/AllJios.json';
 import { db } from '../../config';
 
@@ -20,10 +21,19 @@ import { //TODO: Change status into states? Not sure how the constants help and 
     JIO_ARRIVED
 } from '../../data/jio-states'
 
-class JioDetails extends Component {
+class DashboardJioDetails extends Component {
     // state = {jioStatus: {this.props.order.jioStatus}};
     // console.log(this.state.jioStatus);
 
+    state = {payment : true }
+    pay() {
+        if (this.state.payment === false) {
+            return(
+                <PayButton>PAID!</PayButton>
+            );
+        }
+    }
+    
     render() {
         const { 
             imageStyle, 
@@ -50,11 +60,7 @@ class JioDetails extends Component {
                         : this.props.order.jioStatus === 'jioArrived'
                             ? Arrive : Complete; 
         // please use conditional formatting. based on state, load relevant icon
-        /* eg. const jioImage = this.props.order.store === 'Makisan' 
-                    ? Makisan
-                    : this.props.order.store === 'Ameens'
-                        ? Ameens
-                        : Macdonalds */
+
 
         return (
             <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
@@ -75,6 +81,9 @@ class JioDetails extends Component {
                                 <Text style={timeTextStyle}> | </Text>
                                 <Text style={timeTextStyle}>{this.props.order.jioArrivalTime}</Text>
                             </View>
+                            <View>
+                            { this.pay() }
+                            </View>
                         </View>
                         <View style={iconContainerStyle}>
                             <Image 
@@ -82,6 +91,9 @@ class JioDetails extends Component {
                             source={jioStatusIcon} 
                             />
                         </View>
+                    </CardSection>
+                    <CardSection>
+                        
                     </CardSection>
                 </Card>
             </TouchableOpacity>
@@ -147,4 +159,4 @@ const styles = {
     }
 };
 
-export default JioDetails;
+export default DashboardJioDetails;

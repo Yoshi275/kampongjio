@@ -6,3 +6,4 @@ export * from './Input';
 export * from './InfoDisplay';
 export * from './BigInput';
 export * from './TimeOrange';
+export * from './NavBar';

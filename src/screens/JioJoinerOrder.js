@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, KeyboardAvoidingView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
@@ -45,6 +45,7 @@ class JioJoinerOrder extends Component {
 
         return(
             <View style={containerStyle}>
+            <KeyboardAvoidingView>
                 <View>
                     <Text>{foodOrderId}</Text>
                     <Text style={storeStyle}>{store}</Text>
@@ -70,6 +71,7 @@ class JioJoinerOrder extends Component {
                     /> 
                 </View>
                 <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
+            </KeyboardAvoidingView>
             </View>
         );
     }

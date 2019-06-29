@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View } from 'react-native';
 import JioList from '../components/MainPage/JioList'
-import { Input, Button } from '../components/common';
+import { Input, Button, NavBar } from '../components/common';
 import Router from './Router';
 
 class MainPage extends Component {
@@ -25,6 +25,7 @@ class MainPage extends Component {
             <Button onPress={() => { Actions.coordinatorCreateJio() }}>
                 +  JIO
             </Button>
+            <NavBar />
         </View>
         );
     }
@@ -34,11 +35,9 @@ const styles = {
     containerStyle: {
         // flex is so that background color literally covers the whole background
         // can be a potential problems if settings of common components are changes
-        // Not sure why the button is able to be at the bottom
         flex: 1,
         backgroundColor: '#2D9B83',
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
+        justifyContent: 'space-between'
     }
 };
 
