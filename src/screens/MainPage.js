@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View } from 'react-native';
 import JioList from '../components/MainPage/JioList'
-import { Input, Button } from '../components/common';
+import { Input, Button, NavBar } from '../components/common';
 import Router from './Router';
 
 class MainPage extends Component {
@@ -25,6 +25,7 @@ class MainPage extends Component {
             <Button onPress={() => { Actions.coordinatorCreateJio() }}>
                 +  JIO
             </Button>
+            <NavBar />
         </View>
         );
     }
