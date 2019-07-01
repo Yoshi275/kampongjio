@@ -1,16 +1,44 @@
 import React, { Component } from 'react';
-import { Text, View, KeyboardAvoidingView } from 'react-native';
+import { Text, View, Animated, Keyboard } from 'react-native';
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Actions } from 'react-native-router-flux';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
 
 class JioJoinerOrder extends Component {
+    
     state = { 
         foodChoices: '', 
         price: '', 
-        specialRequests: ''
+        specialRequests: '',
+        keyboardHeight: new Animated.Value(0),
     };
 
+
+    componentWillMount() {
+        this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+        this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+      }
+    
+    componentWillUnmount() {
+        this.keyboardDidShowSub.remove();
+        this.keyboardDidHideSub.remove();
+      }
+
+    keyboardDidShow = (event) => {
+        Animated.timing(this.state.keyboardHeight, {
+            duration: event.duration,
+            toValue: event.endCoordinates.height,
+        }).start();
+    };
+
+    keyboardDidHide = (event) => {
+        Animated.timing(this.state.keyboardHeight, {
+            duration: event.duration,
+            toValue: 0,
+        }).start();
+    };
+    
     handleSubmit() {
         let postData = {
             foodChoices: this.state.foodChoices,
@@ -44,10 +72,8 @@ class JioJoinerOrder extends Component {
         console.log(this.props.foodOrderId);
 
         return(
-            <View style={containerStyle}>
-            <KeyboardAvoidingView>
-                <View>
-                    <Text>{foodOrderId}</Text>
+            <Animated.View style={[containerStyle, { transform: [{translateY: this.state.keyboardHeight}] }]}> 
+                    {/* <Text>{foodOrderId}</Text> */}
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"
@@ -69,10 +95,9 @@ class JioJoinerOrder extends Component {
                         value={this.state.specialRequests}
                         onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
-                </View>
+
                 <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
-            </KeyboardAvoidingView>
-            </View>
+            </Animated.View>
         );
     }
 }
