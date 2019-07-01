@@ -51,9 +51,9 @@ class InitiatedDetails extends Component {
         return(
             <ScrollView>
                 {/* { this.renderJio() }  */}
-                <JioDetails order={this.state.orderOne} />
-                <JioDetails order={this.state.orderTwo} />
-                <JioDetails order={this.state.orderThree} />
+                <JioDetails order={this.state.orderOne} fromDashboard={true} />
+                <JioDetails order={this.state.orderTwo} fromDashboard={true} />
+                <JioDetails order={this.state.orderThree} fromDashboard={true} />
             </ScrollView>
         );
     }

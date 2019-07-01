@@ -8,7 +8,7 @@ import CoordinatorFullJio from '../components/Coordinator/CoordinatorFullJio';
 
 class Coordinator extends Component {
     render() {
-        const store = 'Al Amaan';
+        const store = this.props.order.store;
         const status = Open;
 
         const { 
@@ -20,10 +20,11 @@ class Coordinator extends Component {
             <View style={containerStyle}>
                 <View>
                     <Text style={storeStyle}>{store}</Text>
-                    <CoordinatorFullJio />
+                    <CoordinatorFullJio order={this.props.order}/>
                 </View>
                 <View>
                     <Button>CLOSE ORDER</Button>
+                    {/* TODO: Change status of order by pressing button */}
                 <NavBar />
                 </View>
             </View>
