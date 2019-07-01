@@ -2,7 +2,6 @@ import React from 'react';
 import { Image, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Home, Announcement, Dashboard, Profile } from '../../resources/icons';
-import console = require('console');
 
 const NavBar = () => {
     return(
