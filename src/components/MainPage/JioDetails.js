@@ -26,7 +26,7 @@ class JioDetails extends Component {
 
     renderNextPage() {
         if(this.props.fromDashboard) {
-            Actions.coordinator();
+            Actions.coordinator({ order: this.props.order});
         } else {
             Actions.jioInformation({ order: this.props.order});
         }

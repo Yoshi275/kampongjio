@@ -7,11 +7,11 @@ import OrderList from './OrderList';
 
 class CoordinatorFullJio extends Component {
     render() {
-        const jioStatus = 'Jio Open';
-        const jioLocation = 'NUS Kent Ridge Hall';
-        const jioOpenTime = '12:20';
-        const jioCloseTime = '12:45';
-        const jioArrivalTime = '13:20';
+        const jioStatus = this.props.order.jioStatus === 'jioOpen' ? "Open" : "Closed";
+        const jioLocation = this.props.order.jioLocation;
+        const jioOpenTime = this.props.order.jioOpenTime;
+        const jioCloseTime = this.props.order.jioCloseTime;
+        const jioArrivalTime = this.props.order.jioArrivalTime;
 
         return(
             <View>
@@ -25,7 +25,7 @@ class CoordinatorFullJio extends Component {
                     </View>
                 </TimeOrange>
                 <Text style={styles.labelStyle}>ORDERS</Text>
-                <OrderList />
+                <OrderList foodOrders={this.props.order.foodOrders}/>
             </View>
         );
     }

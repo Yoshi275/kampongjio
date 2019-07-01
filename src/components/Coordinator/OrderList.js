@@ -10,6 +10,7 @@ class OrderList extends Component {
             <ScrollView>
                 <OrderDetails />
                 <OrderDetails />
+                {/* TODO: Dynamically render all orders from this.props.foodOrders (returning an array) */}
             </ScrollView>
         );
     }
