@@ -61,13 +61,11 @@ class FullJioDetails extends Component {
 
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
-                    <View style={{flex: 1, flexDirection: 'column'}}>
-                    <TouchableOpacity onPress={()=> Linking.openURL( this.props.order.jioMenuURL )}>
+                    <TouchableOpacity style={{flex: 1, flexDirection: 'column'}} onPress={()=> Linking.openURL( this.props.order.jioMenuURL )}>
                         <Text style={[textStyle, {fontWeight: '800', textDecorationLine:'underline'}]}>
                             {this.props.order.jioMenuURL}
                         </Text>
                     </TouchableOpacity>
-                    </View>
                 </View>
                 <Text style={textStyle}>Delivery App : {this.props.order.deliveryApp}</Text>
                 <Text style={textStyle}>Delivery Cost (Total) : {this.props.order.deliveryCost}</Text>
