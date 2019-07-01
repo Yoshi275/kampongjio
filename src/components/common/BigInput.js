@@ -24,10 +24,13 @@ const styles = {
         paddingRight: 5,
         paddingLeft: 5,
         fontSize: 16,
+        position: 'absolute',
         //lineHeight: 23,
     },
     inputContainerStyle: {
         //flex: 4,
+        height: 80,
+        width: '80%',
         borderWidth : 1,
         borderRadius: 2,
         borderColor: '#000000',
@@ -38,8 +41,8 @@ const styles = {
         marginRight: 20,
         elevation: 5,
         padding: 10,
-
-        alignSelf: 'stretch'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     labelStyle: {
         //flex: 1,

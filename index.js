@@ -10,7 +10,7 @@ import {name as appName} from './app.json';
 AppRegistry.registerComponent('kampongjio', () => App);
 
 // import {AppRegistry} from 'react-native';
-// import Front from './src/screens/Front';
+// import JioJoinerOrder from './src/screens/JioJoinerOrder';
 // import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent('kampongjio', () => Front);
+// AppRegistry.registerComponent('kampongjio', () => JioJoinerOrder);

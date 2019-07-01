@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, Animated, Keyboard } from 'react-native';
+import { Text, View, Animated, Keyboard, Dimensions, UIManager } from 'react-native';
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Actions } from 'react-native-router-flux';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
 
+// const { State: TextInputState } = TextInput;
+
 class JioJoinerOrder extends Component {
-    
     state = { 
         foodChoices: '', 
         price: '', 
@@ -26,15 +27,26 @@ class JioJoinerOrder extends Component {
       }
 
     keyboardDidShow = (event) => {
-        Animated.timing(this.state.keyboardHeight, {
-            duration: event.duration,
-            toValue: event.endCoordinates.height,
+        const { height: windowHeight } = Dimensions.get('window');
+        const eventKeyboardHeight = event.endCoordinates.height;
+        const gap = eventKeyboardHeight;
+        // UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
+        //     const fieldHeight = height;
+        //     const fieldTop = pageY;
+        //     const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
+        //     if (gap >= 0) {
+        //         return;
+        //     }
+            Animated.timing(this.state.keyboardHeight, {
+                duration: 500,
+                toValue: gap,
         }).start();
     };
+ 
 
     keyboardDidHide = (event) => {
         Animated.timing(this.state.keyboardHeight, {
-            duration: event.duration,
+            duration: 500,
             toValue: 0,
         }).start();
     };
@@ -71,10 +83,13 @@ class JioJoinerOrder extends Component {
         console.log('Logging Order ID: ');
         console.log(this.props.foodOrderId);
 
+        // transform: [{translateY: this.state.keyboardHeight}]
+        // 
         return(
-            <Animated.View style={[containerStyle, { transform: [{translateY: this.state.keyboardHeight}] }]}> 
-                    {/* <Text>{foodOrderId}</Text> */}
-                    <Text style={storeStyle}>{store}</Text>
+            <Animated.View style={[containerStyle, { paddingBottom: this.state.keyboardHeight }]}> 
+                {/* <Text>{foodOrderId}</Text> */}
+                <Text style={storeStyle}>{store}</Text>
+                <View>
                     <BigInput 
                         placeholder="What do I want to order?"
                         label="YOUR ORDER"
@@ -95,7 +110,7 @@ class JioJoinerOrder extends Component {
                         value={this.state.specialRequests}
                         onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
-
+                </View>
                 <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
             </Animated.View>
         );

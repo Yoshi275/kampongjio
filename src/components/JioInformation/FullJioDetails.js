@@ -9,7 +9,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
-import { Makisan }  from '../../resources/images';
+// import { Makisan }  from '../../resources/images';
+import { Food } from '../../resources/icons';
 import { TimeOrange } from '../common';
 
 import {
@@ -35,7 +36,7 @@ class FullJioDetails extends Component {
                 <HeaderSection>
                     <View style={imageContainerStyle}>
                         <Image 
-                        source={ Makisan }
+                        source={ Food }
                         style={imageStyle}
                         /> 
                     </View>

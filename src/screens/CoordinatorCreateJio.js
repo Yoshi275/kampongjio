@@ -68,7 +68,7 @@ class CoordinatorCreateJio extends Component {
         return(
             <View style={containerStyle}>
             {/* <KeyboardAvoidingView enabled> */}
-                <Text>{this.state.firebaseOrderId}</Text>
+                {/* <Text>{this.state.firebaseOrderId}</Text> */}
                 <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
                     placeholder="Where do I want to eat from?"

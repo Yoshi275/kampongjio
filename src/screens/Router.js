@@ -22,6 +22,7 @@ const RouterComponent = () => {
                     key="mainPage"
                     component={MainPage}
                     title="Kampong Jio"
+                    
                 />
                 <Scene
                     key="jioInformation"
@@ -46,6 +47,7 @@ const RouterComponent = () => {
                 <Scene
                     key="coordinator"
                     component={Coordinator}
+                    title="Coordinator"
                 />
             </Scene>
         </Router>

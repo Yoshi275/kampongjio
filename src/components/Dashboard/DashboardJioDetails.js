@@ -26,10 +26,11 @@ class DashboardJioDetails extends Component {
     // console.log(this.state.jioStatus);
 
     state = {payment : false }
+
     pay() {
         if (this.state.payment === false) {
             return(
-                <PayButton>PAID!</PayButton>
+                <PayButton onPress={() => this.setState({ payment: true })}>PAID!</PayButton>
             );
         }
     }
@@ -47,10 +48,11 @@ class DashboardJioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        const jioImage = this.props.order.store === 'Makisan'
-                ? Makisan
-                : this.props.order.store === 'Al Amaan'
-                ? AlAmaan : McDonalds;
+        // const jioImage = this.props.order.store === 'Makisan'
+        //         ? Makisan
+        //         : this.props.order.store === 'Al Amaan'
+        //         ? AlAmaan : McDonalds;
+        const jioImage = Food;
         const jioStatusIcon = this.props.order.jioStatus === 'jioOpen'
                 ? Open 
                 : this.props.order.jioStatus === 'jioClosed'
