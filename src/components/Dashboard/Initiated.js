@@ -6,7 +6,7 @@ class Initiated extends Component {
     render() {
         return (
             <View style={styles.containerStyle}>
-                <Text style={styles.titleStyle}>~~~Your Initiated Jios~~~</Text>
+                <Text style={styles.titleStyle}>Your Initiated Jios</Text>
                 <InitiatedDetails />
             </View>
         );

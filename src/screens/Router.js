@@ -4,6 +4,7 @@ import MainPage from './MainPage';
 import JioInformation from './JioInformation';
 import JioJoinerOrder from './JioJoinerOrder';
 import CoordinatorCreateJio from './CoordinatorCreateJio';
+import Dashboard from './Dashboard';
 
 const RouterComponent = () => {
     return (
@@ -29,6 +30,10 @@ const RouterComponent = () => {
                     key="coordinatorCreateJio"
                     component={CoordinatorCreateJio}
                     title="Create New Jio"
+                />
+                <Scene
+                    key="dashboard"
+                    component={Dashboard}
                 />
             </Scene>
         </Router>

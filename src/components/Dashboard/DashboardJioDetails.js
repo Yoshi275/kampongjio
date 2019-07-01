@@ -25,7 +25,7 @@ class DashboardJioDetails extends Component {
     // state = {jioStatus: {this.props.order.jioStatus}};
     // console.log(this.state.jioStatus);
 
-    state = {payment : true }
+    state = {payment : false }
     pay() {
         if (this.state.payment === false) {
             return(

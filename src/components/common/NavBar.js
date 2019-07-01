@@ -1,14 +1,23 @@
 import React from 'react';
-import { Image, View, Text } from 'react-native';
+import { Image, View, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Home, Announcement, Dashboard, Profile } from '../../resources/icons';
 
 const NavBar = () => {
     return(
         <View style={styles.containerStyle}>
-            <Image style={styles.imageStyle} source={Home}/>
-            <Image style={styles.imageStyle} source={Announcement}/>
-            <Image style={styles.imageStyle} source={Dashboard}/>
-            <Image style={styles.imageStyle} source={Profile}/>
+            <TouchableOpacity onPress={ () => Actions.mainPage() }>
+                <Image style={styles.imageStyle} source={Home}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ () => console.log("Loading announcement page")}>
+                <Image style={styles.imageStyle} source={Announcement}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ () => Actions.dashboard() }>
+                <Image style={styles.imageStyle} source={Dashboard}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Image style={styles.imageStyle} source={Profile}/>
+            </TouchableOpacity>
         </View>
     );
 };
