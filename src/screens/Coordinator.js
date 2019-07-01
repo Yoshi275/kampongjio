@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Button, NavBar } from '../components/common';
 import { Open } from '../resources/icons';
 import CoordinatorFullJio from '../components/Coordinator/CoordinatorFullJio';
-
-
 
 class Coordinator extends Component {
     render() {
@@ -23,7 +22,7 @@ class Coordinator extends Component {
                     <CoordinatorFullJio order={this.props.order}/>
                 </View>
                 <View>
-                    <Button>CLOSE ORDER</Button>
+                    <Button onPress={ () => Actions.mainPage() }>CLOSE ORDER</Button>
                     {/* TODO: Change status of order by pressing button */}
                 <NavBar />
                 </View>

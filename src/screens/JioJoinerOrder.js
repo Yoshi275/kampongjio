@@ -88,8 +88,8 @@ class JioJoinerOrder extends Component {
         return(
             <Animated.View style={[containerStyle, { paddingBottom: this.state.keyboardHeight }]}> 
                 {/* <Text>{foodOrderId}</Text> */}
-                <Text style={storeStyle}>{store}</Text>
                 <View>
+                    <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="What do I want to order?"
                         label="YOUR ORDER"
