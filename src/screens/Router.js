@@ -4,6 +4,7 @@ import MainPage from './MainPage';
 import JioInformation from './JioInformation';
 import JioJoinerOrder from './JioJoinerOrder';
 import CoordinatorCreateJio from './CoordinatorCreateJio';
+import Coordinator from './Coordinator';
 import Dashboard from './Dashboard';
 
 const RouterComponent = () => {
@@ -34,6 +35,11 @@ const RouterComponent = () => {
                 <Scene
                     key="dashboard"
                     component={Dashboard}
+                    title="Your Jios"
+                />
+                <Scene
+                    key="coordinator"
+                    component={Coordinator}
                 />
             </Scene>
         </Router>

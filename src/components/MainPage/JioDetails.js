@@ -24,6 +24,14 @@ class JioDetails extends Component {
     // state = {jioStatus: {this.props.order.jioStatus}};
     // console.log(this.state.jioStatus);
 
+    renderNextPage() {
+        if(this.props.fromDashboard) {
+            Actions.coordinator();
+        } else {
+            Actions.jioInformation({ order: this.props.order});
+        }
+    }
+
     render() {
         const { 
             imageStyle, 
@@ -57,7 +65,7 @@ class JioDetails extends Component {
                         : Macdonalds */
 
         return (
-            <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
+            <TouchableOpacity onPress={() => this.renderNextPage()}>
                 <Card>
                     <CardSection>
                         <View style={imageContainerStyle}>
