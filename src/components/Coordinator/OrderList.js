@@ -7,7 +7,7 @@ import OrderDetails from './OrderDetails';
 class OrderList extends Component {
     renderJio = ({item}) => (
         <OrderDetails
-            order={item[1]}
+            orderDetails={item[1]}
             foodOrderId={item[0]}
         />
     );
@@ -19,7 +19,7 @@ class OrderList extends Component {
     render() {
         return(
             <FlatList 
-                data={Object.entries(this.state.allOrders)}
+                data={Object.entries(this.props.foodOrders)}
                 renderItem={this.renderJio}
                 keyExtractor={this.keyExtractor}
             />

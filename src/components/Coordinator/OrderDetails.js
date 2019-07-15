@@ -34,17 +34,17 @@ class OrderDetails extends Component {
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
                         <Switch 
-                        style={switchStyle}
-                        value={this.state.paid} 
-                        onValueChange={() => this.setState({ paid: true })}
+                            style={switchStyle}
+                            value={this.state.paid} 
+                            onValueChange={() => this.setState({ paid: true })}
                         />
                     </CardSection>
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>COLLECTED</Text>
                         <Switch 
-                        style={switchStyle}
-                        value={this.state.collected} 
-                        onValueChange={() => this.setState({ collected: true })}
+                            style={switchStyle}
+                            value={this.state.collected} 
+                            onValueChange={() => this.setState({ collected: true })}
                         />
                     </CardSection>
                 </CardSection>
