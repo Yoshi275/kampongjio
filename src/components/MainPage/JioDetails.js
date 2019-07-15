@@ -28,7 +28,10 @@ class JioDetails extends Component {
         if(this.props.fromDashboard) {
             Actions.coordinator({ order: this.props.order});
         } else {
-            Actions.jioInformation({ order: this.props.order});
+            Actions.jioInformation({ 
+                order: this.props.order,
+                foodOrderId: this.props.foodOrderId
+            });
         }
     }
 
