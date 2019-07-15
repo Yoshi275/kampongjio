@@ -8,8 +8,8 @@ class Ongoing extends Component {
         return (
             <View>
                 <Text style={styles.titleStyle}>ONGOING</Text>
-                <OngoingDetails />
                 <Initiated />
+                <OngoingDetails />
             </View>
         );
     }

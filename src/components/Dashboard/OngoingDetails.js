@@ -10,6 +10,7 @@ import { FlatList } from 'react-native';
 import DashboardJioDetails from './DashboardJioDetails';
 import { db } from '../../config';
 import data from '../../data/AllJios.json';
+import Dashboard from '../../screens/Dashboard';
 
 class OngoingDetails extends Component {
     state = { 
@@ -25,21 +26,23 @@ class OngoingDetails extends Component {
             });
     }
 
-    renderJio(order) {
-        // order.item is because renderItem in FlatList, requires index, item and separator
-        // whereas all the data that we currently want is centred in item. Can make use of the rest
-        // if time permits
-        return (
-            <DashboardJioDetails order={order.item} />
-        );
-    }
+    renderJio = ({item}) => (
+        <DashboardJioDetails
+            order={item[1]}
+            foodOrderId={item[0]}
+        />
+    );
+
+    keyExtractor = (item) => (
+        item[1].store
+    );
 
     render() {
         return(
             <FlatList 
-                data={Object.values(this.state.allOrders)}
+                data={Object.entries(this.state.allOrders)}
                 renderItem={this.renderJio}
-                keyExtractor={order => order.store}
+                keyExtractor={this.keyExtractor}
             />
         );
     }

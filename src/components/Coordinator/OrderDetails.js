@@ -4,7 +4,7 @@ import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 
 class OrderDetails extends Component {
-    state = {paid : false, collected : false}
+    state = {paid : this.props.orderDetails.hasPaid, collected : this.props.orderDetails.hasCollected}
     
     renderOrders() {
         return this.props.orderDetails.foodChoices.map(foodChoices => 
@@ -12,7 +12,7 @@ class OrderDetails extends Component {
     }
     
     render() {
-        const { 
+        const {
             textStyle,
             titleStyle,
             containerStyle,
@@ -34,17 +34,17 @@ class OrderDetails extends Component {
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
                         <Switch 
-                        style={switchStyle}
-                        value={this.state.paid} 
-                        onValueChange={() => this.setState({ paid: true })}
+                            style={switchStyle}
+                            value={this.state.paid} 
+                            onValueChange={() => this.setState({ paid: true })}
                         />
                     </CardSection>
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>COLLECTED</Text>
                         <Switch 
-                        style={switchStyle}
-                        value={this.state.collected} 
-                        onValueChange={() => this.setState({ collected: true })}
+                            style={switchStyle}
+                            value={this.state.collected} 
+                            onValueChange={() => this.setState({ collected: true })}
                         />
                     </CardSection>
                 </CardSection>
