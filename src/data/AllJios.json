@@ -24,7 +24,9 @@
 						"Salmanthisisthebestthingever"
 					],
 					"price" : "$19.80",
-					"specialRequests" : "Honestly no need for sushi bah."
+					"specialRequests" : "Honestly no need for sushi bah.",
+					"hasPaid" : false,
+					"hasCollected" : false
 				},
 				{
 					"foodOrderNo" : 2,
@@ -35,7 +37,9 @@
 						"A Really Fungi",
 						"I'm on a Sushi Roll"
 					],
-					"price" : "$15.30"
+					"price" : "$15.30",
+					"hasPaid" : true,
+					"hasCollected" : false
 				},
 				{
 					"foodOrderNo" : 3,
@@ -45,7 +49,9 @@
 						"Duck! It's a sushi!",
 						"I got tired of punning sushi rolls"
 					],
-					"price" : "$27.60"
+					"price" : "$27.60",
+					"hasPaid" : true,
+					"hasCollected" : true
 				}
 			]
 		},
@@ -72,7 +78,9 @@
 						"Coke and Rum"
 					],
 					"price" : "$8.80",
-					"specialRequests" : "ONLY CHICKEN! NO SAUCE!"
+					"specialRequests" : "ONLY CHICKEN! NO SAUCE!",
+					"hasPaid" : false,
+					"hasCollected" : false
 				},
 				{
 					"foodOrderNo" : 2,
@@ -80,7 +88,9 @@
 					"foodChoices" : [
 						"Carbonara"
 					],
-					"price" : "$6.40"
+					"price" : "$6.40",
+					"hasPaid" : true,
+					"hasCollected" : false
 				},
 				{
 					"foodOrderNo" : 3,
@@ -88,7 +98,9 @@
 					"foodChoices" : [
 						"Cheese Fries (L)"
 					],
-					"price" : "$5.00"
+					"price" : "$5.00",
+					"hasPaid" : true,
+					"hasCollected" : true
 				}
 			]
       	},
@@ -114,7 +126,9 @@
 						"McChicken Meal"
 					],
 					"price" : "$8.80",
-					"specialRequests" : "No Sauce"
+					"specialRequests" : "No Sauce",
+					"hasPaid" : false,
+					"hasCollected" : false
 				},
 				{
 					"foodOrderNo" : 2,
@@ -124,7 +138,9 @@
 						"Coke Zero (L)"
 					],
 					"price" : "$6.40",
-					"specialRequests" : "No tartar sauce, no ice"
+					"specialRequests" : "No tartar sauce, no ice",
+					"hasPaid" : true,
+					"hasCollected" : false
 				},
 				{
 					"foodOrderNo" : 3,
@@ -132,7 +148,9 @@
 					"foodChoices" : [
 						"Mineral Water"
 					],
-					"price" : "$3.00"
+					"price" : "$3.00",
+					"hasPaid" : true,
+					"hasCollected" : true
 				}
 			]
       	}

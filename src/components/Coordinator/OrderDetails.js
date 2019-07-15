@@ -4,9 +4,15 @@ import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 
 class OrderDetails extends Component {
-    state = {paid : false, collected : false}
+    state = {paid : this.props.orderDetails.hasPaid, collected : this.props.orderDetails.hasCollected}
+    
+    renderOrders() {
+        return this.props.orderDetails.foodChoices.map(foodChoices => 
+            <Text style={styles.textStyle}>{foodChoices}</Text>);
+    }
+    
     render() {
-        const { 
+        const {
             textStyle,
             titleStyle,
             containerStyle,
@@ -14,31 +20,31 @@ class OrderDetails extends Component {
             cardSectionStyle
         } = styles;
 
-        const jioJoinerNames = 'Adam';
-        const orders = 'Maggie Pattaya (X 1)';
-        const price = '$6';
+        console.log(this.props.orderDetails);
         return (
             <View style={containerStyle}>
-                <Text style={titleStyle}>{jioJoinerNames}</Text>
+                <Text style={titleStyle}>{this.props.orderDetails.joinerName}</Text>
                 <CardSection>
-                    <Text style={[textStyle, { color: '#000000', flex: 10 }]}>{orders}</Text>
-                    <Text style={[textStyle, { color: '#000000', flex: 1 }]}>{price}</Text>
+                    <View style={{ flex: 7 }}>
+                        {this.renderOrders()}
+                    </View>
+                    <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>
                 </CardSection>
                 <CardSection>
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
                         <Switch 
-                        style={switchStyle}
-                        value={this.state.paid} 
-                        onValueChange={() => this.setState({ paid: true })}
+                            style={switchStyle}
+                            value={this.state.paid} 
+                            onValueChange={() => this.setState({ paid: true })}
                         />
                     </CardSection>
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>COLLECTED</Text>
                         <Switch 
-                        style={switchStyle}
-                        value={this.state.collected} 
-                        onValueChange={() => this.setState({ collected: true })}
+                            style={switchStyle}
+                            value={this.state.collected} 
+                            onValueChange={() => this.setState({ collected: true })}
                         />
                     </CardSection>
                 </CardSection>
@@ -61,7 +67,7 @@ const styles = {
     },
     textStyle: {
         fontSize: 18,
-        color: '#FFFFFF',
+        color: '#000000',
         marginLeft: 5,
         marginRight: 5,
         marginTop: 3,

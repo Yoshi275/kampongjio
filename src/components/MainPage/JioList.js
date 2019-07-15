@@ -16,36 +16,33 @@ class JioList extends Component {
         allOrders: {}
     };
     
-    componentDidMount() { // TODO: somehow pass info on all orders
+    componentDidMount() {
         db
             .ref('/allOrders')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
+                console.log(Object.entries(this.state.allOrders));
             });
     }
 
-    // renderJio(order) {
-    //     // order.item is because renderItem in FlatList, requires index, item and separator
-    //     // whereas all the data that we currently want is centred in item. Can make use of the rest
-    //     // if time permits
-    //     return (
-    //         <JioDetails order={item} foodOrderId={index}/>
-    //     );
-    // }
+    renderJio = ({item}) => (
+        <JioDetails
+            order={item[1]}
+            foodOrderId={item[0]}
+        />
+    );
+
+    keyExtractor = (item) => (
+        item[1].store
+    );
 
     render() {
         return(
             <FlatList 
                 data={Object.entries(this.state.allOrders)}
-                // renderItem={this.renderJio({item, index})}
-                renderItem={({item, index}) => (
-                    <JioDetails
-                        order={item[1]}
-                        foodOrderId={item[0]}
-                    />
-                )}
-                keyExtractor={order => order.store}
+                renderItem={this.renderJio}
+                keyExtractor={this.keyExtractor}
             />
         );
     }
