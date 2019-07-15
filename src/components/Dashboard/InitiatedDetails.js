@@ -20,6 +20,9 @@ class InitiatedDetails extends Component {
     componentDidMount() { // TODO: somehow pass info on all orders
         db
             .ref('/allOrders')
+            .orderByChild('jioStatus')
+            .startAt('jioOpen')
+            .endAt('jioOpen')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
