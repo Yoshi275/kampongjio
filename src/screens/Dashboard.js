@@ -14,8 +14,8 @@ class Dashboard extends Component {
         return (
             <View style={containerStyle}>
                 <ScrollView>
-                    <Previous />
                     <Ongoing />
+                    <Previous />
                 </ScrollView>
                 <NavBar />
             </View>
