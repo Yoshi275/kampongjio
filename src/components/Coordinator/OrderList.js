@@ -5,25 +5,25 @@ import { ScrollView, FlatList } from 'react-native';
 import OrderDetails from './OrderDetails';
 
 class OrderList extends Component {
+    renderJio = ({item}) => (
+        <OrderDetails
+            order={item[1]}
+            foodOrderId={item[0]}
+        />
+    );
+
+    keyExtractor = (item) => (
+        item[1].joinerName
+    );
+
     render() {
-        // console.log(this.props.foodOrders);
         return(
-            // <ScrollView>
-            //     <OrderDetails />
-            //     <OrderDetails />
-            //     {/* TODO: Dynamically render all orders from this.props.foodOrders (returning an array) */}
-            // </ScrollView>
             <FlatList 
-                data={Object.entries(this.props.foodOrders)}
-                renderItem={({item}) => (
-                    <OrderDetails
-                        orderDetails={item[1]}
-                        foodOrderId={item[0]}
-                    />
-                )}
-                keyExtractor={order => order.joinerName}
+                data={Object.entries(this.state.allOrders)}
+                renderItem={this.renderJio}
+                keyExtractor={this.keyExtractor}
             />
-        ); 
+        );
     }
     
 }
