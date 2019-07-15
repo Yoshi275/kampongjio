@@ -3,8 +3,6 @@ import { Text, View, ScrollView } from 'react-native';
 import { TimeOrange } from '../common';
 import OrderList from './OrderList';
 
-
-
 class CoordinatorFullJio extends Component {
     render() {
         const jioStatus = this.props.order.jioStatus === 'jioOpen' ? "Open" : "Closed";
@@ -13,6 +11,7 @@ class CoordinatorFullJio extends Component {
         const jioCloseTime = this.props.order.jioCloseTime;
         const jioArrivalTime = this.props.order.jioArrivalTime;
 
+        // console.log(this.props.order.foodOrders);
         return(
             <View>
                 <Text style={styles.textStyle}>Status : {jioStatus}</Text>

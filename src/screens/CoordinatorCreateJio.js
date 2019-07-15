@@ -76,6 +76,7 @@ class CoordinatorCreateJio extends Component {
                     value={this.state.store}
                     onChangeText={store => this.setState({ store })}
                 /> 
+                //TODO: Make the input URL link to a URL, instead of being a string in Firebase
                 <Input 
                     placeholder="What do they serve?"
                     label="Menu*"

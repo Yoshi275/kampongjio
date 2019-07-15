@@ -31,7 +31,10 @@ class InitiatedDetails extends Component {
         // whereas all the data that we currently want is centred in item. Can make use of the rest
         // if time permits
         return (
-            <JioDetails order={order.item} />
+            <JioDetails 
+                order={order.item} 
+                fromDashboard={true} 
+            />
         );
     }
 

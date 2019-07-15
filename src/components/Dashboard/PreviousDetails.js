@@ -44,6 +44,7 @@ class PreviousDetails extends Component {
         return(
             <FlatList 
                 data={Object.entries(this.state.allOrders)}
+                style={styles.containerStyle}
                 // renderItem={this.renderJio({item, index})}
                 renderItem={({item, index}) => (
                     <JioDetails

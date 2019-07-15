@@ -16,14 +16,12 @@ const RouterComponent = () => {
                     key="front"
                     component={Front}
                     hideNavBar={true}
-                    
+                    initial
                 />
                 <Scene 
                     key="mainPage"
                     component={MainPage}
                     title="Kampong Jio"
-                    initial
-                    
                 />
                 <Scene
                     key="jioInformation"
