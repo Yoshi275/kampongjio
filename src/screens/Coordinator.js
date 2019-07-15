@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, NavBar } from '../components/common';
 import { Open } from '../resources/icons';
@@ -8,7 +8,6 @@ import CoordinatorFullJio from '../components/Coordinator/CoordinatorFullJio';
 class Coordinator extends Component {
     render() {
         const store = this.props.order.store;
-        const status = Open;
 
         const { 
             containerStyle,
@@ -17,10 +16,10 @@ class Coordinator extends Component {
 
         return(
             <View style={containerStyle}>
-                <View>
+                <ScrollView>
                     <Text style={storeStyle}>{store}</Text>
                     <CoordinatorFullJio order={this.props.order}/>
-                </View>
+                </ScrollView>
                 <View>
                     <Button onPress={ () => Actions.mainPage() }>CLOSE ORDER</Button>
                     {/* TODO: Change status of order by pressing button */}
