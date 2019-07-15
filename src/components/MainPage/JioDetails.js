@@ -21,14 +21,14 @@ import { //TODO: Change status into states? Not sure how the constants help and 
 } from '../../data/jio-states'
 
 class JioDetails extends Component {
-    // state = {jioStatus: {this.props.order.jioStatus}};
-    // console.log(this.state.jioStatus);
-
     renderNextPage() {
         if(this.props.fromDashboard) {
             Actions.coordinator({ order: this.props.order});
         } else {
-            Actions.jioInformation({ order: this.props.order});
+            Actions.jioInformation({ 
+                order: this.props.order,
+                foodOrderId: this.props.foodOrderId
+            });
         }
     }
 
@@ -57,9 +57,7 @@ class JioDetails extends Component {
                     : this.props.order.jioStatus === 'jioPaid' 
                         ? Paid
                         : this.props.order.jioStatus === 'jioArrived'
-                            ? Arrive : Complete; 
-
-        // console.log(this.props.order);        
+                            ? Arrive : Complete;     
     
         return (
             <TouchableOpacity onPress={() => this.renderNextPage()}>

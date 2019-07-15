@@ -25,20 +25,26 @@ class JioList extends Component {
             });
     }
 
-    renderJio(order) {
-        // order.item is because renderItem in FlatList, requires index, item and separator
-        // whereas all the data that we currently want is centred in item. Can make use of the rest
-        // if time permits
-        return (
-            <JioDetails order={order.item} />
-        );
-    }
+    // renderJio(order) {
+    //     // order.item is because renderItem in FlatList, requires index, item and separator
+    //     // whereas all the data that we currently want is centred in item. Can make use of the rest
+    //     // if time permits
+    //     return (
+    //         <JioDetails order={item} foodOrderId={index}/>
+    //     );
+    // }
 
     render() {
         return(
             <FlatList 
-                data={Object.values(this.state.allOrders)}
-                renderItem={this.renderJio}
+                data={Object.entries(this.state.allOrders)}
+                // renderItem={this.renderJio({item, index})}
+                renderItem={({item, index}) => (
+                    <JioDetails
+                        order={item[1]}
+                        foodOrderId={item[0]}
+                    />
+                )}
                 keyExtractor={order => order.store}
             />
         );

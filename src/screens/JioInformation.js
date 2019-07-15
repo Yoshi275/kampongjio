@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, NavBar } from '../components/common';
 import FullJioDetails from '../components/JioInformation/FullJioDetails';
@@ -10,7 +10,10 @@ class JioInformation extends Component {
             <View style={styles.containerStyle}>
                 <FullJioDetails order={this.props.order}/>
                 <View>
-                    <Button onPress={() => { Actions.jioJoinerOrder({ order : this.props.order }) }}>
+                    <Button onPress={() => { Actions.jioJoinerOrder({ 
+                        order : this.props.order, 
+                        foodOrderId: this.props.foodOrderId}) 
+                        }}>
                         + JOIN JIO
                     </Button>
                     <NavBar />
