@@ -53,7 +53,7 @@ class JioJoinerOrder extends Component {
     
     handleSubmit() {
         let postData = {
-            foodChoices: this.state.foodChoices,
+            foodChoices: [this.state.foodChoices],
             joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
             foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
             price: this.state.price,
