@@ -22,8 +22,6 @@ class JioList extends Component {
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
-                console.log(Object.values(this.state.allOrders))
-                console.log(Object.keys(this.state.allOrders))
             });
     }
 
@@ -31,7 +29,6 @@ class JioList extends Component {
     //     // order.item is because renderItem in FlatList, requires index, item and separator
     //     // whereas all the data that we currently want is centred in item. Can make use of the rest
     //     // if time permits
-    //     console.log(index)
     //     return (
     //         <JioDetails order={item} foodOrderId={index}/>
     //     );
