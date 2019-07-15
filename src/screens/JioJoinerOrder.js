@@ -58,6 +58,8 @@ class JioJoinerOrder extends Component {
             foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
             price: this.state.price,
             specialRequests: this.state.specialRequests,
+            hasPaid: false,
+            hasCollected: false
         }
 
         let foodOrderId = this.props.foodOrderId; // for accessing the array, has to be changed in the future
