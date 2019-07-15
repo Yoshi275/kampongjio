@@ -58,16 +58,13 @@ class JioDetails extends Component {
                         ? Paid
                         : this.props.order.jioStatus === 'jioArrived'
                             ? Arrive : Complete; 
-        // please use conditional formatting. based on state, load relevant icon
-        /* eg. const jioImage = this.props.order.store === 'Makisan' 
-                    ? Makisan
-                    : this.props.order.store === 'Ameens'
-                        ? Ameens
-                        : Macdonalds */
 
+        // console.log(this.props.order);        
+    
         return (
             <TouchableOpacity onPress={() => this.renderNextPage()}>
                 <Card>
+                    {/* <Text>{this.props.order.store}</Text> */}
                     <CardSection>
                         <View style={imageContainerStyle}>
                             <Image 

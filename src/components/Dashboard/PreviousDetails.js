@@ -6,17 +6,14 @@
 // https://www.youtube.com/watch?v=5vFgqCfggC0
 
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import JioDetails from '../MainPage/JioDetails';
 import { db } from '../../config';
 import data from '../../data/AllJios.json';
 
 class PreviousDetails extends Component {
     state = { 
-        allOrders: {}, 
-        orderOne: {}, 
-        orderTwo: {}, 
-        orderThree: {} 
+        allOrders: {}
     };
     
     componentDidMount() { // TODO: somehow pass info on all orders
@@ -25,35 +22,26 @@ class PreviousDetails extends Component {
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
-                this.setState({ orderOne: allOrders[0] });
-                this.setState({ orderTwo: allOrders[1] });
-                this.setState({ orderThree: allOrders[2] });
-                this.order = allOrders;
-                console.log(this.state.allOrders);
-                console.log(this.state.orderOne);
             });
     }
 
-    renderJio() {
-        // not in use for now. orders are hardcoded
-        return this.state.allOrders.map(order => 
-            <JioDetails order={order}/>
+    renderJio(order) {
+        // order.item is because renderItem in FlatList, requires index, item and separator
+        // whereas all the data that we currently want is centred in item. Can make use of the rest
+        // if time permits
+        return (
+            <JioDetails order={order.item} />
         );
-            //  <JioDetails print={'print'} order={this.state.orderOne}/>
-            // // A new method doesn't allow the rendering of two components {/* <JioDetails print={'print'} order={this.state.allOrders}/> */}
-            // );
     }
 
     render() {
-        let order = [];
-
         return(
-            <ScrollView style={styles.containerStyle}>
-                {/* { this.renderJio() }  */}
-                <JioDetails order={this.state.orderOne} />
-                <JioDetails order={this.state.orderTwo} />
-                <JioDetails order={this.state.orderThree} />
-            </ScrollView>
+            <FlatList 
+                data={Object.values(this.state.allOrders)}
+                renderItem={this.renderJio}
+                keyExtractor={order => order.store}
+                style={styles.containerStyle}
+            />
         );
     }
 }
