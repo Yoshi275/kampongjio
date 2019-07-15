@@ -6,13 +6,6 @@ import Ongoing from '../components/Dashboard/Ongoing';
 import Previous from '../components/Dashboard/Previous';
 
 class Dashboard extends Component {
-    state = { 
-        allOrders: {}, 
-        orderOne: {}, 
-        orderTwo: {}, 
-        orderThree: {} 
-    };
-
     render() {
         const {
             containerStyle
@@ -21,8 +14,8 @@ class Dashboard extends Component {
         return (
             <View style={containerStyle}>
                 <ScrollView>
-                    <Ongoing />
                     <Previous />
+                    <Ongoing />
                 </ScrollView>
                 <NavBar />
             </View>

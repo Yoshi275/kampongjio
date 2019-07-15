@@ -56,7 +56,7 @@ class JioJoinerOrder extends Component {
             foodChoices: this.state.foodChoices,
             joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
             foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
-            price: '8.80', // TODO: Until price var is fixed, this will have to do
+            price: this.state.price,
             specialRequests: this.state.specialRequests,
         }
 

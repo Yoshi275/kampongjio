@@ -19,28 +19,39 @@ class PreviousDetails extends Component {
     componentDidMount() { // TODO: somehow pass info on all orders
         db
             .ref('/allOrders')
+            .orderByChild('jioStatus')
+            .startAt('jioArrived')
+            .endAt('jioClosed')
             .on('value', snapshot => {
+                snapshot.forEach((child) => {
+                    console.log(child.val())
+                })
                 let allOrders = snapshot.val();
                 this.setState({ allOrders });
             });
     }
 
-    renderJio(order) {
-        // order.item is because renderItem in FlatList, requires index, item and separator
-        // whereas all the data that we currently want is centred in item. Can make use of the rest
-        // if time permits
-        return (
-            <JioDetails order={order.item} />
-        );
-    }
+    // renderJio(order) {
+    //     // order.item is because renderItem in FlatList, requires index, item and separator
+    //     // whereas all the data that we currently want is centred in item. Can make use of the rest
+    //     // if time permits
+    //     return (
+    //         <JioDetails order={order.item} />
+    //     );
+    // }
 
     render() {
         return(
             <FlatList 
-                data={Object.values(this.state.allOrders)}
-                renderItem={this.renderJio}
+                data={Object.entries(this.state.allOrders)}
+                // renderItem={this.renderJio({item, index})}
+                renderItem={({item, index}) => (
+                    <JioDetails
+                        order={item[1]}
+                        foodOrderId={item[0]}
+                    />
+                )}
                 keyExtractor={order => order.store}
-                style={styles.containerStyle}
             />
         );
     }
