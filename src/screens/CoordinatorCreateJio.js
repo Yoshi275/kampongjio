@@ -67,8 +67,6 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
-            {/* <KeyboardAvoidingView enabled> */}
-                {/* <Text>{this.state.firebaseOrderId}</Text> */}
                 <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
                     placeholder="Where do I want to eat from?"
@@ -76,7 +74,7 @@ class CoordinatorCreateJio extends Component {
                     value={this.state.store}
                     onChangeText={store => this.setState({ store })}
                 /> 
-                //TODO: Make the input URL link to a URL, instead of being a string in Firebase
+                {/* TODO: Make the input URL link to a URL, instead of being a string in Firebase */}
                 <Input 
                     placeholder="What do they serve?"
                     label="Menu*"
@@ -132,7 +130,6 @@ class CoordinatorCreateJio extends Component {
                 </TimeOrange>
 
                 <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
-            {/* </KeyboardAvoidingView> */}
             </View>
         );
     }
