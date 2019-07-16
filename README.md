@@ -132,6 +132,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Cheryl - [@Yoshi275](https://github.com/Yoshi275) - ngyoshi275@gmail.com
+
 Venny - [@vennylewis](https://github.com/vennylewis) - vennyl256@gmail.com
 
 Project Link: [https://github.com/Yoshi275/kampongjio](https://github.com/Yoshi275/kampongjio)
