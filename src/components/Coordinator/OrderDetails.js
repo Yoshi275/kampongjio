@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { db } from '../../config';
 import { Card, CardSection } from '../common';
 
 class OrderDetails extends Component {
     state = {paid : this.props.orderDetails.hasPaid, collected : this.props.orderDetails.hasCollected}
     
     componentDidUpdate() {
-
+        this.handleSubmit()
     }
 
     handleSubmit() {
         let postData = {
-            hasPaid: this.state.hasPaid,
-            hasCollected: this.state.hasCollected
+            hasPaid: this.state.paid,
+            hasCollected: this.state.collected
         }
 
         const jioOrderId = this.props.jioOrderId;
@@ -22,10 +23,10 @@ class OrderDetails extends Component {
 
         db
             .ref(dbLocation)
-            .push(postData)
+            .update(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
-                Actions.mainPage(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
+                Actions.dashboard(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
