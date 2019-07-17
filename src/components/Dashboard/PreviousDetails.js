@@ -16,18 +16,22 @@ class PreviousDetails extends Component {
         allOrders: {}
     };
     
-    componentDidMount() { // TODO: somehow pass info on all orders
+    componentDidMount() { 
+        // TODO: somehow pass info on all orders
         db
             .ref('/allOrders')
             .orderByChild('jioStatus')
-            .startAt('jioArrived')
-            .endAt('jioClosed')
+            .equalTo('4jioCompleted')
             .on('value', snapshot => {
                 snapshot.forEach((child) => {
                     console.log(child.val())
-                })
+                });
                 let allOrders = snapshot.val();
-                this.setState({ allOrders });
+                if ( allOrders === null ) {
+                    return null;
+                } else {
+                    this.setState({ allOrders });
+                }
             });
     }
 

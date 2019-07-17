@@ -1,11 +1,11 @@
 {
 	"allOrders" : [
 		{		
-			"orderId" : 1,
+			"orderId" : 0,
 			"store" : "Makisan",
 			"coordinatorName" : "Cheryl",
 			"phoneNumber" : 99123456,
-			"jioStatus" : "jioOpen",
+			"jioStatus" : "1jioOpen",
 			"jioLocation" : "NUS Kent Ridge Hall",
 			"jioOpenTime" : "12:20",
 			"jioCloseTime" : "12:45",
@@ -16,7 +16,7 @@
 			"promoCode" : "ILOVESUSHI (20%)",
 			"foodOrders" : [
 				{
-					"foodOrderNo" : 1,
+					"foodOrderNo" : 0,
 					"joinerName" : "Adam",
 					"foodChoices" : [
 						"Salmon Delight",
@@ -29,7 +29,7 @@
 					"hasCollected" : false
 				},
 				{
-					"foodOrderNo" : 2,
+					"foodOrderNo" : 1,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
 						"Yucky Veggie Delight",
@@ -38,11 +38,12 @@
 						"I'm on a Sushi Roll"
 					],
 					"price" : "$15.30",
+					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : false
 				},
 				{
-					"foodOrderNo" : 3,
+					"foodOrderNo" : 2,
 					"joinerName" : "Venny",
 					"foodChoices" : [
 						"Too Cool for Food Puns",
@@ -50,17 +51,18 @@
 						"I got tired of punning sushi rolls"
 					],
 					"price" : "$27.60",
+					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
 				}
 			]
 		},
 		{
-			"orderId" : 2,
+			"orderId" : 1,
 			"store" : "Al Amaan",
 			"coordinatorName" : "Venny",
 			"phoneNumber" : 91234567,
-			"jioStatus" : "jioClosed",
+			"jioStatus" : "2jioClosed",
 			"jioLocation" : "University Scholars Programme",
 			"jioOpenTime" : "13:30",
 			"jioCloseTime" : "14:45",
@@ -71,7 +73,7 @@
 			"promoCode" : "SUPPERJIOSIOL (40%)",
 			"foodOrders" : [
 				{
-					"foodOrderNo" : 1,
+					"foodOrderNo" : 0,
 					"joinerName" : "Ahmed",
 					"foodChoices" : [
 						"Fried Chicken",
@@ -83,33 +85,35 @@
 					"hasCollected" : false
 				},
 				{
-					"foodOrderNo" : 2,
+					"foodOrderNo" : 1,
 					"joinerName" : "Eric",
 					"foodChoices" : [
 						"Carbonara"
 					],
 					"price" : "$6.40",
+					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : false
 				},
 				{
-					"foodOrderNo" : 3,
+					"foodOrderNo" : 2,
 					"joinerName" : "Hui Ren",
 					"foodChoices" : [
 						"Cheese Fries (L)"
 					],
 					"price" : "$5.00",
+					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
 				}
 			]
       	},
       	{
-			"orderId" : 3,
+			"orderId" : 2,
 			"store" : "McDonalds",
 			"coordinatorName" : "Rafi",
 			"phoneNumber" : 99998888,
-			"jioStatus" : "jioArrived",
+			"jioStatus" : "3jioArrived",
 			"jioLocation" : "Theme Room 2, Learn Lobes",
 			"jioOpenTime" : "21:30",
 			"jioCloseTime" : "22:15",
@@ -120,7 +124,7 @@
 			"promoCode" : "CARBSCARBSCARBS (40%)",
 			"foodOrders" : [
 				{
-					"foodOrderNo" : 1,
+					"foodOrderNo" : 0,
 					"joinerName" : "Dhameem",
 					"foodChoices" : [
 						"McChicken Meal"
@@ -131,7 +135,7 @@
 					"hasCollected" : false
 				},
 				{
-					"foodOrderNo" : 2,
+					"foodOrderNo" : 1,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
 						"Filet-o-Fish Meal",
@@ -143,12 +147,13 @@
 					"hasCollected" : false
 				},
 				{
-					"foodOrderNo" : 3,
+					"foodOrderNo" : 2,
 					"joinerName" : "Jonina",
 					"foodChoices" : [
 						"Mineral Water"
 					],
 					"price" : "$3.00",
+					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
 				}

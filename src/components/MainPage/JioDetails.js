@@ -53,14 +53,12 @@ class JioDetails extends Component {
         //         : this.props.order.store === 'Al Amaan'
         //         ? AlAmaan : McDonalds;
         const jioImage = Food;
-        const jioStatusIcon = this.props.order.jioStatus === 'jioOpen'
+        const jioStatusIcon = this.props.order.jioStatus === '1jioOpen'
                 ? Open 
-                : this.props.order.jioStatus === 'jioClosed'
+                : this.props.order.jioStatus === '2jioClosed'
                     ? Close
-                    : this.props.order.jioStatus === 'jioPaid' 
-                        ? Paid
-                        : this.props.order.jioStatus === 'jioArrived'
-                            ? Arrive : Complete;     
+                    : this.props.order.jioStatus === '3jioArrived'
+                        ? Arrive : Complete;     
     
         return (
             <TouchableOpacity onPress={() => this.renderNextPage()}>

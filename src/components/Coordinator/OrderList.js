@@ -14,7 +14,7 @@ class OrderList extends Component {
     );
 
     keyExtractor = (item) => (
-        item[1].foodOrderNo
+        item[1].joinerName
     );
 
     render() {

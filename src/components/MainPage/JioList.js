@@ -19,10 +19,15 @@ class JioList extends Component {
     componentDidMount() {
         db
             .ref('/allOrders')
+            .orderByChild('jioStatus')
+            .equalTo('1jioOpen')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
-                this.setState({ allOrders });
-                console.log(Object.entries(this.state.allOrders));
+                if ( allOrders === null ) {
+                    return null;
+                } else {
+                    this.setState({ allOrders });
+                }
             });
     }
 

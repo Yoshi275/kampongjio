@@ -16,7 +16,6 @@ const RouterComponent = () => {
                     key="front"
                     component={Front}
                     hideNavBar={true}
-                    initial
                 />
                 <Scene 
                     key="mainPage"
@@ -42,6 +41,7 @@ const RouterComponent = () => {
                     key="dashboard"
                     component={Dashboard}
                     title="Your Jios"
+                    initial
                 />
                 <Scene
                     key="coordinator"
