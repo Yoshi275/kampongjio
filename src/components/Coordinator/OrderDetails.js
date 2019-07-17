@@ -26,7 +26,6 @@ class OrderDetails extends Component {
             .update(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
-                Actions.dashboard(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
