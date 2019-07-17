@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Spinner } from 'react-native';
+import { Text, View, Spinner, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, Input } from '../components/common';
 import { auth } from '../config';
-import firebase from 'firebase'
-
-// const { State: TextInputState } = TextInput;
+import { Logo } from '../resources/images';
 
 class LoginForm extends Component {
     state = { 
@@ -59,7 +57,8 @@ class LoginForm extends Component {
         const { 
             containerStyle,
             titleStyle,
-            errorTextStyle
+            errorTextStyle,
+            imageContainerStyle
         } = styles;
         
         return(
@@ -82,14 +81,6 @@ class LoginForm extends Component {
                         secureTextEntry
                     />
 
-                    <Text style={errorTextStyle}>
-                        {this.state.error}
-                    </Text>
-
-                    <Text>
-                        {this.state.email}
-                    </Text>
-
                     <Text>
                         {this.state.password}
                     </Text>
@@ -99,6 +90,12 @@ class LoginForm extends Component {
                     </Button>
 
                     {/* <View>{this.renderButton()}</View> */}
+                </View>
+                <View style={imageContainerStyle}>
+                    <Image 
+                        source={ Logo }
+                        style={ styles.imageStyle }
+                    />
                 </View>
             </View>
         );
@@ -129,6 +126,16 @@ const styles = {
         fontSize: 20,
         alignSelf: 'center',
         color: 'red',
+    },
+    imageStyle: {
+        height: 200,
+        width: 200
+    },
+    imageContainerStyle: {
+        backgroundColor: '#2D9B83',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 };
 
