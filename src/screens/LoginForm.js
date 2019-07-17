@@ -22,7 +22,7 @@ class LoginForm extends Component {
             .then(this.onLoginSuccess.bind(this))
             .catch(() => {
                 auth().createUserWithEmailAndPassword(email, password)
-                    .then(this.onLoginSuccess.bind(this))
+                    .then(successMessage => this.onLoginSuccess(successMessage).bind(this))
                     .catch(this.onLoginFail.bind(this));
             });
     }
@@ -32,7 +32,7 @@ class LoginForm extends Component {
             return <Spinner size="small" />
         } else {
             return (
-                <Button onPress={() => this.handleSubmit.bind(this)}>
+                <Button onPress={this.handleSubmit.bind(this)}>
                     LOGIN
                 </Button>
             )
@@ -43,13 +43,15 @@ class LoginForm extends Component {
         this.setState({ error: 'Authentication Failed.', loading: false})
     }
 
-    onLoginSuccess() {
+    onLoginSuccess(message) {
         this.setState({
             email: '',
             password: '',
             loading: false,
             error: '',
         });
+        console.log('LOGIN SUCCESS')
+        console.log(message.user.uid)
         Actions.mainPage()
     }
 
@@ -81,9 +83,11 @@ class LoginForm extends Component {
                         secureTextEntry
                     />
 
-                    <Button onPress={() => this.handleSubmit()}>
+                    <View>{this.renderButton()}</View>
+
+                    {/* <Button onPress={() => this.handleSubmit()}>
                         LOGIN
-                    </Button>
+                    </Button> */}
                 </View>
                 <View style={imageContainerStyle}>
                     <Image 
