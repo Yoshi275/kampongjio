@@ -12,7 +12,7 @@ class JioInformation extends Component {
                 <View>
                     <Button onPress={() => { Actions.jioJoinerOrder({ 
                         order : this.props.order, 
-                        foodOrderId: this.props.foodOrderId}) 
+                        jioOrderId: this.props.jioOrderId}) 
                         }}>
                         + JOIN JIO
                     </Button>

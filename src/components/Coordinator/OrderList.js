@@ -8,7 +8,8 @@ class OrderList extends Component {
     renderJio = ({item}) => (
         <OrderDetails
             orderDetails={item[1]}
-            foodOrderId={item[0]}
+            jioJoinOrderId={item[0]}
+            jioOrderId={this.props.jioOrderId}
         />
     );
 

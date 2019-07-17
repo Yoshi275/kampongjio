@@ -18,7 +18,10 @@ class Coordinator extends Component {
             <View style={containerStyle}>
                 <ScrollView>
                     <Text style={storeStyle}>{store}</Text>
-                    <CoordinatorFullJio order={this.props.order}/>
+                    <CoordinatorFullJio 
+                        order={this.props.order}
+                        jioOrderId={this.props.jioOrderId}
+                    />
                 </ScrollView>
                 <View>
                     <Button onPress={ () => Actions.mainPage() }>CLOSE ORDER</Button>

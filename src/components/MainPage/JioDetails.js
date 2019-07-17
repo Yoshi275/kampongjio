@@ -23,11 +23,14 @@ import { //TODO: Change status into states? Not sure how the constants help and 
 class JioDetails extends Component {
     renderNextPage() {
         if(this.props.fromDashboard) {
-            Actions.coordinator({ order: this.props.order});
+            Actions.coordinator({ 
+                order: this.props.order,
+                jioOrderId: this.props.jioOrderId
+            });
         } else {
             Actions.jioInformation({ 
                 order: this.props.order,
-                foodOrderId: this.props.foodOrderId
+                jioOrderId: this.props.jioOrderId
             });
         }
     }
@@ -65,6 +68,7 @@ class JioDetails extends Component {
                     {/* <Text>{this.props.order.store}</Text> */}
                     <CardSection>
                         <View style={imageContainerStyle}>
+                            <Text>{this.props.jioOrderId}</Text>
                             <Image 
                                 style={imageStyle}
                                 source={ jioImage }

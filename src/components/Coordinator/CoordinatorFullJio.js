@@ -14,6 +14,7 @@ class CoordinatorFullJio extends Component {
         // console.log(this.props.order.foodOrders);
         return(
             <View>
+                <Text style={styles.textStyle}>{this.props.jioOrderId}</Text>
                 <Text style={styles.textStyle}>Status : {jioStatus}</Text>
                 <Text style={styles.textStyle}>Location : {jioLocation}</Text>
                 <TimeOrange>
@@ -24,7 +25,10 @@ class CoordinatorFullJio extends Component {
                     </View>
                 </TimeOrange>
                 <Text style={styles.labelStyle}>ORDERS</Text>
-                <OrderList foodOrders={this.props.order.foodOrders}/>
+                <OrderList 
+                    foodOrders={this.props.order.foodOrders}
+                    jioOrderId={this.props.jioOrderId}
+                />
             </View>
         );
     }

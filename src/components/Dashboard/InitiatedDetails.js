@@ -32,7 +32,7 @@ class InitiatedDetails extends Component {
     renderJio = ({item}) => (
         <JioDetails
             order={item[1]}
-            foodOrderId={item[0]}
+            jioOrderId={item[0]}
             fromDashboard={true}
         />
     );
