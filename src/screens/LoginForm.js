@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Spinner, Image } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button, Input } from '../components/common';
+import { Button, Input, Spinner } from '../components/common';
 import { auth } from '../config';
 import { Logo } from '../resources/images';
 
@@ -81,15 +81,9 @@ class LoginForm extends Component {
                         secureTextEntry
                     />
 
-                    <Text>
-                        {this.state.password}
-                    </Text>
-
                     <Button onPress={() => this.handleSubmit()}>
                         LOGIN
                     </Button>
-
-                    {/* <View>{this.renderButton()}</View> */}
                 </View>
                 <View style={imageContainerStyle}>
                     <Image 
