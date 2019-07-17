@@ -19,7 +19,6 @@ class OngoingDetails extends Component {
     
     componentDidMount() { 
         // TODO: somehow pass info on all orders
-        // TODO: Same as InitiatedDetails, filtering can only be implemented after login system is implemented
         db
             .ref('/allOrders')
             .orderByChild('jioStatus')

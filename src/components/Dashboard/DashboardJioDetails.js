@@ -16,7 +16,7 @@ import { //TODO: Change status into states? Not sure how the constants help and 
     JIO_CLOSED,
     JIO_PAID,
     JIO_ARRIVED
-} from '../../data/jio-states'
+} from '../../data/jioStatus'
 
 class DashboardJioDetails extends Component {
     // state = {jioStatus: {this.props.order.jioStatus}};

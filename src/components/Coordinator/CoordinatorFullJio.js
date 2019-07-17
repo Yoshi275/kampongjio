@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { TimeOrange } from '../common';
 import OrderList from './OrderList';
+import { jioStatusText } from '../../data/jioStatus';
 
+// TODO: Make jioStatus react directly to when the button in Coordinator page is pressed
 class CoordinatorFullJio extends Component {
     render() {
-        const jioStatus = this.props.order.jioStatus === 'jioOpen' ? "Open" : "Closed";
         const jioLocation = this.props.order.jioLocation;
         const jioOpenTime = this.props.order.jioOpenTime;
         const jioCloseTime = this.props.order.jioCloseTime;
@@ -14,7 +15,7 @@ class CoordinatorFullJio extends Component {
         // console.log(this.props.order.foodOrders);
         return(
             <View>
-                <Text style={styles.textStyle}>Status : {jioStatus}</Text>
+                <Text style={styles.textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
                 <Text style={styles.textStyle}>Location : {jioLocation}</Text>
                 <TimeOrange>
                     <View style={{ flexDirection: 'column' }}>
