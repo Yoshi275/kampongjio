@@ -1,7 +1,4 @@
-// A reusable component that house details of jio written in the form of card
-// and card sections. This will display Image, restaurantName, location,
-// CloseJioTime, PickupTime, and StatusIcon
-// Consider making the layout more dynamic when we start hooking it up to a database
+// AS OF NOW, NOT USING IT UNLESS WE ARE THINKING OF DISPLAYING DIFFERENT INFO
 
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
@@ -19,21 +16,14 @@ import { //TODO: Change status into states? Not sure how the constants help and 
     JIO_CLOSED,
     JIO_PAID,
     JIO_ARRIVED
-} from '../../data/jio-states'
+} from '../../data/jioStatus'
 
 class DashboardJioDetails extends Component {
     // state = {jioStatus: {this.props.order.jioStatus}};
     // console.log(this.state.jioStatus);
 
-    state = {payment : false }
-
-    pay() {
-        if (this.state.payment === false) {
-            return(
-                <PayButton onPress={() => this.setState({ payment: true })}>PAID!</PayButton>
-            );
-        }
-    }
+    //TODO: Unable to do so because need to have idea of registered users. 
+    //      Link to the paymentIndication in firebase, and make it update when onPress is called
     
     render() {
         const { 
@@ -84,7 +74,7 @@ class DashboardJioDetails extends Component {
                                 <Text style={timeTextStyle}>{this.props.order.jioArrivalTime}</Text>
                             </View>
                             <View>
-                            { this.pay() }
+                                <Text>PRICE?</Text>
                             </View>
                         </View>
                         <View style={iconContainerStyle}>

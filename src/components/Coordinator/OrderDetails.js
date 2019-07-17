@@ -33,8 +33,16 @@ class OrderDetails extends Component {
     }
 
     renderOrders() {
+        // console.log(this.props);
+
         return this.props.orderDetails.foodChoices.map(foodChoices => 
-            <Text style={styles.textStyle}>{foodChoices}</Text>);
+            <Text 
+            style={styles.textStyle}
+            key={this.props.orderDetails.joinerName + ' ' + foodChoices}
+            >
+                {foodChoices}
+            </Text>
+            );
     }
     
     render() {
@@ -46,12 +54,12 @@ class OrderDetails extends Component {
             cardSectionStyle
         } = styles;
 
-        console.log(this.props.orderDetails);
+        // console.log(this.props.orderDetails);
         return (
             <View style={containerStyle}>
                 <Text style={titleStyle}>{this.props.orderDetails.joinerName}</Text>
                 <CardSection>
-                    <View style={{ flex: 7 }}>
+                    <View style={{ flex: 5 }}>
                         {this.renderOrders()}
                     </View>
                     <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>

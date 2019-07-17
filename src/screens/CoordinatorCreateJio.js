@@ -26,7 +26,7 @@ class CoordinatorCreateJio extends Component {
             store: this.state.store, 
             coordinatorName: '<INSERT NAME>', // TODO: get info from user account
             phoneNumber: 99998888, // TODO: get info from user account
-            jioStatus: 'jioOpen',
+            jioStatus: '1jioOpen',
             jioLocation: this.state.jioLocation,
             jioOpenTime: this.state.jioOpenTime,
             jioCloseTime: this.state.jioCloseTime,

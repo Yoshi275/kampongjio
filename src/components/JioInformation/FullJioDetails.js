@@ -12,15 +12,7 @@ import HeaderSection from './HeaderSection';
 // import { Makisan }  from '../../resources/images';
 import { Food } from '../../resources/icons';
 import { TimeOrange } from '../common';
-
-import {
-    JIO_COMPLETED, // to be for state constants
-    JIO_OPEN,
-    JIO_CLOSED,
-    JIO_PAID,
-    JIO_ARRIVED
-} from '../../data/jio-states'
-
+import { jioStatusText } from '../../data/jioStatus';
 
 class FullJioDetails extends Component {
     render() {
@@ -49,7 +41,7 @@ class FullJioDetails extends Component {
                     </View>
                 </HeaderSection>
 
-                <Text style={textStyle}>Status : {this.props.order.jioStatus === "jioOpen" ? 'Jio Open' : 'Jio Closed'}</Text>
+                <Text style={textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
                 <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>
 
                  <TimeOrange>

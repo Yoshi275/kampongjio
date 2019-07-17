@@ -7,18 +7,11 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
-import { Open, Close, Arrive, Paid, Complete, Food } from '../../resources/icons';
+import { Food } from '../../resources/icons';
 import { Makisan, AlAmaan, McDonalds }  from '../../resources/images';
-import data from '../../data/AllJios.json';
+import { jioStatusIcon } from '../../data/jioStatus';
+// import data from '../../data/AllJios.json';
 import { db } from '../../config';
-
-import { //TODO: Change status into states? Not sure how the constants help and later change status icon respectively
-    JIO_COMPLETED, // to be for state constants
-    JIO_OPEN,
-    JIO_CLOSED,
-    JIO_PAID,
-    JIO_ARRIVED
-} from '../../data/jio-states'
 
 class JioDetails extends Component {
     renderNextPage() {
@@ -53,14 +46,7 @@ class JioDetails extends Component {
         //         : this.props.order.store === 'Al Amaan'
         //         ? AlAmaan : McDonalds;
         const jioImage = Food;
-        const jioStatusIcon = this.props.order.jioStatus === 'jioOpen'
-                ? Open 
-                : this.props.order.jioStatus === 'jioClosed'
-                    ? Close
-                    : this.props.order.jioStatus === 'jioPaid' 
-                        ? Paid
-                        : this.props.order.jioStatus === 'jioArrived'
-                            ? Arrive : Complete;     
+        const jioStatusImage = jioStatusIcon(this.props.order.jioStatus);
     
         return (
             <TouchableOpacity onPress={() => this.renderNextPage()}>
@@ -85,7 +71,7 @@ class JioDetails extends Component {
                         <View style={iconContainerStyle}>
                             <Image 
                             style={iconStyle}
-                            source={jioStatusIcon} 
+                            source={jioStatusImage} 
                             />
                         </View>
                     </CardSection>

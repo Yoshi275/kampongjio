@@ -3,9 +3,52 @@ import { Text, View, Image, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, NavBar } from '../components/common';
 import { Open } from '../resources/icons';
+import { db } from '../config';
 import CoordinatorFullJio from '../components/Coordinator/CoordinatorFullJio';
 
 class Coordinator extends Component {
+    state = { jioStatus : this.props.order.jioStatus };
+
+    componentDidUpdate() {
+        this.handleSubmit()
+    }
+
+    handleSubmit() {
+        let postData = {
+            jioStatus: this.state.jioStatus,
+        }
+
+        const jioOrderId = this.props.jioOrderId;
+        let dbLocation = '/allOrders/' + jioOrderId + '/';
+
+        db
+            .ref(dbLocation)
+            .update(postData)
+            .then((success) => {
+                console.log('Success Message: ', success) // success callback
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
+
+    renderButton() {
+        console.log(this.state.jioStatus);
+        if( this.state.jioStatus === '1jioOpen' ) {
+            return (
+                <Button onPress={ () => this.setState({ jioStatus : '2jioClosed'}) }>JIO CLOSED</Button>
+            );
+        } else if( this.state.jioStatus === '2jioClosed' ) {
+            return (
+                <Button onPress={ () => this.setState({ jioStatus : '3jioArrived'}) }>FOOD ARRIVED</Button>
+            );
+        } else {        
+            return(
+                <Button onPress={ () => {Actions.mainPage(); this.setState({ jioStatus : '4jioCompleted'});} }>JIO COMPLETED</Button>
+            );
+        }
+    }
+    
     render() {
         const store = this.props.order.store;
 
@@ -24,8 +67,7 @@ class Coordinator extends Component {
                     />
                 </ScrollView>
                 <View>
-                    <Button onPress={ () => Actions.mainPage() }>CLOSE ORDER</Button>
-                    {/* TODO: Change status of order by pressing button */}
+                    {this.renderButton()}
                 <NavBar />
                 </View>
             </View>
