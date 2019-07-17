@@ -19,12 +19,12 @@ class JioJoinerOrder extends Component {
     componentWillMount() {
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
-      }
+    }
     
     componentWillUnmount() {
         this.keyboardDidShowSub.remove();
         this.keyboardDidHideSub.remove();
-      }
+    }
 
     keyboardDidShow = (event) => {
         const { height: windowHeight } = Dimensions.get('window');

@@ -17,12 +17,12 @@ const RouterComponent = () => {
                     key="loginForm"
                     component={LoginForm}
                     hideNavBar={true}
+                    initial
                 />
                 <Scene 
                     key="front"
                     component={Front}
                     hideNavBar={true}
-                    initial
                 />
                 <Scene 
                     key="mainPage"
