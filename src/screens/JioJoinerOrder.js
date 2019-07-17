@@ -62,8 +62,8 @@ class JioJoinerOrder extends Component {
             hasCollected: false
         }
 
-        let foodOrderId = this.props.foodOrderId; // for accessing the array, has to be changed in the future
-        let dbLocation = '/allOrders/' + foodOrderId + '/foodOrders/';
+        let jioOrderId = this.props.jioOrderId; // for accessing the array, has to be changed in the future
+        let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/';
 
         db
             .ref(dbLocation)
@@ -80,16 +80,16 @@ class JioJoinerOrder extends Component {
     render() {
         const { containerStyle, storeStyle } = styles;
         const store = this.props.order.store;
-        const foodOrderId = this.props.foodOrderId;
+        const jioOrderId = this.props.jioOrderId;
 
         console.log('Logging Order ID: ');
-        console.log(this.props.foodOrderId);
+        console.log(this.props.jioOrderId);
 
         // transform: [{translateY: this.state.keyboardHeight}]
         // 
         return(
             <Animated.View style={[containerStyle, { paddingBottom: this.state.keyboardHeight }]}> 
-                {/* <Text>{foodOrderId}</Text> */}
+                {/* <Text>{jioOrderId}</Text> */}
                 <View>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 

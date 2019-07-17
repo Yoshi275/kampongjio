@@ -32,7 +32,7 @@ class OngoingDetails extends Component {
     renderJio = ({item}) => (
         <DashboardJioDetails
             order={item[1]}
-            foodOrderId={item[0]}
+            jioOrderId={item[0]}
         />
     );
 

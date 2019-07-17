@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { db } from '../../config';
 import { Card, CardSection } from '../common';
 
 class OrderDetails extends Component {
     state = {paid : this.props.orderDetails.hasPaid, collected : this.props.orderDetails.hasCollected}
     
+    componentDidUpdate() {
+        this.handleSubmit()
+    }
+
+    handleSubmit() {
+        let postData = {
+            hasPaid: this.state.paid,
+            hasCollected: this.state.collected
+        }
+
+        const jioOrderId = this.props.jioOrderId;
+        const jioJoinOrderId = this.props.jioJoinOrderId;
+        let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/' + jioJoinOrderId + '/';
+
+        db
+            .ref(dbLocation)
+            .update(postData)
+            .then((success) => {
+                console.log('Success Message: ', success) // success callback
+                Actions.dashboard(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
+
     renderOrders() {
         return this.props.orderDetails.foodChoices.map(foodChoices => 
             <Text style={styles.textStyle}>{foodChoices}</Text>);
