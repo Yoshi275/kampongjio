@@ -7,3 +7,4 @@ export * from './InfoDisplay';
 export * from './BigInput';
 export * from './TimeOrange';
 export * from './NavBar';
+export * from './Spinner';
