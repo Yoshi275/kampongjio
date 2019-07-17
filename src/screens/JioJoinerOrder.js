@@ -138,7 +138,6 @@ const styles = {
         marginRight: 50,
         borderColor: '#FF7058',
         backgroundColor: '#F3A462',
-
     }
 };
 

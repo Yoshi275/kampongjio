@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
+import LoginForm from './LoginForm';
 import Front from './Front';
 import MainPage from './MainPage';
 import JioInformation from './JioInformation';
@@ -12,6 +13,11 @@ const RouterComponent = () => {
     return (
         <Router>
             <Scene key="root">
+                <Scene
+                    key="loginForm"
+                    component={LoginForm}
+                    hideNavBar={true}
+                />
                 <Scene 
                     key="front"
                     component={Front}
