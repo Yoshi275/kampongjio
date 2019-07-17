@@ -50,8 +50,6 @@ class OrderDetails extends Component {
         console.log(this.props.orderDetails);
         return (
             <View style={containerStyle}>
-                <Text>{this.props.jioJoinOrderId}</Text>
-                <Text>{this.props.jioOrderId}</Text>
                 <Text style={titleStyle}>{this.props.orderDetails.joinerName}</Text>
                 <CardSection>
                     <View style={{ flex: 7 }}>

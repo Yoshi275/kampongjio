@@ -29,7 +29,4 @@ class OrderList extends Component {
     
 }
 
-// <FlatList 
-            //     data={}
-            // />
 export default OrderList;

@@ -14,7 +14,6 @@ class CoordinatorFullJio extends Component {
         // console.log(this.props.order.foodOrders);
         return(
             <View>
-                <Text style={styles.textStyle}>{this.props.jioOrderId}</Text>
                 <Text style={styles.textStyle}>Status : {jioStatus}</Text>
                 <Text style={styles.textStyle}>Location : {jioLocation}</Text>
                 <TimeOrange>

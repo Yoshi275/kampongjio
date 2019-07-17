@@ -65,10 +65,8 @@ class JioDetails extends Component {
         return (
             <TouchableOpacity onPress={() => this.renderNextPage()}>
                 <Card>
-                    {/* <Text>{this.props.order.store}</Text> */}
                     <CardSection>
                         <View style={imageContainerStyle}>
-                            <Text>{this.props.jioOrderId}</Text>
                             <Image 
                                 style={imageStyle}
                                 source={ jioImage }
