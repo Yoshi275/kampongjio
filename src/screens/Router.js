@@ -48,7 +48,6 @@ const RouterComponent = () => {
                     key="dashboard"
                     component={Dashboard}
                     title="Your Jios"
-                    initial
                 />
                 <Scene
                     key="coordinator"
