@@ -19,10 +19,17 @@ class LoginForm extends Component {
         this.setState({ error: '', loading: true });
         
         auth.signInWithEmailAndPassword(email, password)
-            .then(this.onLoginSuccess.bind(this))
+            .then(() => {
+                console.log('LOGIN SUCCESS')
+                this.onLoginSuccess()
+            })
             .catch(() => {
-                auth().createUserWithEmailAndPassword(email, password)
-                    .then(successMessage => this.onLoginSuccess(successMessage).bind(this))
+                console.log('TRYING SIGN UP')
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(successMessage => {
+                        console.log('SIGN UP SUCCESS')
+                        this.onLoginSuccess(successMessage).bind(this)
+                    })
                     .catch(this.onLoginFail.bind(this));
             });
     }
