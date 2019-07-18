@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Home, Announcement, Dashboard, Profile } from '../../resources/icons';
+import { Home, Announcement, Dashboard, ProfileIcon } from '../../resources/icons';
 
 const NavBar = () => {
     return(
@@ -16,7 +16,7 @@ const NavBar = () => {
                 <Image style={styles.imageStyle} source={Dashboard}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={ () => Actions.loginForm() }>
-                <Image style={styles.imageStyle} source={Profile}/>
+                <Image style={styles.imageStyle} source={ProfileIcon}/>
             </TouchableOpacity>
         </View>
     );

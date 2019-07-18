@@ -8,5 +8,5 @@ export const Hourglass = require('./hourglass.png');
 export const Food = require('./food.png');
 export const Home = require('./home.png');
 export const Dashboard = require('./dashboard.png');
-export const Profile = require('./profile.png');
+export const ProfileIcon = require('./profile.png');
 export const Announcement = require('./announcement.png');
