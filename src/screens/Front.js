@@ -6,7 +6,7 @@ import { Logo } from '../resources/images';
 const Front = () => {
     return(
         <View style={ styles.containerStyle }>
-            <TouchableOpacity onPress={ () => Actions.mainPage() }>
+            <TouchableOpacity onPress={ () => Actions.loginForm() }>
                 <Image 
                     source={ Logo }
                     style={ styles.imageStyle }

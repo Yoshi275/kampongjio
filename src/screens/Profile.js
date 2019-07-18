@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Card, TimeOrange, NavBar, Button } from '../components/common';
+import { Card, NavBar, Button } from '../components/common';
 import { ProfileIcon } from '../resources/icons';
 
 class Profile extends Component {
@@ -98,13 +98,6 @@ const styles = {
         borderColor: '#FF7058',
         height: 140,
         width: 140
-        // shadowOffset: { width: 0, height: 2 },
-        // shadowOpacity: 0.9,
-        // shadowRadius: 2,
-    }, 
-    timeStyle: {
-        flexDirection: 'row',
-        flex: 1
     }
 };
 
