@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, Input, Spinner } from '../components/common';
-import { auth } from '../config';
+import { auth, db } from '../config';
 import { Logo } from '../resources/images';
 
 class LoginForm extends Component {
@@ -27,6 +27,49 @@ class LoginForm extends Component {
             });
     }
 
+    addToUserDatabase() {
+        let postData = {
+            email: this.state.email,
+            displayName: 'Cheryl', 
+            username: 'cherylnqj',
+            phoneNumber: '91234567',
+            password: this.state.password,
+            photoURL: 'https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg',
+            birthDate: '21/10/1999'
+        }
+
+        let uid = auth.currentUser.uid
+        let dbLocation = '/users/' + uid;
+
+        db
+            .ref(dbLocation)
+            .push(postData)
+            .then((success) => {
+                console.log('User Added: ', success) // success callback
+                Actions.mainPage();
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
+
+    onLoginFail() {
+        this.setState({ error: 'Authentication Failed.', loading: false})
+    }
+
+    onLoginSuccess(message) {
+        this.addToUserDatabase()
+        this.setState({
+            email: '',
+            password: '',
+            loading: false,
+            error: '',
+        });
+        // console.log('LOGIN SUCCESS')
+        // console.log(message.user.uid)
+        Actions.mainPage()
+    }
+
     renderButton() {
         if(this.state.loading) {
             return <Spinner size="small" />
@@ -37,22 +80,6 @@ class LoginForm extends Component {
                 </Button>
             )
         }
-    }
-
-    onLoginFail() {
-        this.setState({ error: 'Authentication Failed.', loading: false})
-    }
-
-    onLoginSuccess(message) {
-        this.setState({
-            email: '',
-            password: '',
-            loading: false,
-            error: '',
-        });
-        console.log('LOGIN SUCCESS')
-        console.log(message.user.uid)
-        Actions.mainPage()
     }
 
     render() {

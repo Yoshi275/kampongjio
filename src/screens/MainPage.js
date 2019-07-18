@@ -4,13 +4,21 @@
 
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View } from 'react-native';
+import { View, Text} from 'react-native';
 import JioList from '../components/MainPage/JioList'
 import { Input, Button, NavBar } from '../components/common';
+import { auth } from '../config';
+import firebase from 'firebase';
 import Router from './Router';
 
 class MainPage extends Component {
-    state = { location: ''};
+    state = { location: '', uid: null };
+
+    componentDidMount() {
+        const { currentUser } = firebase.auth()
+        this.setState({ currentUser })
+        console.log(this.state.currentUser)
+    }
 
     render() {
         return (
