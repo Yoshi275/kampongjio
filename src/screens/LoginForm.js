@@ -27,10 +27,13 @@ class LoginForm extends Component {
                 console.log('TRYING SIGN UP')
                 auth.createUserWithEmailAndPassword(email, password)
                     .then(successMessage => {
-                        console.log('SIGN UP SUCCESS')
+                        this.addToUserDatabase().bind(this)
                         this.onLoginSuccess(successMessage).bind(this)
                     })
-                    .catch(this.onLoginFail.bind(this));
+                    .catch(() => {
+                        console.log('LOGIN AND SIGNUP FAILED')
+                        this.onLoginFail.bind(this)
+                    });
             });
     }
 
@@ -45,19 +48,21 @@ class LoginForm extends Component {
             birthDate: '21/10/1999'
         }
 
-        let uid = auth.currentUser.uid
-        let dbLocation = '/users/' + uid;
+        // let uid = auth.currentUser.uid
+        // let dbLocation = '/users/' + uid;
 
-        db
-            .ref(dbLocation)
-            .push(postData)
-            .then((success) => {
-                console.log('User Added: ', success) // success callback
-                Actions.mainPage();
-            })
-            .catch((error) => {
-                console.log('Error Message: ', error) // error callback
-            })
+        // console.log('add to user is working')
+
+        // db
+        //     .ref(dbLocation)
+        //     .set({username: 'hello!'})
+        //     .then((success) => {
+        //         console.log('User Added: ', success) // success callback
+        //         Actions.mainPage();
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error Message: ', error) // error callback
+        //     })
     }
 
     onLoginFail() {
@@ -65,13 +70,27 @@ class LoginForm extends Component {
     }
 
     onLoginSuccess(message) {
-        this.addToUserDatabase()
         this.setState({
             email: '',
             password: '',
             loading: false,
             error: '',
         });
+
+        this.addToUserDatabase()
+
+        // let uid = auth.currentUser.uid
+        // let dbLocation = '/users/' + uid;
+
+        // db
+        //     .ref(dbLocation)
+        //     .on('value', snapshot => {
+        //         if ( snapshot.val() === null ) {
+        //             return null;
+        //         } else {
+        //             console.log(snapshot.val().username)
+        //         }
+        //     });
         // console.log('LOGIN SUCCESS')
         // console.log(message.user.uid)
         Actions.mainPage()
