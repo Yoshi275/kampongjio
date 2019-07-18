@@ -2,6 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LoginForm from './LoginForm';
 import Front from './Front';
+import Profile from './Profile';
 import MainPage from './MainPage';
 import JioInformation from './JioInformation';
 import JioJoinerOrder from './JioJoinerOrder';
@@ -28,6 +29,7 @@ const RouterComponent = () => {
                     key="mainPage"
                     component={MainPage}
                     title="Kampong Jio"
+                    initial
                 />
                 <Scene
                     key="jioInformation"
@@ -53,6 +55,11 @@ const RouterComponent = () => {
                     key="coordinator"
                     component={Coordinator}
                     title="Coordinator"
+                />
+                <Scene
+                    key="profile"
+                    component={Profile}
+                    title="Profile"
                 />
             </Scene>
         </Router>
