@@ -60,12 +60,6 @@ class Profile extends Component {
             textStyle
         } = styles;
 
-        const displayName = 'Cheryl Ng';
-        const username = '@yoshi275';
-        const phoneNumber = '91234567';
-        const birthDate = "21/10/1999";
-        const email = "test@gmail.com";
-
         return(
             <View style={containerStyle}>
                 <View>
