@@ -23,9 +23,9 @@ class PreviousDetails extends Component {
             .orderByChild('jioStatus')
             .equalTo('4jioCompleted')
             .on('value', snapshot => {
-                snapshot.forEach((child) => {
-                    console.log(child.val())
-                });
+                // snapshot.forEach((child) => {
+                //     console.log(child.val())
+                // });
                 let allOrders = snapshot.val();
                 if ( allOrders === null ) {
                     return null;
