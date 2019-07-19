@@ -20,7 +20,6 @@ class LoginForm extends Component {
         
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
-                console.log('LOGIN SUCCESS')
                 this.onLoginSuccess()
             })
             .catch(() => {
@@ -28,11 +27,12 @@ class LoginForm extends Component {
                 auth.createUserWithEmailAndPassword(email, password)
                     .then(successMessage => {
                         this.addToUserDatabase()
-                        this.onLoginSuccess(successMessage).bind(this)
+                        this.onLoginSuccess(successMessage)
                     })
-                    .catch(() => {
+                    .catch((error) => {
                         console.log('LOGIN AND SIGNUP FAILED')
-                        this.onLoginFail.bind(this)
+                        console.log(error)
+                        this.onLoginFail()
                     });
             });
     }
@@ -92,6 +92,8 @@ class LoginForm extends Component {
         //     });
         // console.log('LOGIN SUCCESS')
         // console.log(message.user.uid)
+
+        console.log('LOGIN SUCCESS')
         Actions.mainPage()
     }
 
