@@ -15,7 +15,7 @@ const NavBar = () => {
             <TouchableOpacity onPress={ () => Actions.dashboard() }>
                 <Image style={styles.imageStyle} source={Dashboard}/>
             </TouchableOpacity>
-            <TouchableOpacity onPress={ () => Actions.loginForm() }>
+            <TouchableOpacity onPress={ () => Actions.profile() }>
                 <Image style={styles.imageStyle} source={ProfileIcon}/>
             </TouchableOpacity>
         </View>
