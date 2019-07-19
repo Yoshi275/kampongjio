@@ -2,8 +2,53 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Card, NavBar, Button } from '../components/common';
 import { ProfileIcon } from '../resources/icons';
+import firebase from 'firebase';
+import { db } from '../config';
 
 class Profile extends Component {
+    state = { 
+        uid: null,
+        displayName: '',
+        username: '',
+        phoneNumber: '',
+        birthDate: '',
+        email: ''
+    }
+
+    componentDidMount() {
+        const user = firebase.auth().currentUser
+        if(user != null) {
+            this.setState({
+                uid: user.uid,
+            }, () => {
+                console.log(this.state.uid)
+                let dbLocation = '/users/' + this.state.uid + '/';
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            displayName: data.displayName,
+                            username: data.username,
+                            phoneNumber: data.phoneNumber,
+                            birthDate: data.birthDate,
+                            email: data.email
+                        })
+                        console.log('USER INFO LOADED')
+                    }
+                });
+            })
+        }
+    }
+
+    componentDidUpdate() {
+
+    }
+
     render() {
         const {
             containerStyle,
@@ -31,13 +76,13 @@ class Profile extends Component {
                                 style = {imageStyle}
                             />
                         </View>
-                        <Text style={titleStyle}>{displayName}</Text>
-                        <Text style={usernameStyle}>{username}</Text>
+                        <Text style={titleStyle}>{this.state.displayName}</Text>
+                        <Text style={usernameStyle}>{this.state.username}</Text>
                     </View>
                     <Card>
-                        <Text style={textStyle}>Email: {email}</Text>
-                        <Text style={textStyle}>Birthday: {birthDate} </Text>
-                        <Text style={textStyle}>Phone Number: {phoneNumber}</Text>
+                        <Text style={textStyle}>Email: {this.state.email}</Text>
+                        <Text style={textStyle}>Birthday: {this.state.birthDate} </Text>
+                        <Text style={textStyle}>Phone Number: {this.state.phoneNumber}</Text>
                     </Card>
                 </View>
                 <View>

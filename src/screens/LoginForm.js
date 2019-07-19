@@ -79,6 +79,8 @@ class LoginForm extends Component {
 
         this.addToUserDatabase()
 
+        // console.log(auth.currentUser)
+
         // let uid = auth.currentUser.uid
         // let dbLocation = '/users/' + uid;
 
