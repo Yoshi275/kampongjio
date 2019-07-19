@@ -20,24 +20,25 @@ class LoginForm extends Component {
         
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
-                console.log('LOGIN SUCCESS')
                 this.onLoginSuccess()
             })
             .catch(() => {
                 console.log('TRYING SIGN UP')
                 auth.createUserWithEmailAndPassword(email, password)
                     .then(successMessage => {
-                        this.addToUserDatabase().bind(this)
-                        this.onLoginSuccess(successMessage).bind(this)
+                        this.addToUserDatabase()
+                        this.onLoginSuccess(successMessage)
                     })
-                    .catch(() => {
+                    .catch((error) => {
                         console.log('LOGIN AND SIGNUP FAILED')
-                        this.onLoginFail.bind(this)
+                        console.log(error)
+                        this.onLoginFail()
                     });
             });
     }
 
     addToUserDatabase() {
+        console.log('attempting to add user to database')
         let postData = {
             email: this.state.email,
             displayName: 'Cheryl', 
@@ -48,21 +49,20 @@ class LoginForm extends Component {
             birthDate: '21/10/1999'
         }
 
-        // let uid = auth.currentUser.uid
-        // let dbLocation = '/users/' + uid;
+        let uid = auth.currentUser.uid
+        let dbLocation = '/users/' + uid;
 
-        // console.log('add to user is working')
-
-        // db
-        //     .ref(dbLocation)
-        //     .set({username: 'hello!'})
-        //     .then((success) => {
-        //         console.log('User Added: ', success) // success callback
-        //         Actions.mainPage();
-        //     })
-        //     .catch((error) => {
-        //         console.log('Error Message: ', error) // error callback
-        //     })
+        db
+            .ref(dbLocation)
+            .push(postData)
+            // .set({username: 'hello!'})
+            .then((success) => {
+                console.log('User Added: ', success) // success callback
+                Actions.mainPage();
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
     }
 
     onLoginFail() {
@@ -70,14 +70,13 @@ class LoginForm extends Component {
     }
 
     onLoginSuccess(message) {
+        console.log('clearing login, going to mainpage')
         this.setState({
             email: '',
             password: '',
             loading: false,
             error: '',
         });
-
-        this.addToUserDatabase()
 
         // let uid = auth.currentUser.uid
         // let dbLocation = '/users/' + uid;
@@ -93,6 +92,8 @@ class LoginForm extends Component {
         //     });
         // console.log('LOGIN SUCCESS')
         // console.log(message.user.uid)
+
+        console.log('LOGIN SUCCESS')
         Actions.mainPage()
     }
 
