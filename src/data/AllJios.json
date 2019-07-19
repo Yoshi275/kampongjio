@@ -159,5 +159,40 @@
 				}
 			]
       	}
-	]
+	],
+	"users" : {
+		"Ce51twfAzDMlZx7msXTeMtiKlba2" : {
+		  "-Lk2qc2LKUrZVpfYiQtQ" : {
+			"birthDate" : "01/01/1997",
+			"displayName" : "Rafi",
+			"email" : "anothertest@test.com",
+			"password" : "password",
+			"phoneNumber" : "81818181",
+			"photoURL" : "https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg",
+			"username" : "raflythere"
+		  }
+		},
+		"TgxN1pupraQGnB4OfIOw3HzG86v2" : {
+		  "-Lk2qS8iDop31Izd0liy" : {
+			"birthDate" : "25/06/1999",
+			"displayName" : "Venny",
+			"email" : "test@test.com",
+			"password" : "password",
+			"phoneNumber" : "99998888",
+			"photoURL" : "https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg",
+			"username" : "vennylewis"
+		  }
+		},
+		"s5PlPUK3QUcISDTMbjUU0qKozMr1" : {
+		  "-Lk2qIY7k_lS_xVr0hfg" : {
+			"birthDate" : "21/10/1999",
+			"displayName" : "Cheryl",
+			"email" : "test@gmail.com",
+			"password" : "password",
+			"phoneNumber" : "91234567",
+			"photoURL" : "https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg",
+			"username" : "cherylnqj"
+		  }
+		}
+	  }
 }

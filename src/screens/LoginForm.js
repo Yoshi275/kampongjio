@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, Input, Spinner } from '../components/common';
-import { auth } from '../config';
+import { auth, db } from '../config';
 import { Logo } from '../resources/images';
 
 class LoginForm extends Component {
@@ -19,12 +19,81 @@ class LoginForm extends Component {
         this.setState({ error: '', loading: true });
         
         auth.signInWithEmailAndPassword(email, password)
-            .then(this.onLoginSuccess.bind(this))
+            .then(() => {
+                console.log('LOGIN SUCCESS')
+                this.onLoginSuccess()
+            })
             .catch(() => {
-                auth().createUserWithEmailAndPassword(email, password)
-                    .then(this.onLoginSuccess.bind(this))
-                    .catch(this.onLoginFail.bind(this));
+                console.log('TRYING SIGN UP')
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(successMessage => {
+                        this.addToUserDatabase().bind(this)
+                        this.onLoginSuccess(successMessage).bind(this)
+                    })
+                    .catch(() => {
+                        console.log('LOGIN AND SIGNUP FAILED')
+                        this.onLoginFail.bind(this)
+                    });
             });
+    }
+
+    addToUserDatabase() {
+        let postData = {
+            email: this.state.email,
+            displayName: 'Cheryl', 
+            username: 'cherylnqj',
+            phoneNumber: '91234567',
+            password: this.state.password,
+            photoURL: 'https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg',
+            birthDate: '21/10/1999'
+        }
+
+        // let uid = auth.currentUser.uid
+        // let dbLocation = '/users/' + uid;
+
+        // console.log('add to user is working')
+
+        // db
+        //     .ref(dbLocation)
+        //     .set({username: 'hello!'})
+        //     .then((success) => {
+        //         console.log('User Added: ', success) // success callback
+        //         Actions.mainPage();
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error Message: ', error) // error callback
+        //     })
+    }
+
+    onLoginFail() {
+        this.setState({ error: 'Authentication Failed.', loading: false})
+    }
+
+    onLoginSuccess(message) {
+        this.setState({
+            email: '',
+            password: '',
+            loading: false,
+            error: '',
+        });
+
+        this.addToUserDatabase()
+
+        // let uid = auth.currentUser.uid
+        // let dbLocation = '/users/' + uid;
+
+        // db
+        //     .ref(dbLocation)
+        //     .on('value', snapshot => {
+        //         if ( snapshot.val() === null ) {
+        //             return null;
+        //         } else {
+        //             console.log(snapshot.val().username)
+        //         }
+        //     });
+        // console.log('LOGIN SUCCESS')
+        // console.log(message.user.uid)
+        Actions.mainPage()
     }
 
     renderButton() {
@@ -32,25 +101,11 @@ class LoginForm extends Component {
             return <Spinner size="small" />
         } else {
             return (
-                <Button onPress={() => this.handleSubmit.bind(this)}>
+                <Button onPress={this.handleSubmit.bind(this)}>
                     LOGIN
                 </Button>
             )
         }
-    }
-
-    onLoginFail() {
-        this.setState({ error: 'Authentication Failed.', loading: false})
-    }
-
-    onLoginSuccess() {
-        this.setState({
-            email: '',
-            password: '',
-            loading: false,
-            error: '',
-        });
-        Actions.mainPage()
     }
 
     render() {
@@ -81,9 +136,11 @@ class LoginForm extends Component {
                         secureTextEntry
                     />
 
-                    <Button onPress={() => this.handleSubmit()}>
+                    <View>{this.renderButton()}</View>
+
+                    {/* <Button onPress={() => this.handleSubmit()}>
                         LOGIN
-                    </Button>
+                    </Button> */}
                 </View>
                 <View style={imageContainerStyle}>
                     <Image 
