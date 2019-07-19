@@ -54,7 +54,7 @@ class LoginForm extends Component {
 
         db
             .ref(dbLocation)
-            .push(postData)
+            .set(postData)
             // .set({username: 'hello!'})
             .then((success) => {
                 console.log('User Added: ', success) // success callback
