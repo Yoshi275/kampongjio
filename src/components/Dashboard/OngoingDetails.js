@@ -52,18 +52,16 @@ class OngoingDetails extends Component {
             .endAt('3jioArrived')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
+                console.log(allOrders)
                 if ( allOrders === null ) {
                     return null;
                 } else {
                     let filteredOrders = []
                     allOrders.forEach((order) => {
                         let orderIncludesUser = false
-                        console.log(order.foodOrders)
-                        console.log('SHOWING ARRAY OF FOOD ORDERS: ')
                         let foodOrdersArr = Object.values(order.foodOrders)
                         console.log(foodOrdersArr)
                         for(let i = 0; i < foodOrdersArr.length; i++) {
-                            console.log('FOOD ORDER LOADED')
                             if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
                                 orderIncludesUser = true
                                 console.log('FOOD ORDER ACCEPTED')
