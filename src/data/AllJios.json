@@ -86,7 +86,7 @@
 				},
 				{
 					"foodOrderNo" : 1,
-					"joinerName" : "Eric",
+					"joinerName" : "Venny",
 					"foodChoices" : [
 						"Carbonara"
 					],
@@ -125,7 +125,7 @@
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
-					"joinerName" : "Dhameem",
+					"joinerName" : "Rafi",
 					"foodChoices" : [
 						"McChicken Meal"
 					],

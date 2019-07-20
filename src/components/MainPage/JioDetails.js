@@ -10,7 +10,6 @@ import { Card, CardSection } from '../common';
 import { Food } from '../../resources/icons';
 import { Makisan, AlAmaan, McDonalds }  from '../../resources/images';
 import { jioStatusIcon } from '../../data/jioStatus';
-// import data from '../../data/AllJios.json';
 import { db } from '../../config';
 
 class JioDetails extends Component {

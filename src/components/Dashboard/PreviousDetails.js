@@ -8,31 +8,82 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import JioDetails from '../MainPage/JioDetails';
-import { db } from '../../config';
-import data from '../../data/AllJios.json';
+import { auth, db } from '../../config';
 
 class PreviousDetails extends Component {
     state = { 
-        allOrders: {}
+        allOrders: {},
+        uid: null,
+        userData: {}
     };
-    
-    componentDidMount() { 
-        // TODO: somehow pass info on all orders
+
+    getUserInfoThenDatabase() {
+        const user = auth.currentUser
+        if(user != null) {
+            this.setState({
+                uid: user.uid,
+            }, () => {
+                let dbLocation = '/users/' + this.state.uid + '/';
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            userData: {
+                                displayName: data.displayName,
+                                username: data.username,
+                                phoneNumber: data.phoneNumber,
+                                birthDate: data.birthDate,
+                                email: data.email,
+                                photoURL: data.photoURL
+                            }
+                        })
+                        console.log('USER INFO LOADED INTO INITIATED')
+                        this.getDatabaseInfo()
+                    }
+                });
+            })
+        }
+    }
+
+    getDatabaseInfo() {
         db
             .ref('/allOrders')
             .orderByChild('jioStatus')
             .equalTo('4jioCompleted')
             .on('value', snapshot => {
-                // snapshot.forEach((child) => {
-                //     console.log(child.val())
-                // });
                 let allOrders = snapshot.val();
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    this.setState({ allOrders });
+                    let allOrdersArr = Object.values(allOrders)
+                    let filteredOrders = []
+                    allOrdersArr.forEach((order) => {
+                        let orderIncludesUser = false
+                        let foodOrdersArr = Object.values(order.foodOrders)
+                        for(let i = 0; i < foodOrdersArr.length; i++) {
+                            if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
+                                orderIncludesUser = true
+                            }
+                        }
+                        if(orderIncludesUser) {
+                            filteredOrders.push(order)
+                            console.log('ADDING ORDER TO FILTERED')
+                        } else {
+                            console.log('IGNORING ORDER')
+                        }
+                    })
+                    this.setState({ allOrders: filteredOrders });
                 }
             });
+    }
+    
+    componentDidMount() {
+        this.getUserInfoThenDatabase()
     }
 
     renderJio = ({item}) => (
