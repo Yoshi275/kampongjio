@@ -55,7 +55,6 @@ class LoginForm extends Component {
         db
             .ref(dbLocation)
             .set(postData)
-            // .set({username: 'hello!'})
             .then((success) => {
                 console.log('User Added: ', success) // success callback
                 Actions.mainPage();
@@ -137,6 +136,9 @@ class LoginForm extends Component {
                         secureTextEntry
                     />
 
+                    <Button onPress={() => Actions.signUp()}>
+                        SIGN UP
+                    </Button>
                     <View>{this.renderButton()}</View>
 
                     {/* <Button onPress={() => this.handleSubmit()}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Input, Button } from '../components/common';
 import { Actions } from 'react-native-router-flux';
+import { auth, db } from '../config';
 
 class SignUp extends Component {
     state = { 
@@ -13,8 +14,66 @@ class SignUp extends Component {
         birthDate: '',
         photoURL: '',
     };
-    //TODO: Figure out how to upload pictures and storing them as URL?
+    //TODO: Figure out how to upload pictures and storing them as URL. For now, it's hardcoded
     //TODO: Make it compulsory to fill in the field/inputs
+
+    handleSubmit() {
+        const { email, password } = this.state;
+
+        this.setState({ error: '', loading: true });
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(successMessage => {
+                    this.addToUserDatabase()
+                    this.onLoginSuccess(successMessage)
+                })
+                .catch((error) => {
+                    console.log('LOGIN AND SIGNUP FAILED')
+                    console.log(error)
+                    this.onLoginFail()
+                });
+    }
+
+    addToUserDatabase() {
+        console.log('attempting to add user to database')
+        let postData = {
+            email: this.state.email,
+            displayName: this.state.displayName, 
+            username: this.state.username,
+            phoneNumber: this.state.phoneNumber,
+            password: this.state.password,
+            photoURL: 'https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg',
+            birthDate: this.state.birthDate
+        }
+
+        let uid = auth.currentUser.uid
+        let dbLocation = '/users/' + uid;
+
+        db
+            .ref(dbLocation)
+            .set(postData)
+            .then((success) => {
+                console.log('User Added: ', success) // success callback
+                Actions.mainPage();
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
+
+    onLoginFail() {
+        this.setState({ error: 'Authentication Failed.', loading: false})
+    }
+
+    onLoginSuccess(message) {
+        console.log('clearing login, going to mainpage')
+        this.setState({
+            email: '',
+            password: '',
+            loading: false,
+            error: '',
+        });
+    }
+
     
     render() {
         const {
@@ -75,7 +134,7 @@ class SignUp extends Component {
                     onChangeText={photoURL => this.setState({ photoURL })}
                 /> 
                 </View>
-                <Button onPress={() => Actions.loginForm()}>
+                <Button onPress={this.handleSubmit.bind(this)}>
                     SUBMIT
                 </Button>
             </View>

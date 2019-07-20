@@ -12,7 +12,8 @@ class Profile extends Component {
         username: '',
         phoneNumber: '',
         birthDate: '',
-        email: ''
+        email: '',
+        photoURL: ''
     }
 
     componentDidMount() {
@@ -36,7 +37,8 @@ class Profile extends Component {
                             username: data.username,
                             phoneNumber: data.phoneNumber,
                             birthDate: data.birthDate,
-                            email: data.email
+                            email: data.email,
+                            photoURL: data.photoURL
                         })
                         console.log('USER INFO LOADED')
                     }
@@ -60,19 +62,13 @@ class Profile extends Component {
             textStyle
         } = styles;
 
-        const displayName = 'Cheryl Ng';
-        const username = '@yoshi275';
-        const phoneNumber = '91234567';
-        const birthDate = "21/10/1999";
-        const email = "test@gmail.com";
-
         return(
             <View style={containerStyle}>
                 <View>
                     <View style={topSectionStyle}>
                         <View style ={imageContainerStyle}>
                             <Image
-                                source = {ProfileIcon}
+                                source = {this.state.photoURL}
                                 style = {imageStyle}
                             />
                         </View>

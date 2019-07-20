@@ -22,7 +22,6 @@ class MainPage extends Component {
     render() {
         return (
         <View style={styles.containerStyle}>
-            <Text>{this.state.uid}</Text>
             <Input 
                 placeholder="Try 'Singapore'"
                 label="Location"
