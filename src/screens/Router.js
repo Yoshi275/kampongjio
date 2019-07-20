@@ -19,6 +19,7 @@ const RouterComponent = () => {
                     key="loginForm"
                     component={LoginForm}
                     hideNavBar={true}
+                    initial
                 />
                 <Scene
                     key="signUp"
@@ -30,7 +31,6 @@ const RouterComponent = () => {
                     key="front"
                     component={Front}
                     hideNavBar={true}
-                    initial
                 />
                 <Scene
                     key="profile"

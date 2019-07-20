@@ -68,7 +68,7 @@ class Profile extends Component {
                     <View style={topSectionStyle}>
                         <View style ={imageContainerStyle}>
                             <Image
-                                source = {this.state.photoURL}
+                                source = {{uri: this.state.photoURL}}
                                 style = {imageStyle}
                             />
                         </View>
@@ -125,8 +125,9 @@ const styles = {
         alignItems: 'center'
     },
     imageStyle: {
-        height: 100,
-        width: 100
+        height: 120,
+        width: 120,
+        borderRadius: 60
     },
     imageContainerStyle: {
         justifyContent: 'center',
