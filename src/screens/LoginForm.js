@@ -77,21 +77,6 @@ class LoginForm extends Component {
             error: '',
         });
 
-        // let uid = auth.currentUser.uid
-        // let dbLocation = '/users/' + uid;
-
-        // db
-        //     .ref(dbLocation)
-        //     .on('value', snapshot => {
-        //         if ( snapshot.val() === null ) {
-        //             return null;
-        //         } else {
-        //             console.log(snapshot.val().username)
-        //         }
-        //     });
-        // console.log('LOGIN SUCCESS')
-        // console.log(message.user.uid)
-
         console.log('LOGIN SUCCESS')
         Actions.mainPage({
             uid: this.state.uid,

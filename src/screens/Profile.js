@@ -39,7 +39,7 @@ class Profile extends Component {
                             email: data.email,
                             photoURL: data.photoURL
                         })
-                        console.log('USER INFO LOADED')
+                        console.log('USER INFO LOADED INTO PROFILE')
                     }
                 });
             })

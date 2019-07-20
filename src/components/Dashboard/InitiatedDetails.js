@@ -18,7 +18,7 @@ class InitiatedDetails extends Component {
         userData: {}
     };
 
-    getUserInfo() {
+    getUserInfoThenDatabase() {
         const user = auth.currentUser
         if(user != null) {
             this.setState({
@@ -45,8 +45,6 @@ class InitiatedDetails extends Component {
                             }
                         })
                         console.log('USER INFO LOADED INTO INITIATED')
-                        console.log(this.state.uid)
-                        console.log(this.state.userData)
                         this.getDatabaseInfo()
                     }
                 });
@@ -66,11 +64,7 @@ class InitiatedDetails extends Component {
                     return null;
                 } else {
                     let filteredOrders = []
-                    console.log(allOrders)
                     allOrders.forEach((order) => {
-                        console.log(order.coordinatorName)
-                        console.log(this.state.userData.displayName)
-                        console.log(order.coordinatorName === this.state.userData.displayName)
                         if(order.coordinatorName === this.state.userData.displayName) {
                             filteredOrders.push(order)
                             console.log('ADDING TO FILTERED')
@@ -79,13 +73,12 @@ class InitiatedDetails extends Component {
                         }
                     })
                     this.setState({ allOrders: filteredOrders });
-                    console.log(this.state.allOrders)
                 } 
             });
     }
     
     componentDidMount() { 
-        this.getUserInfo()
+        this.getUserInfoThenDatabase()
     }
     
     renderJio = ({item}) => (
@@ -103,7 +96,6 @@ class InitiatedDetails extends Component {
     render() {
         return(
             <View>
-                <Text>{this.state.userData.displayName}</Text>
                 <FlatList 
                     data={Object.entries(this.state.allOrders)}
                     renderItem={this.renderJio}

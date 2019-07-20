@@ -11,45 +11,8 @@ import { auth, db } from '../config';
 
 class MainPage extends Component {
     state = { 
-        location: '',
-        uid: null,
-        userData: {}
+        location: ''
     }
-
-    // componentDidMount() {
-    //     const user = auth.currentUser
-    //     if(user != null) {
-    //         this.setState({
-    //             uid: user.uid,
-    //         }, () => {
-    //             console.log(this.state.uid)
-    //             let dbLocation = '/users/' + this.state.uid + '/';
-    //             db
-    //             .ref(dbLocation)
-    //             .on('value', snapshot => {
-    //                 if ( snapshot.val() === null ) {
-    //                     console.log('NOTHING GRABBED IN DATA')
-    //                     return null;
-    //                 } else {
-    //                     const data = snapshot.val()
-    //                     this.setState({
-    //                         userData: {
-    //                             displayName: data.displayName,
-    //                             username: data.username,
-    //                             phoneNumber: data.phoneNumber,
-    //                             birthDate: data.birthDate,
-    //                             email: data.email,
-    //                             photoURL: data.photoURL
-    //                         }
-    //                     })
-    //                     console.log('USER INFO LOADED INTO NAVBAR')
-    //                     console.log(this.state.uid)
-    //                     console.log(this.state.userData)
-    //                 }
-    //             });
-    //         })
-    //     }
-    // }
 
     render() {
         return (
