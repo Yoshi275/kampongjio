@@ -12,7 +12,8 @@ class Profile extends Component {
         username: '',
         phoneNumber: '',
         birthDate: '',
-        email: ''
+        email: '',
+        photoURL: ''
     }
 
     componentDidMount() {
@@ -36,7 +37,8 @@ class Profile extends Component {
                             username: data.username,
                             phoneNumber: data.phoneNumber,
                             birthDate: data.birthDate,
-                            email: data.email
+                            email: data.email,
+                            photoURL: data.photoURL
                         })
                         console.log('USER INFO LOADED')
                     }
@@ -66,7 +68,7 @@ class Profile extends Component {
                     <View style={topSectionStyle}>
                         <View style ={imageContainerStyle}>
                             <Image
-                                source = {ProfileIcon}
+                                source = {this.state.photoURL}
                                 style = {imageStyle}
                             />
                         </View>
