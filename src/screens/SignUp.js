@@ -156,7 +156,7 @@ const styles = {
         padding: 3
     },
     titleStyle: {
-        fontSize: 30,
+        fontSize: 32,
         color: '#000000',
         // fontWeight: 'bold',
         alignItems: 'center'

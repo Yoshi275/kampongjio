@@ -37,6 +37,7 @@ const styles = {
         backgroundColor: '#FFFFFF',
         marginTop: 5,
         marginRight: 10,
+        marginBottom: 5,
         elevation: 5
     },
     labelStyle: {
