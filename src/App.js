@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Router from './screens/Router';
-import firebase from 'firebase';
 
 class App extends Component {
     render() {
@@ -8,6 +7,6 @@ class App extends Component {
             <Router />
         );
     }
-};
+}
 
 export default App;

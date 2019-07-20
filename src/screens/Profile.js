@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Card, NavBar, Button } from '../components/common';
 import { ProfileIcon } from '../resources/icons';
-import firebase from 'firebase';
-import { db } from '../config';
+import { auth, db } from '../config';
 
 class Profile extends Component {
     state = { 
@@ -17,7 +16,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        const user = firebase.auth().currentUser
+        const user = auth.currentUser
         if(user != null) {
             this.setState({
                 uid: user.uid,
@@ -40,15 +39,11 @@ class Profile extends Component {
                             email: data.email,
                             photoURL: data.photoURL
                         })
-                        console.log('USER INFO LOADED')
+                        console.log('USER INFO LOADED INTO PROFILE')
                     }
                 });
             })
         }
-    }
-
-    componentDidUpdate() {
-
     }
 
     render() {

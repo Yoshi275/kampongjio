@@ -7,18 +7,51 @@
 // Strangely also following DashboardJioDetails even though I did not want it to
 
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 import JioDetails from '../MainPage/JioDetails';
-import { db } from '../../config';
-import data from '../../data/AllJios.json';
+import { auth, db } from '../../config';
 
 class InitiatedDetails extends Component {
     state = { 
-        allOrders: {}, 
+        allOrders: {},
+        uid: null,
+        userData: {}
     };
-    
-    componentDidMount() { 
-        // TODO: somehow pass info on all orders
+
+    getUserInfoThenDatabase() {
+        const user = auth.currentUser
+        if(user != null) {
+            this.setState({
+                uid: user.uid,
+            }, () => {
+                let dbLocation = '/users/' + this.state.uid + '/';
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            userData: {
+                                displayName: data.displayName,
+                                username: data.username,
+                                phoneNumber: data.phoneNumber,
+                                birthDate: data.birthDate,
+                                email: data.email,
+                                photoURL: data.photoURL
+                            }
+                        })
+                        console.log('USER INFO LOADED INTO INITIATED')
+                        this.getDatabaseInfo()
+                    }
+                });
+            })
+        }
+    }
+
+    getDatabaseInfo() {
         db
             .ref('/allOrders')
             .orderByChild('jioStatus')
@@ -29,9 +62,23 @@ class InitiatedDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    this.setState({ allOrders });
-                }
+                    let allOrdersArr = Object.values(allOrders)
+                    let filteredOrders = []
+                    allOrdersArr.forEach((order) => {
+                        if(order.coordinatorName === this.state.userData.displayName) {
+                            filteredOrders.push(order)
+                            // console.log('ADDING TO FILTERED')
+                        } else {
+                            // console.log('IGNORING ORDER')
+                        }
+                    })
+                    this.setState({ allOrders: filteredOrders });
+                } 
             });
+    }
+    
+    componentDidMount() { 
+        this.getUserInfoThenDatabase()
     }
     
     renderJio = ({item}) => (
@@ -48,11 +95,13 @@ class InitiatedDetails extends Component {
 
     render() {
         return(
-            <FlatList 
-                data={Object.entries(this.state.allOrders)}
-                renderItem={this.renderJio}
-                keyExtractor={this.keyExtractor}
-            />
+            <View>
+                <FlatList 
+                    data={Object.entries(this.state.allOrders)}
+                    renderItem={this.renderJio}
+                    keyExtractor={this.keyExtractor}
+                />
+            </View>
         );
     }
 }

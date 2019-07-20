@@ -13,12 +13,38 @@ class JioJoinerOrder extends Component {
         price: '', 
         specialRequests: '',
         keyboardHeight: new Animated.Value(0),
+        userData: {}
     };
 
+    getUserInfo() {
+        let dbLocation = '/users/' + this.props.uid + '/';
+        db
+            .ref(dbLocation)
+            .on('value', snapshot => {
+                if ( snapshot.val() === null ) {
+                    console.log('NOTHING GRABBED IN DATA')
+                    return null;
+                } else {
+                    const data = snapshot.val()
+                    this.setState({
+                        userData: {
+                            displayName: data.displayName,
+                            username: data.username,
+                            phoneNumber: data.phoneNumber,
+                            birthDate: data.birthDate,
+                            email: data.email,
+                            photoURL: data.photoURL
+                        }
+                    })
+                    console.log('USER INFO LOADED INTO INITIATED')
+                }
+            });
+    }
 
     componentWillMount() {
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+        this.getUserInfo()
     }
     
     componentWillUnmount() {
@@ -54,7 +80,7 @@ class JioJoinerOrder extends Component {
     handleSubmit() {
         let postData = {
             foodChoices: [this.state.foodChoices],
-            joinerName: 'Cheryl', // TODO: at some point, we'll keep track of users. then this will be taken from their account
+            joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
             foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
             price: this.state.price,
             specialRequests: this.state.specialRequests,
@@ -89,7 +115,6 @@ class JioJoinerOrder extends Component {
         // 
         return(
             <Animated.View style={[containerStyle, { paddingBottom: this.state.keyboardHeight }]}> 
-                {/* <Text>{jioOrderId}</Text> */}
                 <View>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 

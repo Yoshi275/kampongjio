@@ -40,7 +40,10 @@ class LoginForm extends Component {
             error: false,
         });
         console.log('LOGIN SUCCESS')
-        Actions.mainPage()
+        Actions.mainPage({
+            uid: this.state.uid,
+            userData: this.state.userData
+        })
     }
 
     renderError() {

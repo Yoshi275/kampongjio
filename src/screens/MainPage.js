@@ -8,15 +8,18 @@ import { View, Text} from 'react-native';
 import JioList from '../components/MainPage/JioList'
 import { Input, Button, NavBar } from '../components/common';
 import { auth } from '../config';
-import firebase from 'firebase';
-import Router from './Router';
 
 class MainPage extends Component {
-    state = { location: '', uid: null };
+    state = { 
+        location: '',
+        uid: null,
+    }
 
     componentDidMount() {
-        const { currentUser } = firebase.auth()
-        this.setState({ currentUser })
+        const user = auth.currentUser
+        if(user !== null) {
+            this.setState({ uid: user.uid })
+        }
     }
 
     render() {
@@ -28,8 +31,12 @@ class MainPage extends Component {
                 value={this.state.location}
                 onChangeText={location => this.setState({ location })}
             /> 
-            <JioList />
-            <Button onPress={() => { Actions.coordinatorCreateJio() }}>
+            <JioList 
+                uid={this.state.uid}
+            />
+            <Button onPress={() => { Actions.coordinatorCreateJio({
+                uid: this.state.uid
+            }) }}>
                 +  JIO
             </Button>
             <NavBar />
