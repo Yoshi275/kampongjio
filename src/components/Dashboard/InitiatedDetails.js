@@ -62,8 +62,9 @@ class InitiatedDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
+                    let allOrdersArr = Object.values(allOrders)
                     let filteredOrders = []
-                    allOrders.forEach((order) => {
+                    allOrdersArr.forEach((order) => {
                         if(order.coordinatorName === this.state.userData.displayName) {
                             filteredOrders.push(order)
                             // console.log('ADDING TO FILTERED')

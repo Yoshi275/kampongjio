@@ -56,8 +56,9 @@ class OngoingDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
+                    let allOrdersArr = Object.values(allOrders)
                     let filteredOrders = []
-                    allOrders.forEach((order) => {
+                    allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
                         let foodOrdersArr = Object.values(order.foodOrders)
                         console.log(foodOrdersArr)

@@ -57,7 +57,6 @@ class PreviousDetails extends Component {
             .equalTo('4jioCompleted')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
-                console.log(allOrders)
                 if ( allOrders === null ) {
                     return null;
                 } else {
@@ -66,11 +65,9 @@ class PreviousDetails extends Component {
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
                         let foodOrdersArr = Object.values(order.foodOrders)
-                        console.log(foodOrdersArr)
                         for(let i = 0; i < foodOrdersArr.length; i++) {
                             if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
                                 orderIncludesUser = true
-                                console.log('FOOD ORDER ACCEPTED')
                             }
                         }
                         if(orderIncludesUser) {
