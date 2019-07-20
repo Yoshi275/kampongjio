@@ -7,8 +7,6 @@ import { Card, CardSection } from '../common';
 import PayButton from './PayButton';
 import { Open, Close, Arrive, Paid, Complete, Food } from '../../resources/icons';
 import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
-import data from '../../data/AllJios.json';
-import { db } from '../../config';
 
 import { //TODO: Change status into states? Not sure how the constants help and later change status icon respectively
     JIO_COMPLETED, // to be for state constants
