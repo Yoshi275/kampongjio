@@ -7,17 +7,25 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text} from 'react-native';
 import JioList from '../components/MainPage/JioList'
 import { Input, Button, NavBar } from '../components/common';
-import { auth, db } from '../config';
+import { auth } from '../config';
 
 class MainPage extends Component {
     state = { 
-        location: ''
+        location: '',
+        uid: null,
+    }
+
+    componentDidMount() {
+        const user = auth.currentUser
+        if(user !== null) {
+            this.setState({ uid: user.uid })
+        }
     }
 
     render() {
         return (
         <View style={styles.containerStyle}>
-            <Text>{this.props.uid}</Text>
+            <Text>{this.state.uid}</Text>
             <Input 
                 placeholder="Try 'Singapore'"
                 label="Location"
@@ -25,7 +33,9 @@ class MainPage extends Component {
                 onChangeText={location => this.setState({ location })}
             /> 
             <JioList />
-            <Button onPress={() => { Actions.coordinatorCreateJio() }}>
+            <Button onPress={() => { Actions.coordinatorCreateJio({
+                uid: this.state.uid
+            }) }}>
                 +  JIO
             </Button>
             <NavBar />

@@ -16,16 +16,42 @@ class CoordinatorCreateJio extends Component {
         jioCloseTime: '',
         jioArrivalTime: '',
         order: {},
-        firebaseOrderId: 'hello',
+        firebaseOrderId: '',
+        userData: {}
     };
+
+    getUserInfo() {
+        let dbLocation = '/users/' + this.props.uid + '/';
+        db
+            .ref(dbLocation)
+            .on('value', snapshot => {
+                if ( snapshot.val() === null ) {
+                    console.log('NOTHING GRABBED IN DATA')
+                    return null;
+                } else {
+                    const data = snapshot.val()
+                    this.setState({
+                        userData: {
+                            displayName: data.displayName,
+                            username: data.username,
+                            phoneNumber: data.phoneNumber,
+                            birthDate: data.birthDate,
+                            email: data.email,
+                            photoURL: data.photoURL
+                        }
+                    })
+                    console.log('USER INFO LOADED INTO INITIATED')
+                }
+            });
+    }
 
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
             orderId: 9999, // TODO: generate this somehow in future
             store: this.state.store, 
-            coordinatorName: '<INSERT NAME>', // TODO: get info from user account
-            phoneNumber: 99998888, // TODO: get info from user account
+            coordinatorName: this.state.userData.displayName, // TODO: get info from user account
+            phoneNumber: this.state.userData.phoneNumber, // TODO: get info from user account
             jioStatus: '1jioOpen',
             jioLocation: this.state.jioLocation,
             jioOpenTime: this.state.jioOpenTime,
@@ -58,6 +84,10 @@ class CoordinatorCreateJio extends Component {
                 console.log('Error Message: ', error) // error callback
             })
     }
+
+    componentDidMount() {
+        this.getUserInfo()
+    }
     
     render() {
         const { 
@@ -67,6 +97,8 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
+                {/* <Text>{this.props.uid}</Text>
+                <Text>{this.state.userData.username}</Text> */}
                 <Text style={storeStyle}>NEW JIO</Text>
                 <Input 
                     placeholder="Where do I want to eat from?"
