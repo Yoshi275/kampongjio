@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button, Input, Spinner } from '../components/common';
+import { Button, Input, Spinner} from '../components/common';
 import { auth, db } from '../config';
 import { Logo } from '../resources/images';
 
@@ -9,96 +9,56 @@ class LoginForm extends Component {
     state = { 
         email: '', 
         password: '', 
-        error: '',
+        error: false,
         loading: false,
     };
     
     handleSubmit() {
         const { email, password } = this.state;
 
-        this.setState({ error: '', loading: true });
+        this.setState({ error: false, loading: true });
         
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 this.onLoginSuccess()
             })
             .catch(() => {
-                console.log('TRYING SIGN UP')
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then(successMessage => {
-                        this.addToUserDatabase()
-                        this.onLoginSuccess(successMessage)
-                    })
-                    .catch((error) => {
-                        console.log('LOGIN AND SIGNUP FAILED')
-                        console.log(error)
-                        this.onLoginFail()
+                this.onLoginFail()
                     });
-            });
-    }
-
-    addToUserDatabase() {
-        console.log('attempting to add user to database')
-        let postData = {
-            email: this.state.email,
-            displayName: 'Cheryl', 
-            username: 'cherylnqj',
-            phoneNumber: '91234567',
-            password: this.state.password,
-            photoURL: 'https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg',
-            birthDate: '21/10/1999'
-        }
-
-        let uid = auth.currentUser.uid
-        let dbLocation = '/users/' + uid;
-
-        db
-            .ref(dbLocation)
-            .set(postData)
-            .then((success) => {
-                console.log('User Added: ', success) // success callback
-                Actions.mainPage();
-            })
-            .catch((error) => {
-                console.log('Error Message: ', error) // error callback
-            })
     }
 
     onLoginFail() {
-        this.setState({ error: 'Authentication Failed.', loading: false})
+        this.setState({ error: true, loading: false})
     }
 
     onLoginSuccess(message) {
-        console.log('clearing login, going to mainpage')
+        console.log('clearing login, going to mainPage')
         this.setState({
             email: '',
             password: '',
             loading: false,
-            error: '',
+            error: false,
         });
-
-        // let uid = auth.currentUser.uid
-        // let dbLocation = '/users/' + uid;
-
-        // db
-        //     .ref(dbLocation)
-        //     .on('value', snapshot => {
-        //         if ( snapshot.val() === null ) {
-        //             return null;
-        //         } else {
-        //             console.log(snapshot.val().username)
-        //         }
-        //     });
-        // console.log('LOGIN SUCCESS')
-        // console.log(message.user.uid)
-
         console.log('LOGIN SUCCESS')
         Actions.mainPage()
     }
 
+    renderError() {
+        if(this.state.error) {
+            return(
+                <View style={{marginTop: 5, marginBottom: 5}}>
+                    <Text style={[styles.textStyle, {textAlign: 'center'}]}>AUTHENTICATION FAILED</Text>
+                    <Text style={styles.errorTextStyle}>Have you signed up?</Text>
+                </View>
+            )
+        } else {
+            return null
+        }
+    }
+
     renderButton() {
         if(this.state.loading) {
-            return <Spinner size="small" />
+            return (<Spinner size="small" />)
         } else {
             return (
                 <Button onPress={this.handleSubmit.bind(this)}>
@@ -112,15 +72,29 @@ class LoginForm extends Component {
         const { 
             containerStyle,
             titleStyle,
-            errorTextStyle,
-            imageContainerStyle
+            imageContainerStyle,
+            imageStyle,
+            textStyle,
+            headerStyle
         } = styles;
         
         return(
             <View style={containerStyle}> 
+                <View style={headerStyle}>
+                    <Text style={textStyle}>KampongJio</Text>
+                    <TouchableOpacity onPress={()=> Actions.signUp()}>
+                        <Text style={textStyle}>
+                            SIGN UP
+                        </Text>
+                    </TouchableOpacity>
+                </View>
                 <View>
-                    <Text style={titleStyle}>Login</Text>
-
+                    <View style={imageContainerStyle}>
+                        <Image 
+                            source={ Logo }
+                            style={ imageStyle }
+                        />
+                    </View>
                     <Input 
                         placeholder="user@gmail.com"
                         label="Email"
@@ -135,21 +109,10 @@ class LoginForm extends Component {
                         onChangeText={password => this.setState({ password })}
                         secureTextEntry
                     />
-
-                    <Button onPress={() => Actions.signUp()}>
-                        SIGN UP
-                    </Button>
-                    <View>{this.renderButton()}</View>
-
-                    {/* <Button onPress={() => this.handleSubmit()}>
-                        LOGIN
-                    </Button> */}
-                </View>
-                <View style={imageContainerStyle}>
-                    <Image 
-                        source={ Logo }
-                        style={ styles.imageStyle }
-                    />
+                </View>               
+                <View>
+                    {this.renderError()}
+                    {this.renderButton()}
                 </View>
             </View>
         );
@@ -166,31 +129,38 @@ const styles = {
         textAlign: 'center',
         textTransform: 'uppercase',
         fontSize: 32,
-        color: '#FFFFFF',
-        borderWidth: 2,
-        borderRadius: 10,
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 50,
-        marginRight: 50,
-        borderColor: '#FF7058',
-        backgroundColor: '#F3A462',
+        color: '#000000',
+        margin: 15,
+        alignItems: 'center',
+        backgroundColor: '#8CDCAC',
+        padding: 3
     },
     errorTextStyle: {
-        fontSize: 20,
+        fontSize: 16,
         alignSelf: 'center',
-        color: 'red',
+        color: '#FFFFFF',
     },
     imageStyle: {
-        height: 200,
-        width: 200
+        height: 150,
+        width: 150
     },
     imageContainerStyle: {
-        backgroundColor: '#2D9B83',
-        flex: 1,
+        margin: 25,
         justifyContent: 'center',
         alignItems: 'center'
     },
+    textStyle: {
+        fontSize: 20,
+        color: '#000000',
+        fontWeight: '500',
+    },
+    headerStyle: {
+        backgroundColor: '#8CDCAC',
+        opacity: 0.85,
+        padding: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    }
 };
 
 export default LoginForm;
