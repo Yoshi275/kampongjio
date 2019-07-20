@@ -1,23 +1,50 @@
-// This js file is the file which will get all the data from axios, to be mapped
-// into individual JioDetails. Once we hook up to more data, we need to consider
-// changing from ScrollView to SectionList (the latter only renders what is seen
-// in the screen)
-// A good resource for fetching local json file and rendering it (in a mapping way)
-// https://www.youtube.com/watch?v=5vFgqCfggC0
-
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import JioDetails from '../MainPage/JioDetails';
-import { db } from '../../config';
+import { db, auth } from '../../config';
 import Dashboard from '../../screens/Dashboard';
 
 class OngoingDetails extends Component {
     state = { 
-        allOrders: {}
+        allOrders: {},
+        uid: null,
+        userData: {}
     };
-    
-    componentDidMount() { 
-        // TODO: somehow pass info on all orders
+
+    getUserInfoThenDatabase() {
+        const user = auth.currentUser
+        if(user != null) {
+            this.setState({
+                uid: user.uid,
+            }, () => {
+                let dbLocation = '/users/' + this.state.uid + '/';
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            userData: {
+                                displayName: data.displayName,
+                                username: data.username,
+                                phoneNumber: data.phoneNumber,
+                                birthDate: data.birthDate,
+                                email: data.email,
+                                photoURL: data.photoURL
+                            }
+                        })
+                        console.log('USER INFO LOADED INTO INITIATED')
+                        this.getDatabaseInfo()
+                    }
+                });
+            })
+        }
+    }
+
+    getDatabaseInfo() {
         db
             .ref('/allOrders')
             .orderByChild('jioStatus')
@@ -28,9 +55,34 @@ class OngoingDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    this.setState({ allOrders });
+                    let filteredOrders = []
+                    allOrders.forEach((order) => {
+                        let orderIncludesUser = false
+                        console.log(order.foodOrders)
+                        console.log('SHOWING ARRAY OF FOOD ORDERS: ')
+                        let foodOrdersArr = Object.values(order.foodOrders)
+                        console.log(foodOrdersArr)
+                        for(let i = 0; i < foodOrdersArr.length; i++) {
+                            console.log('FOOD ORDER LOADED')
+                            if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
+                                orderIncludesUser = true
+                                console.log('FOOD ORDER ACCEPTED')
+                            }
+                        }
+                        if(orderIncludesUser) {
+                            filteredOrders.push(order)
+                            console.log('ADDING ORDER TO FILTERED')
+                        } else {
+                            console.log('IGNORING ORDER')
+                        }
+                    })
+                    this.setState({ allOrders: filteredOrders });
                 }
             });
+    }
+    
+    componentDidMount() { 
+        this.getUserInfoThenDatabase()
     }
 
     renderJio = ({item}) => (

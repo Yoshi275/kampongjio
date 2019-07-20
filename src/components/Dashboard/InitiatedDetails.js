@@ -24,7 +24,6 @@ class InitiatedDetails extends Component {
             this.setState({
                 uid: user.uid,
             }, () => {
-                console.log(this.state.uid)
                 let dbLocation = '/users/' + this.state.uid + '/';
                 db
                 .ref(dbLocation)
@@ -67,9 +66,9 @@ class InitiatedDetails extends Component {
                     allOrders.forEach((order) => {
                         if(order.coordinatorName === this.state.userData.displayName) {
                             filteredOrders.push(order)
-                            console.log('ADDING TO FILTERED')
+                            // console.log('ADDING TO FILTERED')
                         } else {
-                            console.log('IGNORING ORDER')
+                            // console.log('IGNORING ORDER')
                         }
                     })
                     this.setState({ allOrders: filteredOrders });
