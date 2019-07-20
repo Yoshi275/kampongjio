@@ -127,12 +127,12 @@ class SignUp extends Component {
                     value={this.state.birthDate}
                     onChangeText={birthDate => this.setState({ birthDate })}
                 /> 
-                <Input 
+                {/* <Input 
                     placeholder="Will allow actual uploading"
                     label="Image URL*"
                     value={this.state.photoURL}
                     onChangeText={photoURL => this.setState({ photoURL })}
-                /> 
+                />  */}
                 </View>
                 <Button onPress={this.handleSubmit.bind(this)}>
                     SUBMIT
