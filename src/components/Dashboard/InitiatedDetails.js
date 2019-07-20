@@ -7,17 +7,54 @@
 // Strangely also following DashboardJioDetails even though I did not want it to
 
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 import JioDetails from '../MainPage/JioDetails';
-import { db } from '../../config';
+import { auth, db } from '../../config';
 
 class InitiatedDetails extends Component {
     state = { 
-        allOrders: {}, 
+        allOrders: {},
+        uid: null,
+        userData: {}
     };
-    
-    componentDidMount() { 
-        // TODO: somehow pass info on all orders
+
+    getUserInfo() {
+        const user = auth.currentUser
+        if(user != null) {
+            this.setState({
+                uid: user.uid,
+            }, () => {
+                console.log(this.state.uid)
+                let dbLocation = '/users/' + this.state.uid + '/';
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            userData: {
+                                displayName: data.displayName,
+                                username: data.username,
+                                phoneNumber: data.phoneNumber,
+                                birthDate: data.birthDate,
+                                email: data.email,
+                                photoURL: data.photoURL
+                            }
+                        })
+                        console.log('USER INFO LOADED INTO INITIATED')
+                        console.log(this.state.uid)
+                        console.log(this.state.userData)
+                        this.getDatabaseInfo()
+                    }
+                });
+            })
+        }
+    }
+
+    getDatabaseInfo() {
         db
             .ref('/allOrders')
             .orderByChild('jioStatus')
@@ -28,12 +65,27 @@ class InitiatedDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    // allOrders.map((order) => {
-                    //     if(order.coordinatorName === )
-                    // })
-                    this.setState({ allOrders });
-                }
+                    let filteredOrders = []
+                    console.log(allOrders)
+                    allOrders.forEach((order) => {
+                        console.log(order.coordinatorName)
+                        console.log(this.state.userData.displayName)
+                        console.log(order.coordinatorName === this.state.userData.displayName)
+                        if(order.coordinatorName === this.state.userData.displayName) {
+                            filteredOrders.push(order)
+                            console.log('ADDING TO FILTERED')
+                        } else {
+                            console.log('IGNORING ORDER')
+                        }
+                    })
+                    this.setState({ allOrders: filteredOrders });
+                    console.log(this.state.allOrders)
+                } 
             });
+    }
+    
+    componentDidMount() { 
+        this.getUserInfo()
     }
     
     renderJio = ({item}) => (
@@ -50,11 +102,14 @@ class InitiatedDetails extends Component {
 
     render() {
         return(
-            <FlatList 
-                data={Object.entries(this.state.allOrders)}
-                renderItem={this.renderJio}
-                keyExtractor={this.keyExtractor}
-            />
+            <View>
+                <Text>{this.state.userData.displayName}</Text>
+                <FlatList 
+                    data={Object.entries(this.state.allOrders)}
+                    renderItem={this.renderJio}
+                    keyExtractor={this.keyExtractor}
+                />
+            </View>
         );
     }
 }

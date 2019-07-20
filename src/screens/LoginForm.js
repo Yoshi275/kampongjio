@@ -93,7 +93,10 @@ class LoginForm extends Component {
         // console.log(message.user.uid)
 
         console.log('LOGIN SUCCESS')
-        Actions.mainPage()
+        Actions.mainPage({
+            uid: this.state.uid,
+            userData: this.state.userData
+        })
     }
 
     renderButton() {
