@@ -8,20 +8,19 @@ import { View, Text} from 'react-native';
 import JioList from '../components/MainPage/JioList'
 import { Input, Button, NavBar } from '../components/common';
 import { auth } from '../config';
-import firebase from 'firebase';
-import Router from './Router';
 
 class MainPage extends Component {
     state = { location: '', uid: null };
 
     componentDidMount() {
-        const { currentUser } = firebase.auth()
-        this.setState({ currentUser })
+        const { currentUser } = auth
+        this.setState({ uid: currentUser.uid })
     }
 
     render() {
         return (
         <View style={styles.containerStyle}>
+            <Text>{this.state.uid}</Text>
             <Input 
                 placeholder="Try 'Singapore'"
                 label="Location"

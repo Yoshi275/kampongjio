@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { NavBar } from '../components/common';
-import { Actions } from 'react-native-router-flux';
 import Ongoing from '../components/Dashboard/Ongoing';
 import Previous from '../components/Dashboard/Previous';
 

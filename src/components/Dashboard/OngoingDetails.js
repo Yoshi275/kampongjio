@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import JioDetails from '../MainPage/JioDetails';
 import { db } from '../../config';
-import data from '../../data/AllJios.json';
 import Dashboard from '../../screens/Dashboard';
 
 class OngoingDetails extends Component {
