@@ -29,6 +29,9 @@ class InitiatedDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
+                    // allOrders.map((order) => {
+                    //     if(order.coordinatorName === )
+                    // })
                     this.setState({ allOrders });
                 }
             });
