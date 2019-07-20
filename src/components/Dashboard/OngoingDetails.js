@@ -60,12 +60,14 @@ class OngoingDetails extends Component {
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
-                        let foodOrdersArr = Object.values(order.foodOrders)
-                        console.log(foodOrdersArr)
-                        for(let i = 0; i < foodOrdersArr.length; i++) {
-                            if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
-                                orderIncludesUser = true
-                                console.log('FOOD ORDER ACCEPTED')
+                        if(order.coordinatorName !== this.state.userData.displayName) {
+                            let foodOrdersArr = Object.values(order.foodOrders)
+                            console.log(foodOrdersArr)
+                            for(let i = 0; i < foodOrdersArr.length; i++) {
+                                if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
+                                    orderIncludesUser = true
+                                    console.log('FOOD ORDER ACCEPTED')
+                                }
                             }
                         }
                         if(orderIncludesUser) {
