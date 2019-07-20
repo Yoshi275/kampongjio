@@ -25,14 +25,15 @@ class MainPage extends Component {
     render() {
         return (
         <View style={styles.containerStyle}>
-            <Text>{this.state.uid}</Text>
             <Input 
                 placeholder="Try 'Singapore'"
                 label="Location"
                 value={this.state.location}
                 onChangeText={location => this.setState({ location })}
             /> 
-            <JioList />
+            <JioList 
+                uid={this.state.uid}
+            />
             <Button onPress={() => { Actions.coordinatorCreateJio({
                 uid: this.state.uid
             }) }}>

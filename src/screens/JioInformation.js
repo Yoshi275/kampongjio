@@ -11,9 +11,11 @@ class JioInformation extends Component {
                 <FullJioDetails order={this.props.order}/>
                 <View>
                     <Button onPress={() => { Actions.jioJoinerOrder({ 
-                        order : this.props.order, 
-                        jioOrderId: this.props.jioOrderId}) 
-                        }}>
+                            order : this.props.order, 
+                            jioOrderId: this.props.jioOrderId,
+                            uid: this.props.uid
+                        }) 
+                    }}>
                         + JOIN JIO
                     </Button>
                     <NavBar />

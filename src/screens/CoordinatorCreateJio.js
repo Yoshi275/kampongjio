@@ -77,7 +77,8 @@ class CoordinatorCreateJio extends Component {
                 console.log(this.state.firebaseOrderId);
                 Actions.jioJoinerOrder({ 
                     order: this.state.order, 
-                    jioOrderId: this.state.firebaseOrderId
+                    jioOrderId: this.state.firebaseOrderId,
+                    uid: this.props.uid
                 });
             })
             .catch((error) => {
