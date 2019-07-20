@@ -34,6 +34,7 @@ class JioList extends Component {
         <JioDetails
             order={item[1]}
             jioOrderId={item[0]}
+            uid={this.props.uid}
         />
     );
 

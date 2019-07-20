@@ -17,12 +17,14 @@ class JioDetails extends Component {
         if(this.props.fromDashboard) {
             Actions.coordinator({ 
                 order: this.props.order,
-                jioOrderId: this.props.jioOrderId
+                jioOrderId: this.props.jioOrderId,
+                uid: this.props.uid
             });
         } else {
             Actions.jioInformation({ 
                 order: this.props.order,
-                jioOrderId: this.props.jioOrderId
+                jioOrderId: this.props.jioOrderId,
+                uid: this.props.uid
             });
         }
     }
