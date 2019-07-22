@@ -77,14 +77,18 @@ class OrderDetails extends Component {
 
     renderEdit() {
         if (this.props.orderDetails.joinerName === this.state.userData.displayName) {
-            return (
-                <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({ orderDetails: this.props.orderDetails, order: this.props.order })}>
-                    <Image 
-                        source={Edit}
-                        style={styles.editStyle}
-                    />
-                </TouchableOpacity>
-            );
+            if(this.props.order.jioStatus === '1jioOpen') {
+                return (
+                    <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({ orderDetails: this.props.orderDetails, order: this.props.order })}>
+                        <Image 
+                            source={Edit}
+                            style={styles.editStyle}
+                        />
+                    </TouchableOpacity>
+                );
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
