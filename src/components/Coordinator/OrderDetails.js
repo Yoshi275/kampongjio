@@ -1,12 +1,55 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
-import { db } from '../../config';
+import { View, Text, Switch, TouchableOpacity, Image } from 'react-native';
+import { Edit } from '../../resources/icons';
+import { db, auth } from '../../config';
 import { Card, CardSection } from '../common';
 
 class OrderDetails extends Component {
-    state = {paid : this.props.orderDetails.hasPaid, collected : this.props.orderDetails.hasCollected}
+    state = {
+        paid : this.props.orderDetails.hasPaid, 
+        collected : this.props.orderDetails.hasCollected,
+        uid: null,
+        userData: {}
+    }
+
+    getUserInfoThenDatabase() {
+        const user = auth.currentUser
+        console.log('I AM HERE');
+        if(user != null) {
+            this.setState({
+                uid: user.uid,
+            }, () => {
+                let dbLocation = '/users/' + this.state.uid + '/';
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            userData: {
+                                displayName: data.displayName,
+                                username: data.username,
+                                phoneNumber: data.phoneNumber,
+                                birthDate: data.birthDate,
+                                email: data.email,
+                                photoURL: data.photoURL
+                            }
+                        })
+                        console.log('USER INFO LOADED INTO INITIATED')
+                    }
+                });
+            })
+        }
+    }
     
+    componentDidMount() {
+        this.getUserInfoThenDatabase()
+    }
+
     componentDidUpdate() {
         this.handleSubmit()
     }
@@ -32,38 +75,48 @@ class OrderDetails extends Component {
             })
     }
 
-    renderOrders() {
-        // console.log(this.props);
+    renderEdit() {
+        if (this.props.orderDetails.joinerName === this.state.userData.displayName) {
+            return (
+                <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({ orderDetails: this.props.orderDetails, order: this.props.order })}>
+                    <Image 
+                        source={Edit}
+                        style={styles.editStyle}
+                    />
+                </TouchableOpacity>
+            );
+        } else {
+            return null;
+        }
+    }
 
+    renderOrders() {
+        // console.log(this.props.orderDetails.foodChoices);
+        if ( this.props.orderDetails.foodChoices === null ) {
+            return null;
+        } else {
         return this.props.orderDetails.foodChoices.map(foodChoices => 
             <Text 
-            style={styles.textStyle}
-            key={this.props.orderDetails.joinerName + ' ' + foodChoices}
+                style={styles.textStyle}
+                key={this.props.orderDetails.joinerName + ' ' + foodChoices}
             >
                 {foodChoices}
             </Text>
             );
+        }
     }
-    
-    render() {
-        const {
-            textStyle,
-            titleStyle,
-            containerStyle,
-            switchStyle,
-            cardSectionStyle
-        } = styles;
 
-        // console.log(this.props.orderDetails);
-        return (
-            <View style={containerStyle}>
-                <Text style={titleStyle}>{this.props.orderDetails.joinerName}</Text>
-                <CardSection>
-                    <View style={{ flex: 5 }}>
-                        {this.renderOrders()}
-                    </View>
-                    <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>
-                </CardSection>
+    renderPaidCompleted() {
+        const {
+            cardSectionStyle,
+            switchStyle,
+            titleStyle
+        } = styles
+
+        if (this.props.orderDetails.joinerName === this.state.userData.displayName) {
+            return null;
+        } else {
+            return (
                 <CardSection>
                     <CardSection style={cardSectionStyle}>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
@@ -82,6 +135,32 @@ class OrderDetails extends Component {
                         />
                     </CardSection>
                 </CardSection>
+            );
+        }
+    }
+    
+    render() {
+        const {
+            textStyle,
+            titleStyle,
+            containerStyle,
+            coordinatorStyle
+        } = styles;
+
+        // console.log(this.props.orderDetails);
+        return (
+            <View style={containerStyle}>
+                <View style={coordinatorStyle}>
+                    <Text style={titleStyle}>{this.props.orderDetails.joinerName}</Text>
+                    {this.renderEdit()}
+                </View>
+                <CardSection>
+                    <View style={{ flex: 5 }}>
+                        {this.renderOrders()}
+                    </View>
+                    <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>
+                </CardSection>
+                {this.renderPaidCompleted()}
             </View>
         );
     }
@@ -97,7 +176,6 @@ const styles = {
         fontSize: 24,
         color: '#FFFFFF',
         fontWeight: 'bold',
-        paddingLeft: 10,
     },
     textStyle: {
         fontSize: 18,
@@ -112,9 +190,18 @@ const styles = {
         marginLeft: 5,
         marginRight: 5
     },
-    cardSectionStyle: {
-        padding: 0
-    }
+    coordinatorStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10
+    },
+    editStyle: {
+        height: 24,
+        width: 24,
+    },
 };
 
 export default OrderDetails;

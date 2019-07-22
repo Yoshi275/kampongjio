@@ -5,20 +5,22 @@ import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { jioStatusIcon } from '../../data/jioStatus';
-import { Delete, Food } from '../../resources/icons';
+import { Edit, Food } from '../../resources/icons';
 // import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
 // import PayButton from './PayButton';
 
 
 class DashboardJioDetails extends Component {
     //TODO: Have an onPress in the delete image to somehow delete the order of this person. Image only appears when the jio is still open
-    renderDelete() {
-        if (this.props.jioStatus === '1jioOpen') {
+    renderEdit() {
+        if (this.props.order.jioStatus === '1jioOpen') {
             return(
-                <Image 
-                    style={styles.deleteStyle}
-                    source={Delete}
-                />
+                <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder()}>
+                    <Image 
+                        style={styles.editStyle}
+                        source={Edit}
+                    />
+                </TouchableOpacity>
             );
         } else {
             return null;
@@ -70,11 +72,8 @@ class DashboardJioDetails extends Component {
                                 style={iconStyle}
                                 source={jioStatusImage} 
                             />
-                            {this.renderDelete()}
+                            {this.renderEdit()}
                         </View>
-                    </CardSection>
-                    <CardSection>
-                        
                     </CardSection>
                 </Card>
             </TouchableOpacity>
@@ -116,15 +115,16 @@ const styles = {
         height: 40,
         width: 40,
     },
-    deleteStyle: {
-        height: 20,
-        width: 20
+    editStyle: {
+        height: 25,
+        width: 25
     },
     iconContainerStyle: {
         flex: 1,
         padding: 3,
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'flex-end'
     },
     imageContainerStyle: {
         justifyContent: 'center',

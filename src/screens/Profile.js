@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Card, NavBar, Button } from '../components/common';
+import { Card, NavBar, Button, TimeOrange } from '../components/common';
 import { ProfileIcon } from '../resources/icons';
 import { auth, db } from '../config';
 
