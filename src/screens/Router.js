@@ -10,6 +10,7 @@ import JioJoinerOrder from './JioJoinerOrder';
 import CoordinatorCreateJio from './CoordinatorCreateJio';
 import Coordinator from './Coordinator';
 import Dashboard from './Dashboard';
+import CoordinatorEditJio from './CoordinatorEditJio';
 
 const RouterComponent = () => {
     return (
@@ -66,6 +67,11 @@ const RouterComponent = () => {
                     key="coordinator"
                     component={Coordinator}
                     title="Coordinator"
+                />
+                <Scene
+                    key="coordinatorEditJio"
+                    component={CoordinatorEditJio}
+                    title="Edit Your Jio"
                 />
             </Scene>
         </Router>

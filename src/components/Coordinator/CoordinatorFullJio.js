@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { TimeOrange } from '../common';
 import OrderList from './OrderList';
 import { jioStatusText } from '../../data/jioStatus';
+import { Edit } from '../../resources/icons';
+import { Actions } from 'react-native-router-flux';
 
 // TODO: Make jioStatus react directly to when the button in Coordinator page is pressed
 class CoordinatorFullJio extends Component {
+    renderEdit() {
+        if (this.props.order.jioStatus === '1jioOpen') {
+            return(
+                <TouchableOpacity onPress={() => Actions.coordinatorEditJio({ order: this.props.order })}>
+                    <Image 
+                        source={Edit}
+                        style={styles.editStyle}
+                    />
+                </TouchableOpacity>
+            );
+        } else {
+            return null;
+        }
+    }
+
     render() {
         const jioLocation = this.props.order.jioLocation;
         const jioOpenTime = this.props.order.jioOpenTime;
@@ -18,10 +35,13 @@ class CoordinatorFullJio extends Component {
                 <Text style={styles.textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
                 <Text style={styles.textStyle}>Location : {jioLocation}</Text>
                 <TimeOrange>
-                    <View style={{ flexDirection: 'column' }}>
-                        <Text style={[styles.textStyle, {color: '#000000'}]}>Jio Open : {jioOpenTime}</Text>
-                        <Text style={[styles.textStyle, {color: '#000000'}]}>Jio Close : {jioCloseTime}</Text>
-                        <Text style={[styles.textStyle, {color: '#000000'}]}>Arrival Time : {jioArrivalTime}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', flex: 3}}>
+                        <View style={{ flexDirection: 'column'}}>
+                            <Text style={[styles.textStyle, {color: '#000000'}]}>Jio Open : {jioOpenTime}</Text>
+                            <Text style={[styles.textStyle, {color: '#000000'}]}>Jio Close : {jioCloseTime}</Text>
+                            <Text style={[styles.textStyle, {color: '#000000'}]}>Arrival Time : {jioArrivalTime}</Text>
+                        </View>
+                    { this.renderEdit()}
                     </View>
                 </TimeOrange>
                 <Text style={styles.labelStyle}>ORDERS</Text>
@@ -50,6 +70,10 @@ const styles = {
         marginRight: 10,
         fontWeight: '400',
         color: '#FFFFFF'
+    },
+    editStyle: {
+        height: 25,
+        width: 25,
     },
 }
 export default CoordinatorFullJio;

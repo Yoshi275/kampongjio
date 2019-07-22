@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
 import { db } from '../config';
+import { Delete } from '../resources/icons';
 
-class CoordinatorCreateJio extends Component {
+class CoordinatorEditJio extends Component {
     state = { 
-        store: '', 
-        jioMenuURL: '', 
-        jioLocation: '', 
-        deliveryApp: '',
-        deliveryCost: '',
-        promoCode: '',
-        jioOpenTime: '',
-        jioCloseTime: '',
-        jioArrivalTime: '',
+        store: this.props.order.store, 
+        jioMenuURL: this.props.order.jioMenuURL, 
+        jioLocation: this.props.order.jioLocation, 
+        deliveryApp: this.props.order.deliveryApp,
+        deliveryCost: this.props.order.deliveryCost,
+        promoCode: this.props.order.promoCode,
+        jioOpenTime: this.props.order.jioOpenTime,
+        jioCloseTime: this.props.order.jioCloseTime,
+        jioArrivalTime: this.props.order.jioArrivalTime,
         order: {},
         firebaseOrderId: '',
         userData: {}
@@ -94,19 +95,16 @@ class CoordinatorCreateJio extends Component {
         const { 
             storeStyle, 
             containerStyle, 
+            labelStyle,
+            deleteTextStyle,
+            deleteViewStyle
         } = styles;
 
         return(
             <View style={containerStyle}>
                 {/* <Text>{this.props.uid}</Text>
                 <Text>{this.state.userData.username}</Text> */}
-                <Text style={storeStyle}>NEW JIO</Text>
-                <Input 
-                    placeholder="Where do I want to eat from?"
-                    label="Store*"
-                    value={this.state.store}
-                    onChangeText={store => this.setState({ store })}
-                /> 
+                <Text style={storeStyle}>{this.state.store}</Text>
                 {/* TODO: Make the input URL link to a URL, instead of being a string in Firebase */}
                 <Input 
                     placeholder="What do they serve?"
@@ -140,13 +138,7 @@ class CoordinatorCreateJio extends Component {
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 3}}>
-                        <Input 
-                            style={{color: '#000000'}}
-                            placeholder="00:00"
-                            label="Jio Open*"
-                            value={this.state.jioOpenTime}
-                            onChangeText={jioOpenTime => this.setState({ jioOpenTime })}
-                        /> 
+                        <Text style={labelStyle}>Jio Open: {this.state.jioOpenTime}</Text>
                         <Input 
                             placeholder="00:00"
                             label="Jio Close*"
@@ -161,8 +153,16 @@ class CoordinatorCreateJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
-
-                <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
+                <TouchableOpacity>
+                    <View style={deleteViewStyle}>
+                        <Text style={deleteTextStyle}>DELETE </Text>
+                        <Image 
+                            source={Delete}
+                            style={styles.deleteStyle}
+                        />
+                    </View>
+                </TouchableOpacity>
+                <Button onPress={() => this.handleSubmit() }>EDIT!</Button>
             </View>
         );
     }
@@ -188,5 +188,27 @@ const styles = {
         borderColor: '#FF7058',
         backgroundColor: '#F3A462',
     },
+    labelStyle: {
+        fontSize: 18,
+        marginLeft: 10,
+        // marginRight: 10,
+        fontWeight: '400',
+        color: '#FFFFFF'
+    },
+    deleteStyle: {
+        height: 30,
+        width: 30,
+    },
+    deleteTextStyle: {
+        font: 40,
+        fontWeight: 'bold',
+        paddingLeft: 5,
+    },
+    deleteViewStyle: {
+        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        padding: 10,
+        alignItems: 'center'
+    }
 };
-export default CoordinatorCreateJio;
+export default CoordinatorEditJio;

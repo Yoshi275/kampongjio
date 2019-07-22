@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
-import JioDetails from '../MainPage/JioDetails';
+import DashboardJioDetails from './DashboardJioDetails';
 import { db, auth } from '../../config';
 import Dashboard from '../../screens/Dashboard';
 
@@ -87,7 +87,7 @@ class OngoingDetails extends Component {
     }
 
     renderJio = ({item}) => (
-        <JioDetails
+        <DashboardJioDetails
             order={item[1]}
             jioOrderId={item[0]}
         />

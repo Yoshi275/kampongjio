@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, NavBar } from '../components/common';
-import { Open } from '../resources/icons';
+import { Edit } from '../resources/icons';
 import { db } from '../config';
 import CoordinatorFullJio from '../components/Coordinator/CoordinatorFullJio';
 
@@ -55,12 +55,20 @@ class Coordinator extends Component {
         const { 
             containerStyle,
             storeStyle,
+            editStyle,
+            headerStyle
         } = styles;
 
         return(
             <View style={containerStyle}>
                 <ScrollView>
-                    <Text style={storeStyle}>{store}</Text>
+                    {/* <View style={headerStyle}> */}
+                        <Text style={storeStyle}>{store}</Text>
+                        {/* <Image 
+                            source={Edit}
+                            style={editStyle}
+                        />
+                    </View> */}
                     <CoordinatorFullJio 
                         order={this.props.order}
                         jioOrderId={this.props.jioOrderId}
@@ -91,11 +99,24 @@ const styles = {
         borderRadius: 10,
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 50,
-        marginRight: 50,
+        marginLeft: 40,
+        marginRight: 40,
+        // paddingLeft: 50,
+        // paddingRight: 50,
         borderColor: '#FF7058',
         backgroundColor: '#F3A462',
+        flex: 7,
     },
+    editStyle: {
+        height: 24,
+        width: 24, 
+        flex: 1
+    },
+    headerStyle: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end'
+    }
 }
 
 export default Coordinator;

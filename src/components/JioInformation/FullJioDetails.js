@@ -44,11 +44,13 @@ class FullJioDetails extends Component {
                 <Text style={textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
                 <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>
 
-                 <TimeOrange>
-                    <View style={{ flexDirection: 'column' }}>
-                        <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {this.props.order.jioOpenTime}</Text>
-                        <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {this.props.order.jioCloseTime}</Text>
-                        <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {this.props.order.jioArrivalTime}</Text>
+                <TimeOrange>
+                    <View style={{ flex: 3, justifyConten: 'flex-start'}}>
+                        <View style={{ flexDirection: 'column'}}>
+                            <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {this.props.order.jioOpenTime}</Text>
+                            <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {this.props.order.jioCloseTime}</Text>
+                            <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {this.props.order.jioArrivalTime}</Text>
+                        </View>
                     </View>
                 </TimeOrange>
 
