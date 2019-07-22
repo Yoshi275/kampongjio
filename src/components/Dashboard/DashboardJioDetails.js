@@ -1,27 +1,29 @@
-// AS OF NOW, NOT USING IT UNLESS WE ARE THINKING OF DISPLAYING DIFFERENT INFO
+// For jios, which the user is a part of, but not initiated
 
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
-import PayButton from './PayButton';
-import { Open, Close, Arrive, Paid, Complete, Food } from '../../resources/icons';
-import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
+import { jioStatusIcon } from '../../data/jioStatus';
+import { Delete, Food } from '../../resources/icons';
+// import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
+// import PayButton from './PayButton';
 
-import { //TODO: Change status into states? Not sure how the constants help and later change status icon respectively
-    JIO_COMPLETED, // to be for state constants
-    JIO_OPEN,
-    JIO_CLOSED,
-    JIO_PAID,
-    JIO_ARRIVED
-} from '../../data/jioStatus'
 
 class DashboardJioDetails extends Component {
-    // state = {jioStatus: {this.props.order.jioStatus}};
-    // console.log(this.state.jioStatus);
-
-    //TODO: Unable to do so because need to have idea of registered users. 
-    //      Link to the paymentIndication in firebase, and make it update when onPress is called
+    //TODO: Have an onPress in the delete image to somehow delete the order of this person. Image only appears when the jio is still open
+    renderDelete() {
+        if (this.props.jioStatus === '1jioOpen') {
+            return(
+                <Image 
+                    style={styles.deleteStyle}
+                    source={Delete}
+                />
+            );
+        } else {
+            return null;
+        }
+    }
     
     render() {
         const { 
@@ -33,24 +35,11 @@ class DashboardJioDetails extends Component {
             timeStyle, 
             textContainerStyle,
             iconStyle,
-            iconContainerStyle
+            iconContainerStyle,
         } = styles;
     
-        // const jioImage = this.props.order.store === 'Makisan'
-        //         ? Makisan
-        //         : this.props.order.store === 'Al Amaan'
-        //         ? AlAmaan : McDonalds;
         const jioImage = Food;
-        const jioStatusIcon = this.props.order.jioStatus === 'jioOpen'
-                ? Open 
-                : this.props.order.jioStatus === 'jioClosed'
-                    ? Close
-                    : this.props.order.jioStatus === 'jioPaid' 
-                        ? Paid
-                        : this.props.order.jioStatus === 'jioArrived'
-                            ? Arrive : Complete; 
-        // please use conditional formatting. based on state, load relevant icon
-
+        const jioStatusImage = jioStatusIcon(this.props.order.jioStatus);
 
         return (
             <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
@@ -71,15 +60,17 @@ class DashboardJioDetails extends Component {
                                 <Text style={timeTextStyle}> | </Text>
                                 <Text style={timeTextStyle}>{this.props.order.jioArrivalTime}</Text>
                             </View>
-                            <View>
+                            {//TODO: Show price (after calculator), and ideally order when status is 2jioClosed
+                                /* <View>
                                 <Text>PRICE?</Text>
-                            </View>
+                            </View> */}
                         </View>
                         <View style={iconContainerStyle}>
                             <Image 
-                            style={iconStyle}
-                            source={jioStatusIcon} 
+                                style={iconStyle}
+                                source={jioStatusImage} 
                             />
+                            {this.renderDelete()}
                         </View>
                     </CardSection>
                     <CardSection>
@@ -125,9 +116,15 @@ const styles = {
         height: 40,
         width: 40,
     },
+    deleteStyle: {
+        height: 20,
+        width: 20
+    },
     iconContainerStyle: {
         flex: 1,
-        padding: 3
+        padding: 3,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     imageContainerStyle: {
         justifyContent: 'center',

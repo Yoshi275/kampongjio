@@ -42,10 +42,6 @@ class JioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        // const jioImage = this.props.order.store === 'Makisan'
-        //         ? Makisan
-        //         : this.props.order.store === 'Al Amaan'
-        //         ? AlAmaan : McDonalds;
         const jioImage = Food;
         const jioStatusImage = jioStatusIcon(this.props.order.jioStatus);
     
