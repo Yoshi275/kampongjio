@@ -64,11 +64,6 @@ class Coordinator extends Component {
                 <ScrollView>
                     {/* <View style={headerStyle}> */}
                         <Text style={storeStyle}>{store}</Text>
-                        {/* <Image 
-                            source={Edit}
-                            style={editStyle}
-                        />
-                    </View> */}
                     <CoordinatorFullJio 
                         order={this.props.order}
                         jioOrderId={this.props.jioOrderId}

@@ -24,7 +24,7 @@ class FullJioDetails extends Component {
          } = styles;
 
         return(
-            <View>
+            <View >
                 <HeaderSection>
                     <View style={imageContainerStyle}>
                         <Image 
@@ -44,16 +44,18 @@ class FullJioDetails extends Component {
                 <Text style={textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
                 <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>
 
-                <TimeOrange>
-                    <View style={{ flex: 3, justifyConten: 'flex-start'}}>
+                {// TODO: Fix TimeOrange layout bug which has no problems in any other screen but this
+                    
+                    /* <TimeOrange>
+                    <View style={{flexDirection: 'row', flex: 3}}>
                         <View style={{ flexDirection: 'column'}}>
                             <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {this.props.order.jioOpenTime}</Text>
                             <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {this.props.order.jioCloseTime}</Text>
                             <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {this.props.order.jioArrivalTime}</Text>
                         </View>
                     </View>
-                </TimeOrange>
-
+                </TimeOrange> */}
+                
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
                     <TouchableOpacity style={{flex: 1, flexDirection: 'column'}} onPress={()=> Linking.openURL( this.props.order.jioMenuURL )}>
@@ -62,9 +64,15 @@ class FullJioDetails extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View>
+                
                 <Text style={textStyle}>Delivery App : {this.props.order.deliveryApp}</Text>
                 <Text style={textStyle}>Delivery Cost (Total) : {this.props.order.deliveryCost}</Text>
-                <Text style={textStyle}>Promo Code : {this.props.order.promoCode}</Text>
+                <Text style={textStyle}>Promo Code : {this.props.order.promoCode}</Text> 
+                {/* 
+                <TimeOrange>
+                    <Text style={{flex: 3}}>TEST</Text>
+                </TimeOrange> 
+                <Text style={textStyle}>Promo Code : {this.props.order.promoCode}</Text>  */}
             </View> 
         );
     }

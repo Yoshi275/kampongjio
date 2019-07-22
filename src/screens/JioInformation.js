@@ -29,7 +29,8 @@ const styles = {
     containerStyle: {
         flex: 1,
         backgroundColor: '#2D9B83',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        flexDirection: 'column'
     },
 };
 

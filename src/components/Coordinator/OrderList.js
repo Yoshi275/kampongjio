@@ -7,6 +7,7 @@ import OrderDetails from './OrderDetails';
 class OrderList extends Component {
     renderJio = ({item}) => (
         <OrderDetails
+            order={this.props.order}
             orderDetails={item[1]}
             jioJoinOrderId={item[0]}
             jioOrderId={this.props.jioOrderId}

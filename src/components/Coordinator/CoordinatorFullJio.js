@@ -46,6 +46,7 @@ class CoordinatorFullJio extends Component {
                 </TimeOrange>
                 <Text style={styles.labelStyle}>ORDERS</Text>
                 <OrderList 
+                    order={this.props.order}
                     foodOrders={this.props.order.foodOrders}
                     jioOrderId={this.props.jioOrderId}
                 />

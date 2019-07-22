@@ -76,11 +76,12 @@ class CoordinatorEditJio extends Component {
                 console.log('Success Message: ', response) // success callback
                 this.setState({ firebaseOrderId: response.getKey() });
                 console.log(this.state.firebaseOrderId);
-                Actions.jioJoinerOrder({ 
-                    order: this.state.order, 
-                    jioOrderId: this.state.firebaseOrderId,
-                    uid: this.props.uid
-                });
+                // Actions.jioJoinerOrder({ 
+                //     order: this.state.order, 
+                //     jioOrderId: this.state.firebaseOrderId,
+                //     uid: this.props.uid
+                // });
+                Actions.dashboard();
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
@@ -97,7 +98,8 @@ class CoordinatorEditJio extends Component {
             containerStyle, 
             labelStyle,
             deleteTextStyle,
-            deleteViewStyle
+            deleteViewStyle,
+            deleteStyle
         } = styles;
 
         return(
@@ -158,7 +160,7 @@ class CoordinatorEditJio extends Component {
                         <Text style={deleteTextStyle}>DELETE </Text>
                         <Image 
                             source={Delete}
-                            style={styles.deleteStyle}
+                            style={deleteStyle}
                         />
                     </View>
                 </TouchableOpacity>
