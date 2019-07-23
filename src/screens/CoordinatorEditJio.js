@@ -19,7 +19,8 @@ class CoordinatorEditJio extends Component {
         order: {},
         firebaseOrderId: '',
         userData: {},
-        uid: null
+        uid: null,
+        foodOrders: this.props.order.foodOrders
     };
 
     getUserInfo() {
@@ -71,7 +72,7 @@ class CoordinatorEditJio extends Component {
             deliveryApp: this.state.deliveryApp,
             deliveryCost: this.state.deliveryCost,
             promoCode: this.state.promoCode,
-            foodOrders: [],
+            foodOrders: this.state.foodOrders,
         }
 
         const dbLocation = '/allOrders/' + this.props.jioOrderId + '/';
@@ -85,7 +86,7 @@ class CoordinatorEditJio extends Component {
             .update(postData)
             .then((response) => {
                 console.log('Success Message: ', response) // success callback
-                Actions.dashboard();
+                Actions.mainPage();
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
