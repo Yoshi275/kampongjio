@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
-import { db } from '../config';
+import { auth, db } from '../config';
 import { Delete } from '../resources/icons';
 
 class CoordinatorEditJio extends Component {
@@ -18,32 +18,41 @@ class CoordinatorEditJio extends Component {
         jioArrivalTime: this.props.order.jioArrivalTime,
         order: {},
         firebaseOrderId: '',
-        userData: {}
+        userData: {},
+        uid: null
     };
 
     getUserInfo() {
-        let dbLocation = '/users/' + this.props.uid + '/';
-        db
-            .ref(dbLocation)
-            .on('value', snapshot => {
-                if ( snapshot.val() === null ) {
-                    console.log('NOTHING GRABBED IN DATA')
-                    return null;
-                } else {
-                    const data = snapshot.val()
-                    this.setState({
-                        userData: {
-                            displayName: data.displayName,
-                            username: data.username,
-                            phoneNumber: data.phoneNumber,
-                            birthDate: data.birthDate,
-                            email: data.email,
-                            photoURL: data.photoURL
-                        }
-                    })
-                    console.log('USER INFO LOADED INTO INITIATED')
-                }
+        const user = auth.currentUser
+        if(user != null) {
+            this.setState({
+                uid: user.uid
+            }, () => {
+                let dbLocation = '/users/' + this.state.uid + '/';
+                console.log(dbLocation)
+                db
+                .ref(dbLocation)
+                .on('value', snapshot => {
+                    if ( snapshot.val() === null ) {
+                        console.log('NOTHING GRABBED IN DATA')
+                        return null;
+                    } else {
+                        const data = snapshot.val()
+                        this.setState({
+                            userData: {
+                                displayName: data.displayName,
+                                username: data.username,
+                                phoneNumber: data.phoneNumber,
+                                birthDate: data.birthDate,
+                                email: data.email,
+                                photoURL: data.photoURL
+                            }
+                        })
+                        console.log('USER INFO LOADED INTO INITIATED')
+                    }
             });
+            })
+        }
     }
 
     handleSubmit() {

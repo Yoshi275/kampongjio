@@ -15,7 +15,6 @@ class OrderDetails extends Component {
 
     getUserInfoThenDatabase() {
         const user = auth.currentUser
-        console.log('I AM HERE');
         if(user != null) {
             this.setState({
                 uid: user.uid,
