@@ -42,8 +42,6 @@ class CoordinatorEditJio extends Component {
         }
 
         const dbLocation = '/allOrders/' + this.props.jioOrderId + '/';
-        console.log(dbLocation)
-        console.log(postData)
 
         this.setState({ order: postData });
 
@@ -59,8 +57,18 @@ class CoordinatorEditJio extends Component {
             })
     }
 
-    componentDidMount() {
-        // this.getUserInfo()
+    handleDelete() {
+        const dbLocation = '/allOrders/' + this.props.jioOrderId + '/'
+        db
+            .ref(dbLocation)
+            .remove()
+            .then((response) => {
+                console.log('Success Message: ', response)  // success callback
+                Actions.mainPage();
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
     }
     
     render() {
@@ -124,7 +132,7 @@ class CoordinatorEditJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.handleDelete() }>
                     <View style={deleteViewStyle}>
                         <Text style={deleteTextStyle}>DELETE </Text>
                         <Image 
