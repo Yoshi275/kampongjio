@@ -74,22 +74,17 @@ class CoordinatorEditJio extends Component {
             foodOrders: [],
         }
 
-        const dbLocation = '/allOrders/';
+        const dbLocation = '/allOrders/' + this.props.jioOrderId + '/';
+        console.log(dbLocation)
+        console.log(postData)
 
         this.setState({ order: postData });
 
         db
             .ref(dbLocation)
-            .push(postData)
+            .update(postData)
             .then((response) => {
                 console.log('Success Message: ', response) // success callback
-                this.setState({ firebaseOrderId: response.getKey() });
-                console.log(this.state.firebaseOrderId);
-                // Actions.jioJoinerOrder({ 
-                //     order: this.state.order, 
-                //     jioOrderId: this.state.firebaseOrderId,
-                //     uid: this.props.uid
-                // });
                 Actions.dashboard();
             })
             .catch((error) => {
@@ -99,6 +94,7 @@ class CoordinatorEditJio extends Component {
 
     componentDidMount() {
         this.getUserInfo()
+        console.log('JIO ORDER ID: ' + this.props.jioOrderId)
     }
     
     render() {
