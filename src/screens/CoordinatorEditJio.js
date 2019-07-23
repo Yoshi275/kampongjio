@@ -7,6 +7,8 @@ import { Delete } from '../resources/icons';
 
 class CoordinatorEditJio extends Component {
     state = { 
+        coordinatorName: this.props.order.coordinatorName,
+        phoneNumber: this.props.order.phoneNumber,
         store: this.props.order.store, 
         jioMenuURL: this.props.order.jioMenuURL, 
         jioLocation: this.props.order.jioLocation, 
@@ -17,42 +19,16 @@ class CoordinatorEditJio extends Component {
         jioCloseTime: this.props.order.jioCloseTime,
         jioArrivalTime: this.props.order.jioArrivalTime,
         order: {},
-        firebaseOrderId: '',
-        userData: {}
+        foodOrders: this.props.order.foodOrders
     };
-
-    getUserInfo() {
-        let dbLocation = '/users/' + this.props.uid + '/';
-        db
-            .ref(dbLocation)
-            .on('value', snapshot => {
-                if ( snapshot.val() === null ) {
-                    console.log('NOTHING GRABBED IN DATA')
-                    return null;
-                } else {
-                    const data = snapshot.val()
-                    this.setState({
-                        userData: {
-                            displayName: data.displayName,
-                            username: data.username,
-                            phoneNumber: data.phoneNumber,
-                            birthDate: data.birthDate,
-                            email: data.email,
-                            photoURL: data.photoURL
-                        }
-                    })
-                    console.log('USER INFO LOADED INTO INITIATED')
-                }
-            });
-    }
 
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
             orderId: 9999, // TODO: generate this somehow in future
             store: this.state.store, 
-            coordinatorName: this.state.userData.displayName, // TODO: get info from user account
-            phoneNumber: this.state.userData.phoneNumber, // TODO: get info from user account
+            coordinatorName: this.state.coordinatorName, // TODO: get info from user account
+            phoneNumber: this.state.phoneNumber, // TODO: get info from user account
             jioStatus: '1jioOpen',
             jioLocation: this.state.jioLocation,
             jioOpenTime: this.state.jioOpenTime,
@@ -62,34 +38,37 @@ class CoordinatorEditJio extends Component {
             deliveryApp: this.state.deliveryApp,
             deliveryCost: this.state.deliveryCost,
             promoCode: this.state.promoCode,
-            foodOrders: [],
+            foodOrders: this.state.foodOrders,
         }
 
-        const dbLocation = '/allOrders/';
+        const dbLocation = '/allOrders/' + this.props.jioOrderId + '/';
 
         this.setState({ order: postData });
 
         db
             .ref(dbLocation)
-            .push(postData)
+            .update(postData)
             .then((response) => {
                 console.log('Success Message: ', response) // success callback
-                this.setState({ firebaseOrderId: response.getKey() });
-                console.log(this.state.firebaseOrderId);
-                // Actions.jioJoinerOrder({ 
-                //     order: this.state.order, 
-                //     jioOrderId: this.state.firebaseOrderId,
-                //     uid: this.props.uid
-                // });
-                Actions.dashboard();
+                Actions.mainPage();
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
             })
     }
 
-    componentDidMount() {
-        this.getUserInfo()
+    handleDelete() {
+        const dbLocation = '/allOrders/' + this.props.jioOrderId + '/'
+        db
+            .ref(dbLocation)
+            .remove()
+            .then((response) => {
+                console.log('Success Message: ', response)  // success callback
+                Actions.mainPage();
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
     }
     
     render() {
@@ -104,8 +83,6 @@ class CoordinatorEditJio extends Component {
 
         return(
             <View style={containerStyle}>
-                {/* <Text>{this.props.uid}</Text>
-                <Text>{this.state.userData.username}</Text> */}
                 <Text style={storeStyle}>{this.state.store}</Text>
                 {/* TODO: Make the input URL link to a URL, instead of being a string in Firebase */}
                 <Input 
@@ -155,7 +132,7 @@ class CoordinatorEditJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.handleDelete() }>
                     <View style={deleteViewStyle}>
                         <Text style={deleteTextStyle}>DELETE </Text>
                         <Image 

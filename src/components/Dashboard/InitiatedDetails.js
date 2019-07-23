@@ -59,13 +59,16 @@ class InitiatedDetails extends Component {
             .endAt('3jioArrived')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
+                console.log('INITIATED DETAILS ORDERS: ')
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    let allOrdersArr = Object.values(allOrders)
+                    let allOrdersArr = Object.entries(allOrders)
+                    console.log('NEW ARRAY ORDERS: ')
+                    console.log(allOrdersArr)
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
-                        if(order.coordinatorName === this.state.userData.displayName) {
+                        if(order[1].coordinatorName === this.state.userData.displayName) {
                             filteredOrders.push(order)
                             // console.log('ADDING TO FILTERED')
                         } else {
@@ -90,14 +93,14 @@ class InitiatedDetails extends Component {
     );
 
     keyExtractor = (item) => (
-        item[1].store
+        item[1].store // TODO: Change to an actually unique key. This isn't unique.
     );
 
     render() {
         return(
             <View>
                 <FlatList 
-                    data={Object.entries(this.state.allOrders)}
+                    data={this.state.allOrders}
                     renderItem={this.renderJio}
                     keyExtractor={this.keyExtractor}
                 />
