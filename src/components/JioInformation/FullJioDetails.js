@@ -25,7 +25,7 @@ class FullJioDetails extends Component {
          } = styles;
 
         return(
-            <View >
+            <View>
                 <HeaderSection>
                     <View style={imageContainerStyle}>
                         <Image 
@@ -45,9 +45,9 @@ class FullJioDetails extends Component {
                 <Text style={textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
                 <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>
 
-                {// TODO: Fix TimeOrange layout bug which has no problems in any other screen but this
+                {/* // TODO: Fix TimeOrange layout bug which has no problems in any other screen but this */}
                     
-                    /* <TimeOrange>
+                <TimeOrange>
                     <View style={{flexDirection: 'row', flex: 3}}>
                         <View style={{ flexDirection: 'column'}}>
                             <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {this.props.order.jioOpenTime}</Text>
@@ -55,7 +55,7 @@ class FullJioDetails extends Component {
                             <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {this.props.order.jioArrivalTime}</Text>
                         </View>
                     </View>
-                </TimeOrange> */}
+                </TimeOrange>
                 
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>

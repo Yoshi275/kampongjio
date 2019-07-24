@@ -14,7 +14,8 @@ class CoordinatorEditJio extends Component {
         jioLocation: this.props.order.jioLocation, 
         deliveryApp: this.props.order.deliveryApp,
         deliveryCost: this.props.order.deliveryCost,
-        promoCode: this.props.order.promoCode,
+        minOrder: this.props.order.minOrder,
+        discount: this.props.order.discount,
         jioOpenTime: this.props.order.jioOpenTime,
         jioCloseTime: this.props.order.jioCloseTime,
         jioArrivalTime: this.props.order.jioArrivalTime,
@@ -37,7 +38,8 @@ class CoordinatorEditJio extends Component {
             jioMenuURL: this.state.jioMenuURL,
             deliveryApp: this.state.deliveryApp,
             deliveryCost: this.state.deliveryCost,
-            promoCode: this.state.promoCode,
+            minOrder: this.state.minOrder,
+            discount: this.state.discount,
             foodOrders: this.state.foodOrders,
         }
 
@@ -110,10 +112,16 @@ class CoordinatorEditJio extends Component {
                     onChangeText={deliveryCost => this.setState({ deliveryCost })}
                 /> 
                 <Input 
-                    placeholder="What is the promo code (how many % off)?"
-                    label="Promo Code*"
-                    value={this.state.promoCode}
-                    onChangeText={promoCode => this.setState({ promoCode })}
+                    placeholder="What is the minimum order?"
+                    label="Minimum Order ($)*"
+                    value={this.state.minOrder}
+                    onChangeText={minOrder => this.setState({ minOrder })}
+                /> 
+                <Input 
+                    placeholder="How much is the discount?"
+                    label="Discount (%)*"
+                    value={this.state.discount}
+                    onChangeText={discount => this.setState({ discount })}
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 3}}>
