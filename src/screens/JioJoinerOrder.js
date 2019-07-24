@@ -89,7 +89,6 @@ class JioJoinerOrder extends Component {
                 hasPaid: true,
                 hasCollected: true
             }
-            console.log('fromCoordinator is true');
         } else {
             postData = {
                 foodChoices: [this.state.foodChoices],
@@ -100,10 +99,8 @@ class JioJoinerOrder extends Component {
                 hasPaid: false,
                 hasCollected: false
             }
-            console.log('fromCoordinator is false');
         }
 
-        console.log(postData);
         let jioOrderId = this.props.jioOrderId; // for accessing the array, has to be changed in the future
         let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/';
 

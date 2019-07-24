@@ -53,6 +53,14 @@ class OrderDetails extends Component {
         this.handleSubmit()
     }
 
+    calcPrice() {
+        const count = parseFloat(this.props.jioJoinerNum);
+        const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
+        const paidPrice = parseFloat(this.props.orderDetails.price) + eachDelivery;
+        const priceString = '$' +paidPrice.toFixed(2);
+        return priceString;
+    }
+
     handleSubmit() {
         let postData = {
             hasPaid: this.state.paid,
@@ -165,166 +173,13 @@ class OrderDetails extends Component {
                     <View style={{ flex: 5 }}>
                         {this.renderOrders()}
                     </View>
-                    <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>
+                    <Text style={[textStyle, { flex: 1 }]}>{this.calcPrice()}</Text>
                 </CardSection>
                 {this.renderPaidCompleted()}
             </View>
         );
     }
 }
-// import React, { Component } from 'react';
-// import { Actions } from 'react-native-router-flux';
-// import { View, Text, Switch, TouchableOpacity, Image } from 'react-native';
-// import { Edit } from '../../resources/icons';
-// import { db } from '../../config';
-// import { Card, CardSection } from '../common';
-
-// class OrderDetails extends Component {
-//     state = {
-//         paid : this.props.orderDetails.hasPaid, 
-//         collected : this.props.orderDetails.hasCollected
-//     }
-    
-//     // componentDidMount() {
-//     //     console.log(this.props.coordinatorName);
-//     //     if (this.props.orderDetails.joinerName === this.props.coordinatorName) {
-//     //         this.setState({paid: true, collected: true})
-//     //         console.log(this.state.paid);
-//     //     }
-//     // }
-
-//     componentDidUpdate() {
-//         this.handleSubmit() 
-//     }
-
-//     calcPrice() {
-//         const count = parseFloat(this.props.jioJoinerNum);
-//         const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
-//         const paidPrice = parseFloat(this.props.orderDetails.price) + eachDelivery;
-//         const priceString = '$' +paidPrice.toFixed(2);
-//         return priceString;
-//     }
-
-//     handleSubmit() {
-//         let postData = {
-//             hasPaid: this.state.paid,
-//             hasCollected: this.state.collected
-//         }
-
-//         const jioOrderId = this.props.jioOrderId;
-//         const jioJoinOrderId = this.props.jioJoinOrderId;
-//         let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/' + jioJoinOrderId + '/';
-
-//         db
-//             .ref(dbLocation)
-//             .update(postData)
-//             .then((success) => {
-//                 console.log('Success Message: ', success) // success callback
-//             })
-//             .catch((error) => {
-//                 console.log('Error Message: ', error) // error callback
-//             })
-//     }
-
-//     renderEdit() {
-//         if (this.props.orderDetails.joinerName === this.props.coordinatorName) {
-//             if(this.props.order.jioStatus === '1jioOpen') {
-//                 return (
-//                     <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({ 
-//                         orderDetails: this.props.orderDetails,
-//                         order: this.props.order,
-//                         jioJoinOrderId: this.props.jioJoinOrderId,
-//                         jioOrderId: this.props.jioOrderId 
-//                     })}>
-//                         <Image 
-//                             source={Edit}
-//                             style={styles.editStyle}
-//                         />
-//                     </TouchableOpacity>
-//                 );
-//             } else {
-//                 return null;
-//             }
-//         } 
-//     }
-
-//     renderOrders() {
-//         // console.log(this.props.orderDetails.foodChoices);
-//         if ( this.props.orderDetails.foodChoices === null ) {
-//             return null;
-//         } else {
-//         return this.props.orderDetails.foodChoices.map(foodChoices => 
-//             <Text 
-//                 style={styles.textStyle}
-//                 key={this.props.orderDetails.joinerName + ' ' + foodChoices}
-//             >
-//                 {foodChoices}
-//             </Text>
-//             );
-//         }
-//     }
-
-//     renderPaidCompleted() {
-//         const {
-//             cardSectionStyle,
-//             switchStyle,
-//             titleStyle
-//         } = styles
-
-//         if (this.props.orderDetails.joinerName === this.props.coordinatorName) {
-//             return null;
-//         } else {
-//             return (
-//                 <CardSection>
-//                     <CardSection style={cardSectionStyle}>
-//                         <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
-//                         <Switch 
-//                             style={switchStyle}
-//                             value={this.state.paid} 
-//                             onValueChange={() => this.setState({ paid: true })}
-//                         />
-//                     </CardSection>
-//                     <CardSection style={cardSectionStyle}>
-//                         <Text style={[titleStyle, { fontWeight:'normal' }]}>COLLECTED</Text>
-//                         <Switch 
-//                             style={switchStyle}
-//                             value={this.state.collected} 
-//                             onValueChange={() => this.setState({ collected: true })}
-//                         />
-//                     </CardSection>
-//                 </CardSection>
-//             );
-//         }
-//     }
-    
-//     render() {
-//         const {
-//             textStyle,
-//             titleStyle,
-//             containerStyle,
-//             coordinatorStyle
-//         } = styles;
-
-//         // console.log(this.props.orderDetails.joinerName);
-//         // console.log(this.state.paid);
-//         // console.log(this.state.collected);
-//         return (
-//             <View style={containerStyle}>
-//                 <View style={coordinatorStyle}>
-//                     <Text style={titleStyle}>{this.props.orderDetails.joinerName}</Text>
-//                     {/* {this.renderEdit()} */}
-//                 </View>
-//                 <CardSection>
-//                     <View style={{ flex: 5 }}>
-//                         {/* {this.renderOrders()} */}
-//                     </View>
-//                     {/* <Text style={[textStyle, { flex: 1 }]}>{this.calcPrice()}</Text> */}
-//                 </CardSection>
-//                 {/* {this.renderPaidCompleted()} */}
-//             </View>
-//         );
-//     }
-// }
 
 const styles = {
     containerStyle: {
