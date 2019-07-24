@@ -16,27 +16,6 @@ class DashboardJioDetails extends Component {
         orderDetails: {}
     }
 
-    //TODO: Have an onPress in the delete image to somehow delete the order of this person. Image only appears when the jio is still open
-    renderEdit() {
-        if (this.props.order.jioStatus === '1jioOpen') {
-            return(
-                <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({
-                    order: this.props.order,
-                    jioOrderId: this.props.jioOrderId,
-                    jioJoinOrderId: this.state.jioJoinOrderId,
-                    orderDetails: this.state.orderDetails
-                })}>
-                    <Image 
-                        style={styles.editStyle}
-                        source={Edit}
-                    />
-                </TouchableOpacity>
-            );
-        } else {
-            return null;
-        }
-    }
-
     componentDidMount() {
         let foodOrders = Object.entries(this.props.order.foodOrders)
         for(let i = 0; i < foodOrders.length; i++) {
@@ -66,7 +45,13 @@ class DashboardJioDetails extends Component {
         const jioStatusImage = jioStatusIcon(this.props.order.jioStatus);
 
         return (
-            <TouchableOpacity onPress={() => { Actions.jioInformation({ order: this.props.order }) }}>
+            <TouchableOpacity onPress={() => { Actions.jioInformation({ 
+                    order: this.props.order, 
+                    orderDetails: this.state.orderDetails,
+                    jioOrderId: this.props.jioOrderId,
+                    jioJoinOrderId: this.state.jioJoinOrderId,
+                    fromDashboard: true }) 
+            }}>
                 <Card>
                     <CardSection>
                         <View style={imageContainerStyle}>
@@ -84,17 +69,12 @@ class DashboardJioDetails extends Component {
                                 <Text style={timeTextStyle}> | </Text>
                                 <Text style={timeTextStyle}>{this.props.order.jioArrivalTime}</Text>
                             </View>
-                            {//TODO: Show price (after calculator), and ideally order when status is 2jioClosed
-                                /* <View>
-                                <Text>PRICE?</Text>
-                            </View> */}
                         </View>
                         <View style={iconContainerStyle}>
                             <Image 
                                 style={iconStyle}
                                 source={jioStatusImage} 
                             />
-                            {this.renderEdit()}
                         </View>
                     </CardSection>
                 </Card>

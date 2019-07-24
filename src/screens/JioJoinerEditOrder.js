@@ -116,14 +116,14 @@ class JioJoinerEditOrder extends Component {
                      //      is to use .toString() which looks horrendous, and when stored might also look different
                     }
                     <BigInput 
-                        placeholder="What do I want to order?"
+                        placeholder="Item1(Quantity), Item2(Quantity), ..."
                         label="YOUR ORDER"
                         value={this.state.foodChoices.toString()}
                         onChangeText={foodChoices => this.setState({ foodChoices })}
                     /> 
                     <BigInput 
                         placeholder="How much does everything cost?"
-                        label="PRICE"
+                        label="PRICE ($)"
                         value={this.state.price}
                         onChangeText={price => this.setState({ price })}
                         // TODO: typing into this element results in crashing. can we fix this?
@@ -145,7 +145,7 @@ class JioJoinerEditOrder extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <Button onPress={() => this.handleSubmit()}>EDITED</Button>
+                <Button onPress={() => this.handleSubmit()}>EDIT!</Button>
             </Animated.View>
         );
     }
@@ -176,7 +176,7 @@ const styles = {
         width: 30,
     },
     deleteTextStyle: {
-        font: 40,
+        fontSize: 25,
         fontWeight: 'bold',
         paddingLeft: 5,
     },

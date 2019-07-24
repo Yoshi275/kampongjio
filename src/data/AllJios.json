@@ -12,18 +12,17 @@
 			"jioArrivalTime" : "13:20",
 			"jioMenuURL" : "https://www.makisan.com/forms/Maki-San-Sushi.pdf",
 			"deliveryApp" : "GrabFood",
-			"deliveryCost" : "$2",
-			"promoCode" : "ILOVESUSHI (20%)",
+			"deliveryCost" : "2",
+			"minOrder" : "40",
+			"discount" : "10",
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
 					"joinerName" : "Adam",
 					"foodChoices" : [
-						"Salmon Delight",
-						"Even More Salmon",
-						"Salmanthisisthebestthingever"
+						"Salmon Delight(1), Even More Salmon(1), Salmanthisisthebestthingever(1)"
 					],
-					"price" : "$19.80",
+					"price" : "19.80",
 					"specialRequests" : "Honestly no need for sushi bah.",
 					"hasPaid" : false,
 					"hasCollected" : false
@@ -32,25 +31,20 @@
 					"foodOrderNo" : 1,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
-						"Yucky Veggie Delight",
-						"CelerEW WHO EATS THIS",
-						"A Really Fungi",
-						"I'm on a Sushi Roll"
+						"Yucky Veggie Delight(1), CelerEW WHO EATS THIS(1), A Really Fungi(1), I'm on a Sushi Roll(1)"
 					],
-					"price" : "$15.30",
+					"price" : "15.30",
 					"specialRequests" : "",
 					"hasPaid" : true,
-					"hasCollected" : false
+					"hasCollected" : true
 				},
 				{
 					"foodOrderNo" : 2,
 					"joinerName" : "Venny",
 					"foodChoices" : [
-						"Too Cool for Food Puns",
-						"Duck! It's a sushi!",
-						"I got tired of punning sushi rolls"
+						"Too Cool for Food Puns(1), Duck! It's a sushi!(1), I got tired of punning sushi rolls (1)"
 					],
-					"price" : "$27.60",
+					"price" : "27.60",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
@@ -69,17 +63,17 @@
 			"jioArrivalTime" : "15:50",
 			"jioMenuURL" : "https://www.alamaanrestaurant.com.sg/",
 			"deliveryApp" : "FoodPanda",
-			"deliveryCost" : "$5",
-			"promoCode" : "SUPPERJIOSIOL (40%)",
+			"deliveryCost" : "5",
+			"minOrder" : "10",
+			"discount" : "10",
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
 					"joinerName" : "Ahmed",
 					"foodChoices" : [
-						"Fried Chicken",
-						"Coke and Rum"
+						"Fried Chicken(1), Coke and Rum(1)"
 					],
-					"price" : "$8.80",
+					"price" : "8.80",
 					"specialRequests" : "ONLY CHICKEN! NO SAUCE!",
 					"hasPaid" : false,
 					"hasCollected" : false
@@ -88,20 +82,20 @@
 					"foodOrderNo" : 1,
 					"joinerName" : "Venny",
 					"foodChoices" : [
-						"Carbonara"
+						"Carbonara (2)"
 					],
-					"price" : "$6.40",
+					"price" : "12.80",
 					"specialRequests" : "",
 					"hasPaid" : true,
-					"hasCollected" : false
+					"hasCollected" : true
 				},
 				{
 					"foodOrderNo" : 2,
 					"joinerName" : "Hui Ren",
 					"foodChoices" : [
-						"Cheese Fries (L)"
+						"Cheese Fries Large(1)"
 					],
-					"price" : "$5.00",
+					"price" : "5.00",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
@@ -120,28 +114,28 @@
 			"jioArrivalTime" : "23:00",
 			"jioMenuURL" : "https://www.mcdelivery.com.sg/sg/menu.html/",
 			"deliveryApp" : "Deliveroo",
-			"deliveryCost" : "$2",
-			"promoCode" : "CARBSCARBSCARBS (40%)",
+			"deliveryCost" : "2",
+			"minOrder" : "20",
+			"discount" : "15",
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
 					"joinerName" : "Rafi",
 					"foodChoices" : [
-						"McChicken Meal"
+						"McChicken Meal(1)"
 					],
-					"price" : "$8.80",
+					"price" : "8.80",
 					"specialRequests" : "No Sauce",
-					"hasPaid" : false,
-					"hasCollected" : false
+					"hasPaid" : true,
+					"hasCollected" : true
 				},
 				{
 					"foodOrderNo" : 1,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
-						"Filet-o-Fish Meal",
-						"Coke Zero (L)"
+						"Filet-o-Fish Meal(1), Coke Zero Large (2)"
 					],
-					"price" : "$6.40",
+					"price" : "9.40",
 					"specialRequests" : "No tartar sauce, no ice",
 					"hasPaid" : true,
 					"hasCollected" : false
@@ -150,9 +144,9 @@
 					"foodOrderNo" : 2,
 					"joinerName" : "Jonina",
 					"foodChoices" : [
-						"Mineral Water"
+						"Mineral Water(1)"
 					],
-					"price" : "$3.00",
+					"price" : "3.00",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true

@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
-import JioDetails from '../MainPage/JioDetails';
+import DashboardJioDetails from './DashboardJioDetails';
 import { auth, db } from '../../config';
 
 class PreviousDetails extends Component {
@@ -88,9 +88,11 @@ class PreviousDetails extends Component {
     }
 
     renderJio = ({item}) => (
-        <JioDetails
+        <DashboardJioDetails
             order={item[1]}
             jioOrderId={item[0]}
+            userData={this.state.userData}
+            uid={this.state.uid}
         />
     );
 

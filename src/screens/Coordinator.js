@@ -56,22 +56,23 @@ class Coordinator extends Component {
             containerStyle,
             storeStyle,
             editStyle,
-            headerStyle
+            headerStyle,
+            textStyle
         } = styles;
 
         return(
             <View style={containerStyle}>
                 <ScrollView>
-                    {/* <View style={headerStyle}> */}
-                        <Text style={storeStyle}>{store}</Text>
+                    <Text style={storeStyle}>{store}</Text>
                     <CoordinatorFullJio 
                         order={this.props.order}
                         jioOrderId={this.props.jioOrderId}
+                        jioStatus={this.state.jioStatus}
                     />
                 </ScrollView>
                 <View>
                     {this.renderButton()}
-                <NavBar />
+                    <NavBar />
                 </View>
             </View>
         );

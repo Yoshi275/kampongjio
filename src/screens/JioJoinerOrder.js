@@ -78,14 +78,27 @@ class JioJoinerOrder extends Component {
     };
     
     handleSubmit() {
-        let postData = {
-            foodChoices: [this.state.foodChoices],
-            joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
-            foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
-            price: this.state.price,
-            specialRequests: this.state.specialRequests,
-            hasPaid: false,
-            hasCollected: false
+        let postData = {};
+        if (this.props.fromCoordinator) {
+            postData = {
+                foodChoices: [this.state.foodChoices],
+                joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
+                foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+                price: this.state.price,
+                specialRequests: this.state.specialRequests,
+                hasPaid: true,
+                hasCollected: true
+            }
+        } else {
+            postData = {
+                foodChoices: [this.state.foodChoices],
+                joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
+                foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+                price: this.state.price,
+                specialRequests: this.state.specialRequests,
+                hasPaid: false,
+                hasCollected: false
+            }
         }
 
         let jioOrderId = this.props.jioOrderId; // for accessing the array, has to be changed in the future
@@ -115,14 +128,14 @@ class JioJoinerOrder extends Component {
                 <View>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
-                        placeholder="What do I want to order?"
+                        placeholder="Item1(Quantity), Item2(Quantity), ..."
                         label="YOUR ORDER"
                         value={this.state.foodChoices}
                         onChangeText={foodChoices => this.setState({ foodChoices })}
                     /> 
                     <BigInput 
                         placeholder="How much does everything cost?"
-                        label="PRICE"
+                        label="PRICE ($)"
                         value={this.state.price}
                         onChangeText={price => this.setState({ price })}
                         // TODO: typing into this element results in crashing. can we fix this?
