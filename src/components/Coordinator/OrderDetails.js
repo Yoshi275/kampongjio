@@ -50,7 +50,26 @@ class OrderDetails extends Component {
     }
 
     componentDidUpdate() {
-        this.handleSubmit()
+        this.handleSubmit() 
+    }
+
+    coordinatorState() {
+        //this if statement is placed here and not ComponentDidMount because the userData would still be empty in ComponentDidMount()
+        console.log(this.state.userData.displayName);
+        if (this.props.orderDetails.joinerName === this.state.userData.displayName) {
+            this.setState({paid: true, collected: true})
+            console.log(this.state.paid);
+            console.log(this.state.userData.displayName);
+        } else {
+            return null;
+        }
+    }
+    calcPrice() {
+        const count = parseFloat(this.props.jioJoinerNum);
+        const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
+        const paidPrice = parseFloat(this.props.orderDetails.price) + eachDelivery;
+        const priceString = '$' +paidPrice.toFixed(2);
+        return priceString;
     }
 
     handleSubmit() {
@@ -150,7 +169,7 @@ class OrderDetails extends Component {
             coordinatorStyle
         } = styles;
 
-        // console.log(this.props.orderDetails);
+        this.coordinatorState();
         return (
             <View style={containerStyle}>
                 <View style={coordinatorStyle}>
@@ -161,7 +180,7 @@ class OrderDetails extends Component {
                     <View style={{ flex: 5 }}>
                         {this.renderOrders()}
                     </View>
-                    <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>
+                    <Text style={[textStyle, { flex: 1 }]}>{this.calcPrice()}</Text>
                 </CardSection>
                 {this.renderPaidCompleted()}
             </View>

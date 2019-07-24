@@ -12,7 +12,7 @@
 			"jioArrivalTime" : "13:20",
 			"jioMenuURL" : "https://www.makisan.com/forms/Maki-San-Sushi.pdf",
 			"deliveryApp" : "GrabFood",
-			"deliveryCost" : "$2",
+			"deliveryCost" : "2",
 			"promoCode" : "ILOVESUSHI (20%)",
 			"foodOrders" : [
 				{
@@ -23,7 +23,7 @@
 						"Even More Salmon",
 						"Salmanthisisthebestthingever"
 					],
-					"price" : "$19.80",
+					"price" : "19.80",
 					"specialRequests" : "Honestly no need for sushi bah.",
 					"hasPaid" : false,
 					"hasCollected" : false
@@ -37,7 +37,7 @@
 						"A Really Fungi",
 						"I'm on a Sushi Roll"
 					],
-					"price" : "$15.30",
+					"price" : "15.30",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : false
@@ -50,7 +50,7 @@
 						"Duck! It's a sushi!",
 						"I got tired of punning sushi rolls"
 					],
-					"price" : "$27.60",
+					"price" : "27.60",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
@@ -69,7 +69,7 @@
 			"jioArrivalTime" : "15:50",
 			"jioMenuURL" : "https://www.alamaanrestaurant.com.sg/",
 			"deliveryApp" : "FoodPanda",
-			"deliveryCost" : "$5",
+			"deliveryCost" : "5",
 			"promoCode" : "SUPPERJIOSIOL (40%)",
 			"foodOrders" : [
 				{
@@ -79,7 +79,7 @@
 						"Fried Chicken",
 						"Coke and Rum"
 					],
-					"price" : "$8.80",
+					"price" : "8.80",
 					"specialRequests" : "ONLY CHICKEN! NO SAUCE!",
 					"hasPaid" : false,
 					"hasCollected" : false
@@ -90,7 +90,7 @@
 					"foodChoices" : [
 						"Carbonara"
 					],
-					"price" : "$6.40",
+					"price" : "6.40",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : false
@@ -101,7 +101,7 @@
 					"foodChoices" : [
 						"Cheese Fries (L)"
 					],
-					"price" : "$5.00",
+					"price" : "5.00",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
@@ -120,7 +120,7 @@
 			"jioArrivalTime" : "23:00",
 			"jioMenuURL" : "https://www.mcdelivery.com.sg/sg/menu.html/",
 			"deliveryApp" : "Deliveroo",
-			"deliveryCost" : "$2",
+			"deliveryCost" : "2",
 			"promoCode" : "CARBSCARBSCARBS (40%)",
 			"foodOrders" : [
 				{
@@ -129,7 +129,7 @@
 					"foodChoices" : [
 						"McChicken Meal"
 					],
-					"price" : "$8.80",
+					"price" : "8.80",
 					"specialRequests" : "No Sauce",
 					"hasPaid" : false,
 					"hasCollected" : false
@@ -141,7 +141,7 @@
 						"Filet-o-Fish Meal",
 						"Coke Zero (L)"
 					],
-					"price" : "$6.40",
+					"price" : "6.40",
 					"specialRequests" : "No tartar sauce, no ice",
 					"hasPaid" : true,
 					"hasCollected" : false
@@ -152,7 +152,7 @@
 					"foodChoices" : [
 						"Mineral Water"
 					],
-					"price" : "$3.00",
+					"price" : "3.00",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
