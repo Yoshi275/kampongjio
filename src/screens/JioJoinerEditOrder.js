@@ -83,6 +83,20 @@ class JioJoinerEditOrder extends Component {
             })
     }
 
+    handleDelete() {
+        const dbLocation = '/allOrders/' + this.props.jioOrderId + '/foodOrders/' + this.props.jioJoinOrderId + '/'
+        db
+            .ref(dbLocation)
+            .remove()
+            .then((response) => {
+                console.log('Success Message: ', response)  // success callback
+                Actions.mainPage();
+            })
+            .catch((error) => {
+                console.log('Error Message: ', error) // error callback
+            })
+    }
+
     render() {
         const { 
             containerStyle, 
@@ -121,7 +135,7 @@ class JioJoinerEditOrder extends Component {
                         value={this.state.specialRequests}
                         onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.handleDelete()}>
                         <View style={deleteViewStyle}>
                             <Text style={deleteTextStyle}>DELETE </Text>
                             <Image 

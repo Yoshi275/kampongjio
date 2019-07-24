@@ -6,17 +6,14 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { jioStatusIcon } from '../../data/jioStatus';
 import { Edit, Food } from '../../resources/icons';
-import { auth } from '../../config';
 // import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
 // import PayButton from './PayButton';
 
 
 class DashboardJioDetails extends Component {
     state = {
-        userDisplayName: null,
         jioJoinOrderId: null,
-        orderDetails: {},
-        uid: null
+        orderDetails: {}
     }
 
     //TODO: Have an onPress in the delete image to somehow delete the order of this person. Image only appears when the jio is still open
@@ -42,18 +39,11 @@ class DashboardJioDetails extends Component {
 
     componentDidMount() {
         let foodOrders = Object.entries(this.props.order.foodOrders)
-        console.log('HERE ARE THE FOOD ORDERS: ')
-        console.log(foodOrders)
-        console.log(this.props.userData)
         for(let i = 0; i < foodOrders.length; i++) {
             if(foodOrders[i][1].joinerName === this.props.userData.displayName) {
                 this.setState({
                     orderDetails: foodOrders[i][1],
                     jioJoinOrderId: foodOrders[i][0]
-                }, () => {
-                    console.log('ADDED TO JIO ORDER: ')
-                    console.log(this.state.orderDetails)
-                    console.log(this.state.jioJoinOrderId)
                 })
             }
         }
