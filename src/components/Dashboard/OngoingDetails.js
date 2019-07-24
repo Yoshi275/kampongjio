@@ -90,6 +90,8 @@ class OngoingDetails extends Component {
         <DashboardJioDetails
             order={item[1]}
             jioOrderId={item[0]}
+            userData={this.state.userData}
+            uid={this.state.uid}
         />
     );
 

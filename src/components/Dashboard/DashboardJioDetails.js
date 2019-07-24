@@ -11,11 +11,21 @@ import { Edit, Food } from '../../resources/icons';
 
 
 class DashboardJioDetails extends Component {
+    state = {
+        jioJoinOrderId: null,
+        orderDetails: {}
+    }
+
     //TODO: Have an onPress in the delete image to somehow delete the order of this person. Image only appears when the jio is still open
     renderEdit() {
         if (this.props.order.jioStatus === '1jioOpen') {
             return(
-                <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder()}>
+                <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({
+                    order: this.props.order,
+                    jioOrderId: this.props.jioOrderId,
+                    jioJoinOrderId: this.state.jioJoinOrderId,
+                    orderDetails: this.state.orderDetails
+                })}>
                     <Image 
                         style={styles.editStyle}
                         source={Edit}
@@ -24,6 +34,18 @@ class DashboardJioDetails extends Component {
             );
         } else {
             return null;
+        }
+    }
+
+    componentDidMount() {
+        let foodOrders = Object.entries(this.props.order.foodOrders)
+        for(let i = 0; i < foodOrders.length; i++) {
+            if(foodOrders[i][1].joinerName === this.props.userData.displayName) {
+                this.setState({
+                    orderDetails: foodOrders[i][1],
+                    jioJoinOrderId: foodOrders[i][0]
+                })
+            }
         }
     }
     
