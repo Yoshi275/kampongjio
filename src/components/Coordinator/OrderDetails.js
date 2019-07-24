@@ -54,10 +54,20 @@ class OrderDetails extends Component {
     }
 
     calcPrice() {
+        // TODO: account for minimum order in future. for now it's assumed that it hits minimum order
         const count = parseFloat(this.props.jioJoinerNum);
         const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
         const disc = (100 - parseFloat(this.props.order.discount)) / 100;
-        const paidPrice = parseFloat(this.props.orderDetails.price) * disc + eachDelivery;
+        const foodOrders = Object.values(this.props.order.foodOrders);
+        let totalPrice = 0.00;
+        for(let i = 0; i < foodOrders.length; i++) {
+            totalPrice += parseFloat(foodOrders[i].price)
+        }
+        const isDiscountApplied = totalPrice >= parseFloat(this.props.order.minOrder)
+        const paidPrice = isDiscountApplied
+            ? parseFloat(this.props.orderDetails.price) * disc + eachDelivery
+            : parseFloat(this.props.orderDetails.price) + eachDelivery
+        // const paidPrice = parseFloat(this.props.orderDetails.price) * disc + eachDelivery;
         const priceString = '$' + paidPrice.toFixed(2);
         return priceString;
     }
