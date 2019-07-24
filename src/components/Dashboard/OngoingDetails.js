@@ -56,12 +56,14 @@ class OngoingDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    let allOrdersArr = Object.values(allOrders)
+                    let allOrdersArr = Object.entries(allOrders)
+                    console.log('ALL ORDERS ARRAY: ')
+                    console.log(allOrdersArr)
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
-                        if(order.coordinatorName !== this.state.userData.displayName) {
-                            let foodOrdersArr = Object.values(order.foodOrders)
+                        if(order[1].coordinatorName !== this.state.userData.displayName) {
+                            let foodOrdersArr = Object.values(order[1].foodOrders)
                             console.log(foodOrdersArr)
                             for(let i = 0; i < foodOrdersArr.length; i++) {
                                 if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
@@ -102,7 +104,7 @@ class OngoingDetails extends Component {
     render() {
         return(
             <FlatList 
-                data={Object.entries(this.state.allOrders)}
+                data={this.state.allOrders}
                 renderItem={this.renderJio}
                 keyExtractor={this.keyExtractor}
             />
