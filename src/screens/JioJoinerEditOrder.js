@@ -76,7 +76,7 @@ class JioJoinerEditOrder extends Component {
             .update(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
-                Actions.mainPage(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
+                Actions.dashboard(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
@@ -90,7 +90,7 @@ class JioJoinerEditOrder extends Component {
             .remove()
             .then((response) => {
                 console.log('Success Message: ', response)  // success callback
-                Actions.mainPage();
+                Actions.dashboard();
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback

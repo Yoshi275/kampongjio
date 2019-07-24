@@ -108,9 +108,6 @@ class JioJoinerOrder extends Component {
         const store = this.props.order.store;
         const jioOrderId = this.props.jioOrderId;
 
-        console.log('Logging Order ID: ');
-        console.log(this.props.jioOrderId);
-
         // transform: [{translateY: this.state.keyboardHeight}]
         // 
         return(

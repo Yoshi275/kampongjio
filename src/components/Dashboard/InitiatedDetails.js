@@ -42,9 +42,10 @@ class InitiatedDetails extends Component {
                                 email: data.email,
                                 photoURL: data.photoURL
                             }
+                        }, () => {
+                            console.log('USER INFO LOADED INTO INITIATED')
+                            this.getDatabaseInfo()
                         })
-                        console.log('USER INFO LOADED INTO INITIATED')
-                        this.getDatabaseInfo()
                     }
                 });
             })

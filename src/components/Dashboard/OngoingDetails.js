@@ -35,9 +35,9 @@ class OngoingDetails extends Component {
                                 email: data.email,
                                 photoURL: data.photoURL
                             }
+                        }, () => {
+                            this.getDatabaseInfo()
                         })
-                        console.log('USER INFO LOADED INTO INITIATED')
-                        this.getDatabaseInfo()
                     }
                 });
             })
