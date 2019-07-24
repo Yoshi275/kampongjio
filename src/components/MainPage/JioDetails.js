@@ -17,8 +17,7 @@ class JioDetails extends Component {
         if(this.props.fromDashboard) {
             Actions.coordinator({ 
                 order: this.props.order,
-                jioOrderId: this.props.jioOrderId,
-                uid: this.props.uid
+                jioOrderId: this.props.jioOrderId
             });
         } else {
             Actions.jioInformation({ 

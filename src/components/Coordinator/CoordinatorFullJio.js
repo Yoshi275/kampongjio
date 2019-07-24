@@ -11,7 +11,9 @@ class CoordinatorFullJio extends Component {
     renderEdit() {
         if (this.props.order.jioStatus === '1jioOpen') {
             return(
-                <TouchableOpacity onPress={() => Actions.coordinatorEditJio({ order: this.props.order })}>
+                <TouchableOpacity onPress={() => Actions.coordinatorEditJio({ 
+                    order: this.props.order,
+                    jioOrderId: this.props.jioOrderId })}>
                     <Image 
                         source={Edit}
                         style={styles.editStyle}
