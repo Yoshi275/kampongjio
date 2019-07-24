@@ -20,9 +20,7 @@
 					"foodOrderNo" : 0,
 					"joinerName" : "Adam",
 					"foodChoices" : [
-						"Salmon Delight",
-						"Even More Salmon",
-						"Salmanthisisthebestthingever"
+						"Salmon Delight(1), Even More Salmon(1), Salmanthisisthebestthingever(1)"
 					],
 					"price" : "19.80",
 					"specialRequests" : "Honestly no need for sushi bah.",
@@ -33,10 +31,7 @@
 					"foodOrderNo" : 1,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
-						"Yucky Veggie Delight",
-						"CelerEW WHO EATS THIS",
-						"A Really Fungi",
-						"I'm on a Sushi Roll"
+						"Yucky Veggie Delight(1), CelerEW WHO EATS THIS(1), A Really Fungi(1), I'm on a Sushi Roll(1)"
 					],
 					"price" : "15.30",
 					"specialRequests" : "",
@@ -47,9 +42,7 @@
 					"foodOrderNo" : 2,
 					"joinerName" : "Venny",
 					"foodChoices" : [
-						"Too Cool for Food Puns",
-						"Duck! It's a sushi!",
-						"I got tired of punning sushi rolls"
+						"Too Cool for Food Puns(1), Duck! It's a sushi!(1), I got tired of punning sushi rolls (1)"
 					],
 					"price" : "27.60",
 					"specialRequests" : "",
@@ -78,8 +71,7 @@
 					"foodOrderNo" : 0,
 					"joinerName" : "Ahmed",
 					"foodChoices" : [
-						"Fried Chicken",
-						"Coke and Rum"
+						"Fried Chicken(1), Coke and Rum(1)"
 					],
 					"price" : "8.80",
 					"specialRequests" : "ONLY CHICKEN! NO SAUCE!",
@@ -90,9 +82,9 @@
 					"foodOrderNo" : 1,
 					"joinerName" : "Venny",
 					"foodChoices" : [
-						"Carbonara"
+						"Carbonara (2)"
 					],
-					"price" : "6.40",
+					"price" : "12.80",
 					"specialRequests" : "",
 					"hasPaid" : true,
 					"hasCollected" : true
@@ -101,7 +93,7 @@
 					"foodOrderNo" : 2,
 					"joinerName" : "Hui Ren",
 					"foodChoices" : [
-						"Cheese Fries (L)"
+						"Cheese Fries Large(1)"
 					],
 					"price" : "5.00",
 					"specialRequests" : "",
@@ -130,7 +122,7 @@
 					"foodOrderNo" : 0,
 					"joinerName" : "Rafi",
 					"foodChoices" : [
-						"McChicken Meal"
+						"McChicken Meal(1)"
 					],
 					"price" : "8.80",
 					"specialRequests" : "No Sauce",
@@ -141,10 +133,9 @@
 					"foodOrderNo" : 1,
 					"joinerName" : "Cheryl",
 					"foodChoices" : [
-						"Filet-o-Fish Meal",
-						"Coke Zero (L)"
+						"Filet-o-Fish Meal(1), Coke Zero Large (2)"
 					],
-					"price" : "6.40",
+					"price" : "9.40",
 					"specialRequests" : "No tartar sauce, no ice",
 					"hasPaid" : true,
 					"hasCollected" : false
@@ -153,7 +144,7 @@
 					"foodOrderNo" : 2,
 					"joinerName" : "Jonina",
 					"foodChoices" : [
-						"Mineral Water"
+						"Mineral Water(1)"
 					],
 					"price" : "3.00",
 					"specialRequests" : "",

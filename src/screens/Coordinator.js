@@ -70,7 +70,7 @@ class Coordinator extends Component {
                 </ScrollView>
                 <View>
                     {this.renderButton()}
-                <NavBar />
+                    <NavBar />
                 </View>
             </View>
         );
