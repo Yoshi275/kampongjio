@@ -135,7 +135,7 @@ class JioJoinerOrder extends Component {
                     /> 
                     <BigInput 
                         placeholder="How much does everything cost?"
-                        label="PRICE"
+                        label="PRICE ($)"
                         value={this.state.price}
                         onChangeText={price => this.setState({ price })}
                         // TODO: typing into this element results in crashing. can we fix this?

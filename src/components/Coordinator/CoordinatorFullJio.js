@@ -7,6 +7,7 @@ import { Edit } from '../../resources/icons';
 import { Actions } from 'react-native-router-flux';
 
 // TODO: Make jioStatus react directly to when the button in Coordinator page is pressed
+// Consider using ComponentWillUpdate()
 class CoordinatorFullJio extends Component {
     renderEdit() {
         if (this.props.order.jioStatus === '1jioOpen') {

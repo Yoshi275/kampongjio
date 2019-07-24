@@ -56,8 +56,9 @@ class OrderDetails extends Component {
     calcPrice() {
         const count = parseFloat(this.props.jioJoinerNum);
         const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
-        const paidPrice = parseFloat(this.props.orderDetails.price) + eachDelivery;
-        const priceString = '$' +paidPrice.toFixed(2);
+        const disc = (100 - parseFloat(this.props.order.discount)) / 100;
+        const paidPrice = parseFloat(this.props.orderDetails.price) * disc + eachDelivery;
+        const priceString = '$' + paidPrice.toFixed(2);
         return priceString;
     }
 

@@ -13,7 +13,8 @@
 			"jioMenuURL" : "https://www.makisan.com/forms/Maki-San-Sushi.pdf",
 			"deliveryApp" : "GrabFood",
 			"deliveryCost" : "2",
-			"promoCode" : "ILOVESUSHI (20%)",
+			"minOrder" : "40",
+			"discount" : "10",
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
@@ -70,7 +71,8 @@
 			"jioMenuURL" : "https://www.alamaanrestaurant.com.sg/",
 			"deliveryApp" : "FoodPanda",
 			"deliveryCost" : "5",
-			"promoCode" : "SUPPERJIOSIOL (40%)",
+			"minOrder" : "10",
+			"discount" : "10",
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
@@ -121,7 +123,8 @@
 			"jioMenuURL" : "https://www.mcdelivery.com.sg/sg/menu.html/",
 			"deliveryApp" : "Deliveroo",
 			"deliveryCost" : "2",
-			"promoCode" : "CARBSCARBSCARBS (40%)",
+			"minOrder" : "20",
+			"discount" : "15",
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
