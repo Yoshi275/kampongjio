@@ -21,6 +21,7 @@ class FullJioDetails extends Component {
             imageContainerStyle,
             textStyle,
             titleStyle,
+            containerStyle
          } = styles;
 
         return(
@@ -33,7 +34,7 @@ class FullJioDetails extends Component {
                         /> 
                     </View>
 
-                    <View>
+                    <View style={containerStyle}>
                         <Text style={titleStyle}>{this.props.order.store}</Text> 
                         <Text style={textStyle}>Coordinator : {this.props.order.coordinatorName}</Text>
                         <Text style={textStyle}>{this.props.order.phoneNumber}</Text>
@@ -79,6 +80,11 @@ class FullJioDetails extends Component {
 }
 
 const styles = {
+    containerStyle: {
+        width: 0,
+        flexGrow: 1,
+        flex: 1
+    },
     imageStyle: {
         height: 120,
         width: 120
@@ -89,8 +95,6 @@ const styles = {
         fontWeight: 'bold',
         marginLeft:5,
         marginRight: 5
-        //fontFamily: 'KaushanScript-Regular' 
-        // TODO: have font show up. not working?
     },
     textStyle: {
         fontSize: 18,
