@@ -10,7 +10,7 @@ import { Actions } from 'react-native-router-flux';
 // Consider using ComponentWillUpdate()
 class CoordinatorFullJio extends Component {
     renderEdit() {
-        if (this.props.order.jioStatus === '1jioOpen') {
+        if (this.props.jioStatus === '1jioOpen') {
             return(
                 <TouchableOpacity onPress={() => Actions.coordinatorEditJio({ 
                     order: this.props.order,
@@ -34,7 +34,7 @@ class CoordinatorFullJio extends Component {
 
         return(
             <View>
-                <Text style={styles.textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
+                <Text style={styles.textStyle}>Status : {jioStatusText(this.props.jioStatus)}</Text>
                 <Text style={styles.textStyle}>Location : {jioLocation}</Text>
                 <TimeOrange>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', flex: 3}}>
