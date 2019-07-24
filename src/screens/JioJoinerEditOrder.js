@@ -13,42 +13,17 @@ class JioJoinerEditOrder extends Component {
     //      pass it in from OngoingDetails, thus this page will likely not render
 
     state = { 
+        joinerName: this.props.orderDetails.joinerName,
         foodChoices: this.props.orderDetails.foodChoices, 
+        foodOrderNo: this.props.orderDetails.foodOrderNo,
         price: this.props.orderDetails.price, 
         specialRequests: this.props.orderDetails.specialRequests,
-        keyboardHeight: new Animated.Value(0),
-        userData: {}
+        keyboardHeight: new Animated.Value(0)
     };
-
-    getUserInfo() {
-        let dbLocation = '/users/' + this.props.uid + '/';
-        db
-            .ref(dbLocation)
-            .on('value', snapshot => {
-                if ( snapshot.val() === null ) {
-                    console.log('NOTHING GRABBED IN DATA')
-                    return null;
-                } else {
-                    const data = snapshot.val()
-                    this.setState({
-                        userData: {
-                            displayName: data.displayName,
-                            username: data.username,
-                            phoneNumber: data.phoneNumber,
-                            birthDate: data.birthDate,
-                            email: data.email,
-                            photoURL: data.photoURL
-                        }
-                    })
-                    console.log('USER INFO LOADED INTO INITIATED')
-                }
-            });
-    }
 
     componentWillMount() {
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
-        this.getUserInfo()
     }
     
     componentWillUnmount() {
@@ -84,20 +59,21 @@ class JioJoinerEditOrder extends Component {
     handleSubmit() {
         let postData = {
             foodChoices: [this.state.foodChoices],
-            joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
-            foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+            joinerName: this.state.joinerName,
+            foodOrderNo: this.state.foodOrderNo, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
             price: this.state.price,
             specialRequests: this.state.specialRequests,
             hasPaid: false,
             hasCollected: false
         }
 
-        let jioOrderId = this.props.jioOrderId; // for accessing the array, has to be changed in the future
-        let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/';
+        let jioOrderId = this.props.jioOrderId;
+        let jioJoinOrderId = this.props.jioJoinOrderId
+        let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/' + jioJoinOrderId + '/';
 
         db
             .ref(dbLocation)
-            .push(postData)
+            .update(postData)
             .then((success) => {
                 console.log('Success Message: ', success) // success callback
                 Actions.mainPage(); // TODO: Add some way to confirm that order has been made/switch to dashboard when it's ready

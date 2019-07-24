@@ -78,7 +78,11 @@ class OrderDetails extends Component {
         if (this.props.orderDetails.joinerName === this.state.userData.displayName) {
             if(this.props.order.jioStatus === '1jioOpen') {
                 return (
-                    <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({ orderDetails: this.props.orderDetails, order: this.props.order })}>
+                    <TouchableOpacity onPress={() => Actions.jioJoinerEditOrder({ 
+                        orderDetails: this.props.orderDetails,
+                        order: this.props.order,
+                        jioJoinOrderId: this.props.jioJoinOrderId,
+                        jioOrderId: this.props.jioOrderId })}>
                         <Image 
                             source={Edit}
                             style={styles.editStyle}
