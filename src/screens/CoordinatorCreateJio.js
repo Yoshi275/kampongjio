@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
 import { db } from '../config';
@@ -60,7 +60,8 @@ class CoordinatorCreateJio extends Component {
             jioMenuURL: this.state.jioMenuURL,
             deliveryApp: this.state.deliveryApp,
             deliveryCost: this.state.deliveryCost,
-            promoCode: this.state.promoCode,
+            minOrder: this.state.minOrder,
+            discount: this.state.discount,
             foodOrders: [],
         }
 
@@ -78,7 +79,8 @@ class CoordinatorCreateJio extends Component {
                 Actions.jioJoinerOrder({ 
                     order: this.state.order, 
                     jioOrderId: this.state.firebaseOrderId,
-                    uid: this.props.uid
+                    uid: this.props.uid,
+                    fromCoordinator: true
                 });
             })
             .catch((error) => {
@@ -98,6 +100,7 @@ class CoordinatorCreateJio extends Component {
 
         return(
             <View style={containerStyle}>
+                <ScrollView>
                 {/* <Text>{this.props.uid}</Text>
                 <Text>{this.state.userData.username}</Text> */}
                 <Text style={storeStyle}>NEW JIO</Text>
@@ -128,15 +131,21 @@ class CoordinatorCreateJio extends Component {
                 /> 
                 <Input 
                     placeholder="How much is delivery?"
-                    label="Delivery Cost*"
+                    label="Delivery Cost ($)*"
                     value={this.state.deliveryCost}
                     onChangeText={deliveryCost => this.setState({ deliveryCost })}
                 /> 
                 <Input 
-                    placeholder="What is the promo code (how many % off)?"
-                    label="Promo Code*"
-                    value={this.state.promoCode}
-                    onChangeText={promoCode => this.setState({ promoCode })}
+                    placeholder="What is the minimum order?"
+                    label="Minimum Order ($)*"
+                    value={this.state.minOrder}
+                    onChangeText={minOrder => this.setState({ minOrder })}
+                /> 
+                <Input 
+                    placeholder="What is the discount (how many % off)?"
+                    label="Discount (%)*"
+                    value={this.state.discount}
+                    onChangeText={discount => this.setState({ discount })}
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 3}}>
@@ -161,6 +170,7 @@ class CoordinatorCreateJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
+                </ScrollView>
 
                 <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
             </View>

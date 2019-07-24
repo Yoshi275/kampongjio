@@ -53,6 +53,15 @@ class OrderDetails extends Component {
         this.handleSubmit()
     }
 
+    calcPrice() {
+        const count = parseFloat(this.props.jioJoinerNum);
+        const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
+        const disc = (100 - parseFloat(this.props.order.discount)) / 100;
+        const paidPrice = parseFloat(this.props.orderDetails.price) * disc + eachDelivery;
+        const priceString = '$' + paidPrice.toFixed(2);
+        return priceString;
+    }
+
     handleSubmit() {
         let postData = {
             hasPaid: this.state.paid,
@@ -165,7 +174,7 @@ class OrderDetails extends Component {
                     <View style={{ flex: 5 }}>
                         {this.renderOrders()}
                     </View>
-                    <Text style={[textStyle, { flex: 1 }]}>{this.props.orderDetails.price}</Text>
+                    <Text style={[textStyle, { flex: 1 }]}>{this.calcPrice()}</Text>
                 </CardSection>
                 {this.renderPaidCompleted()}
             </View>

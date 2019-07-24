@@ -7,6 +7,7 @@ import { Edit } from '../../resources/icons';
 import { Actions } from 'react-native-router-flux';
 
 // TODO: Make jioStatus react directly to when the button in Coordinator page is pressed
+// Consider using ComponentWillUpdate()
 class CoordinatorFullJio extends Component {
     renderEdit() {
         if (this.props.order.jioStatus === '1jioOpen') {
@@ -31,7 +32,6 @@ class CoordinatorFullJio extends Component {
         const jioCloseTime = this.props.order.jioCloseTime;
         const jioArrivalTime = this.props.order.jioArrivalTime;
 
-        // console.log(this.props.order.foodOrders);
         return(
             <View>
                 <Text style={styles.textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
@@ -49,7 +49,6 @@ class CoordinatorFullJio extends Component {
                 <Text style={styles.labelStyle}>ORDERS</Text>
                 <OrderList 
                     order={this.props.order}
-                    foodOrders={this.props.order.foodOrders}
                     jioOrderId={this.props.jioOrderId}
                 />
             </View>

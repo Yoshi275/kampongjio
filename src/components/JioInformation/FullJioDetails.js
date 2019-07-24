@@ -68,7 +68,8 @@ class FullJioDetails extends Component {
                 
                 <Text style={textStyle}>Delivery App : {this.props.order.deliveryApp}</Text>
                 <Text style={textStyle}>Delivery Cost (Total) : {this.props.order.deliveryCost}</Text>
-                <Text style={textStyle}>Promo Code : {this.props.order.promoCode}</Text> 
+                <Text style={textStyle}>Minimum Order : ${this.props.order.minOrder}</Text> 
+                <Text style={textStyle}>Discount: {this.props.order.discount}%</Text>
                 {/* 
                 <TimeOrange>
                     <Text style={{flex: 3}}>TEST</Text>
