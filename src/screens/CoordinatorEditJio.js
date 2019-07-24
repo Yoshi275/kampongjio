@@ -50,7 +50,7 @@ class CoordinatorEditJio extends Component {
             .update(postData)
             .then((response) => {
                 console.log('Success Message: ', response) // success callback
-                Actions.mainPage();
+                Actions.dashboard();
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
@@ -64,7 +64,7 @@ class CoordinatorEditJio extends Component {
             .remove()
             .then((response) => {
                 console.log('Success Message: ', response)  // success callback
-                Actions.mainPage();
+                Actions.dashboard();
             })
             .catch((error) => {
                 console.log('Error Message: ', error) // error callback
