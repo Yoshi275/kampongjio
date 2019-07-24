@@ -59,22 +59,15 @@ class InitiatedDetails extends Component {
             .endAt('3jioArrived')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
-                console.log('INITIATED DETAILS ORDERS: ')
                 if ( allOrders === null ) {
                     return null;
                 } else {
                     let allOrdersArr = Object.entries(allOrders)
-                    console.log('NEW ARRAY ORDERS: ')
-                    console.log(allOrdersArr)
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
                         if(order[1].coordinatorName === this.state.userData.displayName) {
                             filteredOrders.push(order)
-                            // console.log('ADDING TO FILTERED')
-                        } else {
-                            // console.log('IGNORING ORDER')
-                        }
-                    })
+                    }})
                     this.setState({ allOrders: filteredOrders });
                 } 
             });

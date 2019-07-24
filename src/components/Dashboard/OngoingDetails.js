@@ -52,29 +52,27 @@ class OngoingDetails extends Component {
             .endAt('3jioArrived')
             .on('value', snapshot => {
                 let allOrders = snapshot.val();
-                console.log(allOrders)
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    let allOrdersArr = Object.values(allOrders)
+                    let allOrdersArr = Object.entries(allOrders)
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
-                        if(order.coordinatorName !== this.state.userData.displayName) {
-                            let foodOrdersArr = Object.values(order.foodOrders)
-                            console.log(foodOrdersArr)
+                        if(order[1].coordinatorName !== this.state.userData.displayName) {
+                            let foodOrdersArr = Object.values(order[1].foodOrders)
                             for(let i = 0; i < foodOrdersArr.length; i++) {
                                 if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
                                     orderIncludesUser = true
-                                    console.log('FOOD ORDER ACCEPTED')
+                                    // console.log('FOOD ORDER ACCEPTED')
                                 }
                             }
                         }
                         if(orderIncludesUser) {
                             filteredOrders.push(order)
-                            console.log('ADDING ORDER TO FILTERED')
+                            // console.log('ADDING ORDER TO FILTERED')
                         } else {
-                            console.log('IGNORING ORDER')
+                            // console.log('IGNORING ORDER')
                         }
                     })
                     this.setState({ allOrders: filteredOrders });
@@ -102,7 +100,7 @@ class OngoingDetails extends Component {
     render() {
         return(
             <FlatList 
-                data={Object.entries(this.state.allOrders)}
+                data={this.state.allOrders}
                 renderItem={this.renderJio}
                 keyExtractor={this.keyExtractor}
             />
