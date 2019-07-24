@@ -187,7 +187,7 @@ const styles = {
         width: 30,
     },
     deleteTextStyle: {
-        font: 40,
+        fontSize: 25,
         fontWeight: 'bold',
         paddingLeft: 5,
     },

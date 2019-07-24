@@ -128,7 +128,7 @@ class JioJoinerOrder extends Component {
                 <View>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
-                        placeholder="Item1(Quantity), Item2(Quantity)"
+                        placeholder="Item1(Quantity), Item2(Quantity), ..."
                         label="YOUR ORDER"
                         value={this.state.foodChoices}
                         onChangeText={foodChoices => this.setState({ foodChoices })}

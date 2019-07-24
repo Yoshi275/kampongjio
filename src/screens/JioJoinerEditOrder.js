@@ -145,7 +145,7 @@ class JioJoinerEditOrder extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <Button onPress={() => this.handleSubmit()}>EDITED</Button>
+                <Button onPress={() => this.handleSubmit()}>EDIT!</Button>
             </Animated.View>
         );
     }
@@ -176,7 +176,7 @@ const styles = {
         width: 30,
     },
     deleteTextStyle: {
-        font: 40,
+        fontSize: 25,
         fontWeight: 'bold',
         paddingLeft: 5,
     },

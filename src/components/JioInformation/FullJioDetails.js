@@ -9,9 +9,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
-// import { Makisan }  from '../../resources/images';
 import { Food } from '../../resources/icons';
-import { TimeOrange } from '../common';
 import { jioStatusText } from '../../data/jioStatus';
 
 class FullJioDetails extends Component {
@@ -41,22 +39,8 @@ class FullJioDetails extends Component {
                         
                     </View>
                 </HeaderSection>
-
                 <Text style={textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
-                <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>
-
-                {/* // TODO: Fix TimeOrange layout bug which has no problems in any other screen but this */}
-                    
-                <TimeOrange>
-                    <View style={{flexDirection: 'row', flex: 3}}>
-                        <View style={{ flexDirection: 'column'}}>
-                            <Text style={[textStyle, {color: '#000000'}]}>Jio Open : {this.props.order.jioOpenTime}</Text>
-                            <Text style={[textStyle, {color: '#000000'}]}>Jio Close : {this.props.order.jioCloseTime}</Text>
-                            <Text style={[textStyle, {color: '#000000'}]}>Arrival Time : {this.props.order.jioArrivalTime}</Text>
-                        </View>
-                    </View>
-                </TimeOrange>
-                
+                <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>             
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
                     <TouchableOpacity style={{flex: 1, flexDirection: 'column'}} onPress={()=> Linking.openURL( this.props.order.jioMenuURL )}>
@@ -70,11 +54,6 @@ class FullJioDetails extends Component {
                 <Text style={textStyle}>Delivery Cost (Total) : {this.props.order.deliveryCost}</Text>
                 <Text style={textStyle}>Minimum Order : ${this.props.order.minOrder}</Text> 
                 <Text style={textStyle}>Discount: {this.props.order.discount}%</Text>
-                {/* 
-                <TimeOrange>
-                    <Text style={{flex: 3}}>TEST</Text>
-                </TimeOrange> 
-                <Text style={textStyle}>Promo Code : {this.props.order.promoCode}</Text>  */}
             </View> 
         );
     }
