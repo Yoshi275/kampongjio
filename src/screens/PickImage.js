@@ -52,7 +52,10 @@ class PickImage extends Component {
         return(
             <View style={ styles.containerStyle }>
                 <TouchableOpacity onPress={ () => this.pickImage() }>
-                    <Image source={this.state.avatarSource} style={styles.imageStyle}/>
+                    <Image
+                        source={this.state.avatarSource}
+                        style={styles.profileStyle}
+                    />
                     <Image 
                         source={ Logo }
                         style={ styles.imageStyle }
@@ -74,6 +77,11 @@ const styles = {
     imageStyle: {
         height: 200,
         width: 200
+    },
+    profileStyle: {
+        height: 120,
+        width: 120,
+        borderRadius: 60
     },
     textStyle: {
         textAlign: 'center',
