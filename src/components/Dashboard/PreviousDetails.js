@@ -41,9 +41,10 @@ class PreviousDetails extends Component {
                                 email: data.email,
                                 photoURL: data.photoURL
                             }
+                        }, () => {
+                            console.log('USER INFO LOADED INTO INITIATED')
+                            this.getDatabaseInfo()
                         })
-                        console.log('USER INFO LOADED INTO INITIATED')
-                        this.getDatabaseInfo()
                     }
                 });
             })
@@ -60,11 +61,11 @@ class PreviousDetails extends Component {
                 if ( allOrders === null ) {
                     return null;
                 } else {
-                    let allOrdersArr = Object.values(allOrders)
+                    let allOrdersArr = Object.entries(allOrders)
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
-                        let foodOrdersArr = Object.values(order.foodOrders)
+                        let foodOrdersArr = Object.values(order[1].foodOrders)
                         for(let i = 0; i < foodOrdersArr.length; i++) {
                             if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
                                 orderIncludesUser = true
@@ -100,7 +101,7 @@ class PreviousDetails extends Component {
     render() {
         return(
             <FlatList 
-                data={Object.entries(this.state.allOrders)}
+                data={this.state.allOrders}
                 style={styles.containerStyle}
                 renderItem={this.renderJio}
                 keyExtractor={this.keyExtractor}
