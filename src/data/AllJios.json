@@ -40,7 +40,7 @@
 					"price" : "15.30",
 					"specialRequests" : "",
 					"hasPaid" : true,
-					"hasCollected" : false
+					"hasCollected" : true
 				},
 				{
 					"foodOrderNo" : 2,
@@ -93,7 +93,7 @@
 					"price" : "6.40",
 					"specialRequests" : "",
 					"hasPaid" : true,
-					"hasCollected" : false
+					"hasCollected" : true
 				},
 				{
 					"foodOrderNo" : 2,
@@ -131,8 +131,8 @@
 					],
 					"price" : "8.80",
 					"specialRequests" : "No Sauce",
-					"hasPaid" : false,
-					"hasCollected" : false
+					"hasPaid" : true,
+					"hasCollected" : true
 				},
 				{
 					"foodOrderNo" : 1,

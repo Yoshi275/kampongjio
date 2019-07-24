@@ -78,16 +78,32 @@ class JioJoinerOrder extends Component {
     };
     
     handleSubmit() {
-        let postData = {
-            foodChoices: [this.state.foodChoices],
-            joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
-            foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
-            price: this.state.price,
-            specialRequests: this.state.specialRequests,
-            hasPaid: false,
-            hasCollected: false
+        let postData = {};
+        if (this.props.fromCoordinator) {
+            postData = {
+                foodChoices: [this.state.foodChoices],
+                joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
+                foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+                price: this.state.price,
+                specialRequests: this.state.specialRequests,
+                hasPaid: true,
+                hasCollected: true
+            }
+            console.log('fromCoordinator is true');
+        } else {
+            postData = {
+                foodChoices: [this.state.foodChoices],
+                joinerName: this.state.userData.displayName, // TODO: at some point, we'll keep track of users. then this will be taken from their account
+                foodOrderNo: 9999, // TODO: this should be dynamically generated somehow at some point. consider tracking length of foodOrders array?
+                price: this.state.price,
+                specialRequests: this.state.specialRequests,
+                hasPaid: false,
+                hasCollected: false
+            }
+            console.log('fromCoordinator is false');
         }
 
+        console.log(postData);
         let jioOrderId = this.props.jioOrderId; // for accessing the array, has to be changed in the future
         let dbLocation = '/allOrders/' + jioOrderId + '/foodOrders/';
 
