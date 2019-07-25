@@ -116,7 +116,6 @@ class CoordinatorCreateJio extends Component {
                     label="Menu*"
                     value={this.state.jioMenuURL}
                     onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
-                    textContentType='URL'
                 /> 
                 <Input 
                     placeholder="Where should they pick up the food?"
@@ -135,12 +134,15 @@ class CoordinatorCreateJio extends Component {
                     label="Delivery Cost ($)*"
                     value={this.state.deliveryCost}
                     onChangeText={deliveryCost => this.setState({ deliveryCost })}
+                    keyboardType='numeric'
+                    
                 /> 
                 <Input 
                     placeholder="What is the minimum order?"
                     label="Minimum Order ($)*"
                     value={this.state.minOrder}
                     onChangeText={minOrder => this.setState({ minOrder })}
+                    keyboardType='numeric'
                 /> 
                 <Input 
                     placeholder="What is the discount (how many % off)?"
@@ -152,14 +154,14 @@ class CoordinatorCreateJio extends Component {
                     <View style={{flex: 3}}>
                         <Input 
                             style={{color: '#000000'}}
-                            placeholder="00:00"
+                            placeholder="24:00"
                             label="Jio Open*"
                             value={this.state.jioOpenTime}
                             onChangeText={jioOpenTime => this.setState({ jioOpenTime })}
 
                         /> 
                         <Input 
-                            placeholder="00:00"
+                            placeholder="24:00"
                             label="Jio Close*"
                             value={this.state.jioCloseTime}
                             onChangeText={jioCloseTime => this.setState({ jioCloseTime })}

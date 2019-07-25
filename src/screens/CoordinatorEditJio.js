@@ -116,24 +116,26 @@ class CoordinatorEditJio extends Component {
                     label="Minimum Order ($)*"
                     value={this.state.minOrder}
                     onChangeText={minOrder => this.setState({ minOrder })}
+                    keyboardType='numeric'
                 /> 
                 <Input 
                     placeholder="How much is the discount?"
                     label="Discount (%)*"
                     value={this.state.discount}
                     onChangeText={discount => this.setState({ discount })}
+                    keyboardType='numeric'
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 3}}>
                         <Text style={labelStyle}>Jio Open: {this.state.jioOpenTime}</Text>
                         <Input 
-                            placeholder="00:00"
+                            placeholder="24:00"
                             label="Jio Close*"
                             value={this.state.jioCloseTime}
                             onChangeText={jioCloseTime => this.setState({ jioCloseTime })}
                         /> 
                         <Input 
-                            placeholder="00:00"
+                            placeholder="24:00"
                             label="Arrival Time*"
                             value={this.state.jioArrivalTime}
                             onChangeText={jioArrivalTime => this.setState({ jioArrivalTime })}

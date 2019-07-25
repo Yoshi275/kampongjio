@@ -3,7 +3,7 @@ import { Text, View, TextInput } from 'react-native';
 
 //INPUT props: multiline, keyboardType, returnKeyType, onkeyPress?, textContentType
 
-const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, textContentType, keyboardType }) => {
+const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, keyboardType }) => {
     const { 
         inputStyle, 
         labelStyle, 
@@ -21,7 +21,6 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, textC
                 value={value}
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry}
-                textContentType={textContentType}
                 keyboardType={keyboardType}
                 />
             </View>

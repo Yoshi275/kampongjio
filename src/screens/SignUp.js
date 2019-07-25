@@ -167,6 +167,7 @@ class SignUp extends Component {
                         label="Email*"
                         value={this.state.email}
                         onChangeText={email => this.setState({ email })}
+                        keyboardType='email-address'
                     /> 
                     <Input 
                         placeholder="Recommended min 8 characters"
@@ -180,6 +181,7 @@ class SignUp extends Component {
                         label="Phone Number*"
                         value={this.state.phoneNumber}
                         onChangeText={phoneNumber => this.setState({ phoneNumber })}
+                        keyboardType='numeric'
                     /> 
                     <Input 
                         placeholder="DD/MM/YYYY"

@@ -126,8 +126,7 @@ class JioJoinerEditOrder extends Component {
                         label="PRICE ($)"
                         value={this.state.price}
                         onChangeText={price => this.setState({ price })}
-                        // TODO: typing into this element results in crashing. can we fix this?
-                        // TODO: this should be a number input? can we find some other input for this? whatever looks nice
+                        keyboardType='numeric'
                     /> 
                     <BigInput 
                         placeholder="Any special requests?"
