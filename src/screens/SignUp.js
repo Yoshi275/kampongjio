@@ -15,7 +15,7 @@ class SignUp extends Component {
         password: '',
         phoneNumber: '',
         birthDate: '',
-        photoURL: '',
+        photoURL: 'https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg',
         avatarSource: null,
         imageURI: null
     };
@@ -47,7 +47,7 @@ class SignUp extends Component {
             username: this.state.username,
             phoneNumber: this.state.phoneNumber,
             password: this.state.password,
-            photoURL: 'https://i.pinimg.com/originals/82/f1/a0/82f1a0775df5b99ebc9373eafd771167.jpg',
+            photoURL: this.state.photoURL,
             birthDate: this.state.birthDate
         }
 
@@ -111,7 +111,8 @@ class SignUp extends Component {
                 const source = { uri: response.uri };
                 this.setState({
                     avatarSource: source,
-                    uri: source.uri
+                    uri: source.uri,
+                    photoURL: ''
                 })
             }
         })
