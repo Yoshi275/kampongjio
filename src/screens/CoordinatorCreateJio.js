@@ -116,6 +116,7 @@ class CoordinatorCreateJio extends Component {
                     label="Menu*"
                     value={this.state.jioMenuURL}
                     onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
+                    textContentType='URL'
                 /> 
                 <Input 
                     placeholder="Where should they pick up the food?"
@@ -155,6 +156,7 @@ class CoordinatorCreateJio extends Component {
                             label="Jio Open*"
                             value={this.state.jioOpenTime}
                             onChangeText={jioOpenTime => this.setState({ jioOpenTime })}
+
                         /> 
                         <Input 
                             placeholder="00:00"
