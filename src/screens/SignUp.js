@@ -29,7 +29,7 @@ class SignUp extends Component {
             auth.createUserWithEmailAndPassword(email, password)
                 .then(successMessage => {
                     this.addToUserDatabase()
-                    // this.uploadImage()
+                    this.uploadImage()
                     this.onLoginSuccess(successMessage)
                 })
                 .catch((error) => {
@@ -66,36 +66,36 @@ class SignUp extends Component {
             })
     }
 
-    // uploadImage() {
-    //     const mime = 'image/jpg'
-    //     console.log('IMAGE LOADED UP!!!')
-    //     const Blob = RNFetchBlob.polyfill.Blob
-    //     const fs = RNFetchBlob.fs
-    //     window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
-    //     window.Blob = Blob
-    //     let uploadBlob = null
-    //     const imageRef = storage.ref('profilePics').child(`${this.state.username}.jpg`)
-    //     fs
-    //         .readFile(this.state.avatarSource.uri, 'base64')
-    //         .then((data) => {
-    //             return Blob.build(data, { type: `${mime};BASE64`})
-    //         })
-    //         .then((blob) => {
-    //             uploadBlob = blob
-    //             return imageRef.put(blob, { contentType: mime })
-    //         })
-    //         .then(() => {
-    //             uploadBlob.close()
-    //             return imageRef.getDownloadURL()
-    //             console.log(imageRef.getDownloadURL())
-    //         })
-    //         .then((url) => {
-    //             resolve(url)
-    //         })
-    //         .catch((error) => {
-    //             console.error(error)
-    //         })
-    // }
+    uploadImage() {
+        const mime = 'image/jpg'
+        console.log('IMAGE LOADED UP!!!')
+        const Blob = RNFetchBlob.polyfill.Blob
+        const fs = RNFetchBlob.fs
+        window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+        window.Blob = Blob
+        let uploadBlob = null
+        const imageRef = storage.ref('profilePics').child(`${this.state.username}.jpg`)
+        fs
+            .readFile(this.state.avatarSource.uri, 'base64')
+            .then((data) => {
+                return Blob.build(data, { type: `${mime};BASE64`})
+            })
+            .then((blob) => {
+                uploadBlob = blob
+                return imageRef.put(blob, { contentType: mime })
+            })
+            .then(() => {
+                uploadBlob.close()
+                return imageRef.getDownloadURL()
+                console.log(imageRef.getDownloadURL())
+            })
+            .then((url) => {
+                console.log(url)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
 
     pickImage() {
         ImagePicker.showImagePicker(null, (response) => {
