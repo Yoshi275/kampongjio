@@ -37,7 +37,23 @@ class JioInformation extends Component {
                         </View>
                         <Text style={[textStyle, { flex: 1 }]}>{this.calcPrice()}</Text>
                     </CardSection>
+                    {this.renderSpecialRequest()}
                 </View>
+            );
+        }
+    }
+
+    renderSpecialRequest() {
+        const specialRequests = this.props.orderDetails.specialRequests;
+        if(specialRequests != '') {
+            return(
+                <CardSection>
+                    <View style={styles.specialReqStyle}>
+                        <Text style={[styles.textStyle, {fontStyle: 'italic'}]}>
+                            REQUEST: {specialRequests}
+                        </Text>
+                    </View>
+                </CardSection>
             );
         }
     }
@@ -120,6 +136,12 @@ const styles = {
         fontWeight: 'bold',
         textAlign: 'center'
     },
+    specialReqStyle: {
+        flex: 1,
+        marginLeft: 5,
+        marginRight: 5,
+        backgroundColor: '#FF7058'
+    }
 };
 
 export default JioInformation;

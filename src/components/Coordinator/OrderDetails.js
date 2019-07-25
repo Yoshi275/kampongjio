@@ -132,9 +132,23 @@ class OrderDetails extends Component {
         }
     }
 
+    renderSpecialRequest() {
+        const specialRequests = this.props.orderDetails.specialRequests;
+        if(specialRequests != '') {
+            return(
+                <CardSection>
+                    <View style={styles.specialReqStyle}>
+                        <Text style={[styles.textStyle, {fontStyle: 'italic'}]}>
+                            REQUEST: {specialRequests}
+                        </Text>
+                    </View>
+                </CardSection>
+            );
+        }
+    }
+
     renderPaidCompleted() {
         const {
-            cardSectionStyle,
             switchStyle,
             titleStyle
         } = styles
@@ -144,7 +158,7 @@ class OrderDetails extends Component {
         } else {
             return (
                 <CardSection>
-                    <CardSection style={cardSectionStyle}>
+                    <CardSection>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
                         <Switch 
                             style={switchStyle}
@@ -152,7 +166,7 @@ class OrderDetails extends Component {
                             onValueChange={() => this.setState({ paid: true })}
                         />
                     </CardSection>
-                    <CardSection style={cardSectionStyle}>
+                    <CardSection>
                         <Text style={[titleStyle, { fontWeight:'normal' }]}>COLLECTED</Text>
                         <Switch 
                             style={switchStyle}
@@ -186,6 +200,7 @@ class OrderDetails extends Component {
                     </View>
                     <Text style={[textStyle, { flex: 1 }]}>{this.calcPrice()}</Text>
                 </CardSection>
+                {this.renderSpecialRequest()}
                 {this.renderPaidCompleted()}
             </View>
         );
@@ -228,6 +243,12 @@ const styles = {
         height: 24,
         width: 24,
     },
+    specialReqStyle: {
+        flex: 1,
+        marginLeft: 5,
+        marginRight: 5,
+        backgroundColor: '#FF7058'
+    }
 };
 
 export default OrderDetails;
