@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Button } from '../components/common';
 import { Actions } from 'react-native-router-flux';
 import { auth, db, storage } from '../config';
@@ -146,7 +146,7 @@ class SignUp extends Component {
 
         return(
             <View style={containerStyle}>
-                <View>
+                <ScrollView>
                     <View style={topSectionStyle}>
                         <Text style={titleStyle}>SIGN UP</Text>
                     </View>
@@ -202,7 +202,7 @@ class SignUp extends Component {
                         source={this.state.avatarSource}
                         style={profileStyle}
                     />
-                </View>
+                </ScrollView>
                 <Button onPress={this.handleSubmit.bind(this)}>
                     SUBMIT
                 </Button>

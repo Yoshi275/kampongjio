@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View, Animated, Keyboard, Dimensions, UIManager } from 'react-native';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Text, View, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { BigInput, Button } from '../components/common';
 import { db } from '../config';
-
-// const { State: TextInputState } = TextInput;
 
 class JioJoinerOrder extends Component {
     state = { 
         foodChoices: '', 
         price: '', 
         specialRequests: '',
-        keyboardHeight: new Animated.Value(0),
         userData: {}
     };
 
@@ -41,42 +37,6 @@ class JioJoinerOrder extends Component {
             });
     }
 
-    componentWillMount() {
-        this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
-        this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
-        this.getUserInfo()
-    }
-    
-    componentWillUnmount() {
-        this.keyboardDidShowSub.remove();
-        this.keyboardDidHideSub.remove();
-    }
-
-    keyboardDidShow = (event) => {
-        const { height: windowHeight } = Dimensions.get('window');
-        const eventKeyboardHeight = event.endCoordinates.height;
-        const gap = eventKeyboardHeight;
-        // UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
-        //     const fieldHeight = height;
-        //     const fieldTop = pageY;
-        //     const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
-        //     if (gap >= 0) {
-        //         return;
-        //     }
-            Animated.timing(this.state.keyboardHeight, {
-                duration: 500,
-                toValue: gap,
-        }).start();
-    };
- 
-
-    keyboardDidHide = (event) => {
-        Animated.timing(this.state.keyboardHeight, {
-            duration: 500,
-            toValue: 0,
-        }).start();
-    };
-    
     handleSubmit() {
         let postData = {};
         if (this.props.fromCoordinator) {
@@ -124,8 +84,8 @@ class JioJoinerOrder extends Component {
         // transform: [{translateY: this.state.keyboardHeight}]
         // 
         return(
-            <Animated.View style={[containerStyle, { paddingBottom: this.state.keyboardHeight }]}> 
-                <View>
+            <View style={containerStyle}> 
+                <ScrollView>
                     <Text style={storeStyle}>{store}</Text>
                     <BigInput 
                         placeholder="Item1(Quantity), Item2(Quantity), ..."
@@ -146,9 +106,9 @@ class JioJoinerOrder extends Component {
                         value={this.state.specialRequests}
                         onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
-                </View>
+                </ScrollView>
                 <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
-            </Animated.View>
+            </View>
         );
     }
 }

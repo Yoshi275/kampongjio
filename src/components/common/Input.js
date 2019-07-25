@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 
-//INPUT props: multiline, keyboardType, returnKeyType, onkeyPress?, textContentType
-
 const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, keyboardType }) => {
     const { 
         inputStyle, 

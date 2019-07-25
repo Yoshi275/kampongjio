@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
 import { db } from '../config';
@@ -85,10 +85,10 @@ class CoordinatorEditJio extends Component {
 
         return(
             <View style={containerStyle}>
+            <ScrollView>
                 <Text style={storeStyle}>{this.state.store}</Text>
-                {/* TODO: Make the input URL link to a URL, instead of being a string in Firebase */}
                 <Input 
-                    placeholder="What do they serve?"
+                    placeholder="Copy and paste Menu URL"
                     label="Menu*"
                     value={this.state.jioMenuURL}
                     onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
@@ -151,6 +151,7 @@ class CoordinatorEditJio extends Component {
                         />
                     </View>
                 </TouchableOpacity>
+                </ScrollView>
                 <Button onPress={() => this.handleSubmit() }>EDIT!</Button>
             </View>
         );
