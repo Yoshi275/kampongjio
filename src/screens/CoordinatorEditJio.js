@@ -23,6 +23,24 @@ class CoordinatorEditJio extends Component {
         foodOrders: this.props.order.foodOrders
     };
 
+    checkInput() {
+        if(this.state.jioLocation === '') {
+            alert('Location required');
+        } else if(this.state.deliveryCost === '') {
+            alert('Delivery cost required');
+        } else if(this.state.minOrder === '') {
+            alert('Minimum order required');
+        } else if(this.state.discount === '') {
+            alert('Discount required');
+        } else if(this.state.jioCloseTime === '') {
+            alert('Jio Close time required');
+        } else if(this.state.jioArrivalTime === '') {
+            alert('Jio Arrival time required');
+        } else { 
+            this.handleSubmit();
+        }
+    }
+
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
@@ -89,7 +107,7 @@ class CoordinatorEditJio extends Component {
                 <Text style={storeStyle}>{this.state.store}</Text>
                 <Input 
                     placeholder="Copy and paste Menu URL"
-                    label="Menu*"
+                    label="Menu"
                     value={this.state.jioMenuURL}
                     onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
                 /> 
@@ -101,7 +119,7 @@ class CoordinatorEditJio extends Component {
                 /> 
                 <Input 
                     placeholder="What app am I ordering from?"
-                    label="Delivery App*"
+                    label="Delivery App"
                     value={this.state.deliveryApp}
                     onChangeText={deliveryApp => this.setState({ deliveryApp })}
                 /> 
@@ -152,7 +170,7 @@ class CoordinatorEditJio extends Component {
                     </View>
                 </TouchableOpacity>
                 </ScrollView>
-                <Button onPress={() => this.handleSubmit() }>EDIT!</Button>
+                <Button onPress={() => this.checkInput()}>EDIT!</Button>
             </View>
         );
     }

@@ -14,6 +14,16 @@ class JioJoinerEditOrder extends Component {
         specialRequests: this.props.orderDetails.specialRequests,
     };
     
+    checkInput() {
+        if(this.state.foodChoices === '') {
+            alert('Your order required');
+        } else if(this.state.price === '') {
+            alert('Price required');
+        } else { 
+            this.handleSubmit();
+        }
+    }
+
     handleSubmit() {
         let postData = {
             foodChoices: [this.state.foodChoices],
@@ -97,7 +107,7 @@ class JioJoinerEditOrder extends Component {
                         </View>
                     </TouchableOpacity>
                 </ScrollView>
-                <Button onPress={() => this.handleSubmit()}>EDIT!</Button>
+                <Button onPress={() => this.checkInput()}>EDIT!</Button>
             </View>
         );
     }

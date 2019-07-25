@@ -20,8 +20,25 @@ class SignUp extends Component {
         imageURI: null
     };
     //TODO: Add asyncStorage so image doesn't have to be taken from firebase every time
-    //TODO: Make it compulsory to fill in the field/inputs
-
+    //Need to use this.handleSubmit.bind(this)?
+    checkInput() {
+        if(this.state.displayName === '') {
+            alert('Full name required');
+        } else if(this.state.username === '') {
+            alert('Username required');
+        } else if(this.state.email === '') {
+            alert('Email required');
+        } else if(this.state.password === '') {
+            alert('Password required');
+        } else if(this.state.phoneNumber === '') {
+            alert('Phone number required');
+        } else if(this.state.birthDate === '') {
+            alert('Birthday required');
+        } else { 
+            this.handleSubmit();
+        }
+    }
+    
     handleSubmit() {
         const { email, password } = this.state;
 
@@ -30,12 +47,9 @@ class SignUp extends Component {
                 .then(successMessage => {
                     this.addToUserDatabase()
                     this.uploadImage()
-                    this.onLoginSuccess(successMessage)
                 })
                 .catch((error) => {
-                    console.log('LOGIN AND SIGNUP FAILED')
-                    console.log(error)
-                    this.onLoginFail()
+                    console.log('SIGNUP FAILED')
                 });
     }
 
@@ -87,7 +101,6 @@ class SignUp extends Component {
             .then(() => {
                 uploadBlob.close()
                 return imageRef.getDownloadURL()
-                console.log(imageRef.getDownloadURL())
             })
             .then((url) => {
                 console.log(url)
@@ -117,21 +130,6 @@ class SignUp extends Component {
             }
         })
     }
-
-    onLoginFail() {
-        this.setState({ error: 'Authentication Failed.', loading: false})
-    }
-
-    onLoginSuccess(message) {
-        console.log('clearing login, going to mainpage')
-        this.setState({
-            email: '',
-            password: '',
-            loading: false,
-            error: '',
-        });
-    }
-
     
     render() {
         const {
@@ -190,8 +188,8 @@ class SignUp extends Component {
                         onChangeText={birthDate => this.setState({ birthDate })}
                     /> 
                     <Input 
-                        placeholder="Will allow actual uploading"
-                        label="Image URL*"
+                        placeholder="Your Profile Picture"
+                        label="Image URL"
                         value={this.state.photoURL}
                         onChangeText={photoURL => this.setState({ photoURL })}
                     /> 
@@ -203,7 +201,7 @@ class SignUp extends Component {
                         style={profileStyle}
                     />
                 </ScrollView>
-                <Button onPress={this.handleSubmit.bind(this)}>
+                <Button onPress={this.checkInput()}>
                     SUBMIT
                 </Button>
             </View>

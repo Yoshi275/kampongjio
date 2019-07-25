@@ -11,7 +11,8 @@ class CoordinatorCreateJio extends Component {
         jioLocation: '', 
         deliveryApp: '',
         deliveryCost: '',
-        promoCode: '',
+        minOrder: '',
+        discount: '',
         jioOpenTime: '',
         jioCloseTime: '',
         jioArrivalTime: '',
@@ -45,6 +46,28 @@ class CoordinatorCreateJio extends Component {
             });
     }
 
+    //TODO: Minimum order need not be required? Delivery App need to be req?
+    checkInput() {
+        if(this.state.store === '') {
+            alert('Store name required');
+        } else if(this.state.jioLocation === '') {
+            alert('Location required');
+        } else if(this.state.deliveryCost === '') {
+            alert('Delivery cost required');
+        } else if(this.state.minOrder === '') {
+            alert('Minimum order required');
+        } else if(this.state.discount === '') {
+            alert('Discount required');
+        } else if(this.state.jioOpenTime === '') {
+            alert('Jio Open time required')
+        } else if(this.state.jioCloseTime === '') {
+            alert('Jio Close time required')
+        } else if(this.state.jioArrivalTime === '') {
+            alert('Jio Arrival time required')
+        } else { 
+            this.handleSubmit()
+        }
+    }
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
@@ -112,7 +135,7 @@ class CoordinatorCreateJio extends Component {
                 /> 
                 <Input 
                     placeholder="Copy and paste Menu URL"
-                    label="Menu*"
+                    label="Menu"
                     value={this.state.jioMenuURL}
                     onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
                 /> 
@@ -124,7 +147,7 @@ class CoordinatorCreateJio extends Component {
                 /> 
                 <Input 
                     placeholder="What app am I ordering from?"
-                    label="Delivery App*"
+                    label="Delivery App"
                     value={this.state.deliveryApp}
                     onChangeText={deliveryApp => this.setState({ deliveryApp })}
                 /> 
@@ -175,7 +198,7 @@ class CoordinatorCreateJio extends Component {
                 </TimeOrange>
                 </ScrollView>
 
-                <Button onPress={() => this.handleSubmit() }>LET'S JIO!</Button>
+                <Button onPress={() => this.checkInput() }>LET'S JIO!</Button>
             </View>
         );
     }

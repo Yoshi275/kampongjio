@@ -37,6 +37,16 @@ class JioJoinerOrder extends Component {
             });
     }
 
+    checkInput() {
+        if(this.state.foodChoices === '') {
+            alert('Your order required');
+        } else if(this.state.price === '') {
+            alert('Price required');
+        } else { 
+            this.handleSubmit()
+        }
+    }
+
     handleSubmit() {
         let postData = {};
         if (this.props.fromCoordinator) {
@@ -107,7 +117,7 @@ class JioJoinerOrder extends Component {
                         onChangeText={specialRequests => this.setState({ specialRequests })}
                     /> 
                 </ScrollView>
-                <Button onPress={() => this.handleSubmit()}>SUBMIT ORDER</Button>
+                <Button onPress={() => this.checkInput()}>SUBMIT ORDER</Button>
             </View>
         );
     }
