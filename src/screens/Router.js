@@ -12,6 +12,7 @@ import Coordinator from './Coordinator';
 import Dashboard from './Dashboard';
 import CoordinatorEditJio from './CoordinatorEditJio';
 import JioJoinerEditOrder from './JioJoinerEditOrder';
+import PickImage from './PickImage';
 
 const RouterComponent = () => {
     return (
@@ -78,6 +79,11 @@ const RouterComponent = () => {
                     key="jioJoinerEditOrder"
                     component={JioJoinerEditOrder}
                     title="Edit Your Order"
+                />
+                <Scene
+                    key="pickImage"
+                    component={PickImage}
+                    title="Pick an Image"
                 />
             </Scene>
         </Router>
