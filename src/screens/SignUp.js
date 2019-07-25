@@ -201,7 +201,7 @@ class SignUp extends Component {
                         style={profileStyle}
                     />
                 </ScrollView>
-                <Button onPress={this.checkInput()}>
+                <Button onPress={() => this.checkInput()}>
                     SUBMIT
                 </Button>
             </View>
