@@ -49,7 +49,9 @@ class JioDetails extends Component {
             Actions.jioInformation({ 
                 order: this.props.order,
                 jioOrderId: this.props.jioOrderId,
-                uid: this.props.uid
+                uid: this.props.uid,
+                isPhotoDefault: this.state.isPhotoDefault,
+                photoURL: this.state.photoURL
             });
         }
     }
@@ -67,7 +69,6 @@ class JioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        // const jioImage = Food;
         const jioStatusImage = jioStatusIcon(this.props.order.jioStatus);
     
         return (

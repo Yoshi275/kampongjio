@@ -89,7 +89,11 @@ class JioInformation extends Component {
         return(
             <View style={styles.containerStyle}>
                 <ScrollView>
-                    <FullJioDetails order={this.props.order}/>
+                    <FullJioDetails 
+                        order={this.props.order}
+                        isPhotoDefault={this.props.isPhotoDefault}
+                        photoURL={this.props.photoURL}
+                    />
                     <TimeOrange>
                         <View style={{flex: 3}}>
                             <View style={{ flexDirection: 'column'}}>
