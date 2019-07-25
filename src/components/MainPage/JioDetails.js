@@ -10,9 +10,35 @@ import { Card, CardSection } from '../common';
 import { Food } from '../../resources/icons';
 import { Makisan, AlAmaan, McDonalds }  from '../../resources/images';
 import { jioStatusIcon } from '../../data/jioStatus';
-import { db } from '../../config';
+import { storage } from '../../config';
 
 class JioDetails extends Component {
+    state = {
+        photoURL: null,
+        isPhotoDefault: true
+    }
+
+    componentDidMount() {
+        this.getProfilePhoto()
+    }
+
+    getProfilePhoto() {
+        storage
+            .ref('restaurants')
+            .child(`${this.props.order.store.toLowerCase()}.jpg`)
+            .getDownloadURL()
+            .then((url) => {
+                console.log(url)
+                this.setState({ 
+                    photoURL: url,
+                    isPhotoDefault: false
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     renderNextPage() {
         if(this.props.fromDashboard) {
             Actions.coordinator({ 
@@ -41,7 +67,7 @@ class JioDetails extends Component {
             iconContainerStyle
         } = styles;
     
-        const jioImage = Food;
+        // const jioImage = Food;
         const jioStatusImage = jioStatusIcon(this.props.order.jioStatus);
     
         return (
@@ -51,7 +77,7 @@ class JioDetails extends Component {
                         <View style={imageContainerStyle}>
                             <Image 
                                 style={imageStyle}
-                                source={ jioImage }
+                                source={this.state.isPhotoDefault ? Food : { uri: this.state.photoURL }}
                             />
                         </View> 
         
