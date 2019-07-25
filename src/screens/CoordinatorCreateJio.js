@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ScrollView, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
 import { db } from '../config';
+import { ImageUpload } from '../resources/icons/'
+import ImagePicker from 'react-native-image-picker'
+import RNFetchBlob from 'react-native-fetch-blob'
 
 class CoordinatorCreateJio extends Component {
     state = { 
@@ -18,7 +21,9 @@ class CoordinatorCreateJio extends Component {
         jioArrivalTime: '',
         order: {},
         firebaseOrderId: '',
-        userData: {}
+        userData: {},
+        avatarSource: null,
+        imageURI: null
     };
 
     getUserInfo() {
@@ -46,6 +51,10 @@ class CoordinatorCreateJio extends Component {
             });
     }
 
+    pickImage() {
+        console.log('Opening image picker')
+    }
+
     //TODO: Minimum order need not be required? Delivery App need to be req?
     checkInput() {
         if(this.state.store === '') {
@@ -68,6 +77,7 @@ class CoordinatorCreateJio extends Component {
             this.handleSubmit()
         }
     }
+
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
@@ -119,6 +129,8 @@ class CoordinatorCreateJio extends Component {
         const { 
             storeStyle, 
             containerStyle, 
+            imageStyle,
+            profileStyle
         } = styles;
 
         return(
@@ -196,6 +208,13 @@ class CoordinatorCreateJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
+                <TouchableOpacity onPress={() => this.pickImage()}>
+                    <Image style={imageStyle} source={ImageUpload} />
+                </TouchableOpacity>
+                <Image
+                    source={this.state.avatarSource}
+                    style={profileStyle}
+                />
                 </ScrollView>
 
                 <Button onPress={() => this.checkInput() }>LET'S JIO!</Button>
@@ -205,6 +224,15 @@ class CoordinatorCreateJio extends Component {
 }
 
 const styles = {
+    profileStyle: {
+        height: 120,
+        width: 120,
+        borderRadius: 60
+    },
+    imageStyle: {
+        height: 40,
+        width: 40
+    },
     containerStyle: {
         flex: 1,
         backgroundColor: '#2D9B83',
