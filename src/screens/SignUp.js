@@ -19,7 +19,7 @@ class SignUp extends Component {
         avatarSource: null,
         imageURI: null
     };
-    //TODO: Figure out how to upload pictures and storing them as URL. For now, it's hardcoded
+    //TODO: Add asyncStorage so image doesn't have to be taken from firebase every time
     //TODO: Make it compulsory to fill in the field/inputs
 
     handleSubmit() {
