@@ -1,17 +1,10 @@
-// Clean up for front-end: 
-// Create a master Styles list 
-// Consider creating a js file for timeContainer section
-// Figure out how to do something like style inheritance or overriding esp for texts in timeContainer section
-// As of now, am sacrificing some aesthetics of front-end for back-end functionality
-// and improving code readability
-
-
 import React, { Component } from 'react';
 import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import HeaderSection from './HeaderSection';
 import { Food } from '../../resources/icons';
 import { jioStatusText } from '../../data/jioStatus';
 
+//TODO: Consider using encodeURI() for linking function in the URL or react-native-hyperlink
 class FullJioDetails extends Component {
     render() {
         const { 

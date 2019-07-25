@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity  } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, Input, Spinner} from '../components/common';
 import { auth, db } from '../config';
@@ -103,6 +103,7 @@ class LoginForm extends Component {
                         label="Email"
                         value={this.state.email}
                         onChangeText={email => this.setState({ email })}
+                        keyboardType='email-address'
                     /> 
 
                     <Input 

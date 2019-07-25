@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
 import { db } from '../config';
@@ -22,6 +22,24 @@ class CoordinatorEditJio extends Component {
         order: {},
         foodOrders: this.props.order.foodOrders
     };
+
+    checkInput() {
+        if(this.state.jioLocation === '') {
+            alert('Location required');
+        } else if(this.state.deliveryCost === '') {
+            alert('Delivery cost required');
+        } else if(this.state.minOrder === '') {
+            alert('Minimum order required');
+        } else if(this.state.discount === '') {
+            alert('Discount required');
+        } else if(this.state.jioCloseTime === '') {
+            alert('Jio Close time required');
+        } else if(this.state.jioArrivalTime === '') {
+            alert('Jio Arrival time required');
+        } else { 
+            this.handleSubmit();
+        }
+    }
 
     handleSubmit() {
         // a method called after button is pressed
@@ -85,11 +103,11 @@ class CoordinatorEditJio extends Component {
 
         return(
             <View style={containerStyle}>
+            <ScrollView>
                 <Text style={storeStyle}>{this.state.store}</Text>
-                {/* TODO: Make the input URL link to a URL, instead of being a string in Firebase */}
                 <Input 
-                    placeholder="What do they serve?"
-                    label="Menu*"
+                    placeholder="Copy and paste Menu URL"
+                    label="Menu"
                     value={this.state.jioMenuURL}
                     onChangeText={jioMenuURL => this.setState({ jioMenuURL })}
                 /> 
@@ -101,7 +119,7 @@ class CoordinatorEditJio extends Component {
                 /> 
                 <Input 
                     placeholder="What app am I ordering from?"
-                    label="Delivery App*"
+                    label="Delivery App"
                     value={this.state.deliveryApp}
                     onChangeText={deliveryApp => this.setState({ deliveryApp })}
                 /> 
@@ -116,24 +134,26 @@ class CoordinatorEditJio extends Component {
                     label="Minimum Order ($)*"
                     value={this.state.minOrder}
                     onChangeText={minOrder => this.setState({ minOrder })}
+                    keyboardType='numeric'
                 /> 
                 <Input 
                     placeholder="How much is the discount?"
                     label="Discount (%)*"
                     value={this.state.discount}
                     onChangeText={discount => this.setState({ discount })}
+                    keyboardType='numeric'
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 3}}>
                         <Text style={labelStyle}>Jio Open: {this.state.jioOpenTime}</Text>
                         <Input 
-                            placeholder="00:00"
+                            placeholder="24:00"
                             label="Jio Close*"
                             value={this.state.jioCloseTime}
                             onChangeText={jioCloseTime => this.setState({ jioCloseTime })}
                         /> 
                         <Input 
-                            placeholder="00:00"
+                            placeholder="24:00"
                             label="Arrival Time*"
                             value={this.state.jioArrivalTime}
                             onChangeText={jioArrivalTime => this.setState({ jioArrivalTime })}
@@ -149,7 +169,8 @@ class CoordinatorEditJio extends Component {
                         />
                     </View>
                 </TouchableOpacity>
-                <Button onPress={() => this.handleSubmit() }>EDIT!</Button>
+                </ScrollView>
+                <Button onPress={() => this.checkInput()}>EDIT!</Button>
             </View>
         );
     }
