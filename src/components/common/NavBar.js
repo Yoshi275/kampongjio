@@ -10,7 +10,7 @@ class NavBar extends Component {
                 <TouchableOpacity onPress={ () => Actions.mainPage() }>
                     <Image style={styles.imageStyle} source={Home}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => console.log("Loading announcement page")}>
+                <TouchableOpacity onPress={ () => console.log('Building announcements page')}>
                     <Image style={styles.imageStyle} source={Announcement}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={ () => Actions.dashboard() }>

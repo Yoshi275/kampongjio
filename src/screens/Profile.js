@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Card, NavBar, Button, TimeOrange } from '../components/common';
 import { ProfileIcon } from '../resources/icons';
-import { auth, db } from '../config';
+import { auth, db, storage } from '../config';
 
 class Profile extends Component {
     state = { 
@@ -16,6 +16,10 @@ class Profile extends Component {
     }
 
     componentDidMount() {
+        this.getUserData()
+    }
+
+    getUserData() {
         const user = auth.currentUser
         if(user != null) {
             this.setState({
@@ -38,12 +42,27 @@ class Profile extends Component {
                             birthDate: data.birthDate,
                             email: data.email,
                             photoURL: data.photoURL
+                        }, () => {
+                            if(this.state.photoURL === '') {
+                                this.getProfilePhoto()
+                            }
                         })
                         console.log('USER INFO LOADED INTO PROFILE')
                     }
                 });
             })
         }
+    }
+
+    getProfilePhoto() {
+        storage
+            .ref('profilePics')
+            .child(`${this.state.username}.jpg`)
+            .getDownloadURL()
+            .then((url) => {
+                console.log(url)
+                this.setState({ photoURL: url })
+            })
     }
 
     render() {
