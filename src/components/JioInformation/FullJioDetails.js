@@ -20,8 +20,8 @@ class FullJioDetails extends Component {
                 <HeaderSection>
                     <View style={imageContainerStyle}>
                         <Image 
-                        source={ Food }
-                        style={imageStyle}
+                            source={ this.props.isPhotoDefault ? Food : { uri: this.props.photoURL } }
+                            style={imageStyle}
                         /> 
                     </View>
 

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ScrollView, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Input, Button, TimeOrange } from '../components/common';
-import { db } from '../config';
+import { db , storage } from '../config';
+import { ImageUpload } from '../resources/icons/'
+import ImagePicker from 'react-native-image-picker'
+import RNFetchBlob from 'react-native-fetch-blob'
 
 class CoordinatorCreateJio extends Component {
     state = { 
@@ -18,7 +21,9 @@ class CoordinatorCreateJio extends Component {
         jioArrivalTime: '',
         order: {},
         firebaseOrderId: '',
-        userData: {}
+        userData: {},
+        avatarSource: null,
+        imageURI: null
     };
 
     getUserInfo() {
@@ -46,6 +51,57 @@ class CoordinatorCreateJio extends Component {
             });
     }
 
+    pickImage() {
+        ImagePicker.showImagePicker(null, (response) => {
+            console.log('Response = ', response);
+        
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const source = { uri: response.uri };
+                this.setState({
+                    avatarSource: source,
+                    uri: source.uri,
+                    photoURL: ''
+                })
+            }
+        })
+    }
+
+    uploadImage() {
+        const mime = 'image/jpg'
+        console.log('IMAGE LOADED UP!!!')
+        const Blob = RNFetchBlob.polyfill.Blob
+        const fs = RNFetchBlob.fs
+        window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+        window.Blob = Blob
+        let uploadBlob = null
+        const imageRef = storage.ref('restaurants').child(`${this.state.store.toLowerCase()}.jpg`)
+        fs
+            .readFile(this.state.avatarSource.uri, 'base64')
+            .then((data) => {
+                return Blob.build(data, { type: `${mime};BASE64`})
+            })
+            .then((blob) => {
+                uploadBlob = blob
+                return imageRef.put(blob, { contentType: mime })
+            })
+            .then(() => {
+                uploadBlob.close()
+                return imageRef.getDownloadURL()
+            })
+            .then((url) => {
+                console.log(url)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
+
     //TODO: Minimum order need not be required? Delivery App need to be req?
     checkInput() {
         if(this.state.store === '') {
@@ -68,6 +124,7 @@ class CoordinatorCreateJio extends Component {
             this.handleSubmit()
         }
     }
+
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
@@ -99,6 +156,7 @@ class CoordinatorCreateJio extends Component {
                 console.log('Success Message: ', response) // success callback
                 this.setState({ firebaseOrderId: response.getKey() });
                 console.log(this.state.firebaseOrderId);
+                this.uploadImage()
                 Actions.jioJoinerOrder({ 
                     order: this.state.order, 
                     jioOrderId: this.state.firebaseOrderId,
@@ -119,6 +177,8 @@ class CoordinatorCreateJio extends Component {
         const { 
             storeStyle, 
             containerStyle, 
+            imageStyle,
+            profileStyle
         } = styles;
 
         return(
@@ -196,6 +256,13 @@ class CoordinatorCreateJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
+                <TouchableOpacity onPress={() => this.pickImage()}>
+                    <Image style={imageStyle} source={ImageUpload} />
+                </TouchableOpacity>
+                <Image
+                    source={this.state.avatarSource}
+                    style={profileStyle}
+                />
                 </ScrollView>
 
                 <Button onPress={() => this.checkInput() }>LET'S JIO!</Button>
@@ -205,6 +272,15 @@ class CoordinatorCreateJio extends Component {
 }
 
 const styles = {
+    profileStyle: {
+        height: 120,
+        width: 120,
+        borderRadius: 60
+    },
+    imageStyle: {
+        height: 40,
+        width: 40
+    },
     containerStyle: {
         flex: 1,
         backgroundColor: '#2D9B83',
