@@ -61,7 +61,9 @@ class LoginForm extends Component {
 
     renderButton() {
         if(this.state.loading) {
-            return (<Spinner size="small" />)
+            return (
+                <Spinner size="small" />
+            )
         } else {
             return (
                 <Button onPress={this.handleSubmit.bind(this)}>
