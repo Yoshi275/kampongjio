@@ -14,20 +14,20 @@ class PickImage extends Component {
 
     pickImage() {
         // More info on all the options is below in the API Reference... just some common use cases shown here
-        const options = {
-            title: 'Select Avatar',
-            customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
-        };
+        // const options = {
+        //     title: 'Select Avatar',
+        //     customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+        //     storageOptions: {
+        //         skipBackup: true,
+        //         path: 'images',
+        //     },
+        // };
 
         /**
          * The first arg is the options object for customization (it can also be null or omitted for default options),
          * The second arg is the callback which sends object: response (more info in the API Reference)
          */
-        ImagePicker.showImagePicker(options, (response) => {
+        ImagePicker.showImagePicker(null, (response) => {
             console.log('Response = ', response);
         
             if (response.didCancel) {

@@ -12,3 +12,4 @@ export const ProfileIcon = require('./profile.png');
 export const Announcement = require('./announcement.png');
 export const Edit = require('./edit.png');
 export const Delete = require('./delete.png');
+export const ImageUpload = require('./image.png');

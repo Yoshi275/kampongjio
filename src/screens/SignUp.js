@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Input, Button } from '../components/common';
 import { Actions } from 'react-native-router-flux';
-import { auth, db } from '../config';
+import { auth, db, storage } from '../config';
+import { ImageUpload } from '../resources/icons/'
+import ImagePicker from 'react-native-image-picker'
+import RNFetchBlob from 'react-native-fetch-blob'
 
 class SignUp extends Component {
     state = { 
@@ -13,6 +16,8 @@ class SignUp extends Component {
         phoneNumber: '',
         birthDate: '',
         photoURL: '',
+        avatarSource: null,
+        imageURI: null
     };
     //TODO: Figure out how to upload pictures and storing them as URL. For now, it's hardcoded
     //TODO: Make it compulsory to fill in the field/inputs
@@ -24,6 +29,7 @@ class SignUp extends Component {
             auth.createUserWithEmailAndPassword(email, password)
                 .then(successMessage => {
                     this.addToUserDatabase()
+                    // this.uploadImage()
                     this.onLoginSuccess(successMessage)
                 })
                 .catch((error) => {
@@ -60,6 +66,57 @@ class SignUp extends Component {
             })
     }
 
+    // uploadImage() {
+    //     const mime = 'image/jpg'
+    //     console.log('IMAGE LOADED UP!!!')
+    //     const Blob = RNFetchBlob.polyfill.Blob
+    //     const fs = RNFetchBlob.fs
+    //     window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+    //     window.Blob = Blob
+    //     let uploadBlob = null
+    //     const imageRef = storage.ref('profilePics').child(`${this.state.username}.jpg`)
+    //     fs
+    //         .readFile(this.state.avatarSource.uri, 'base64')
+    //         .then((data) => {
+    //             return Blob.build(data, { type: `${mime};BASE64`})
+    //         })
+    //         .then((blob) => {
+    //             uploadBlob = blob
+    //             return imageRef.put(blob, { contentType: mime })
+    //         })
+    //         .then(() => {
+    //             uploadBlob.close()
+    //             return imageRef.getDownloadURL()
+    //             console.log(imageRef.getDownloadURL())
+    //         })
+    //         .then((url) => {
+    //             resolve(url)
+    //         })
+    //         .catch((error) => {
+    //             console.error(error)
+    //         })
+    // }
+
+    pickImage() {
+        ImagePicker.showImagePicker(null, (response) => {
+            console.log('Response = ', response);
+        
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const source = { uri: response.uri };
+                this.setState({
+                    avatarSource: source,
+                    uri: source.uri
+                })
+            }
+        })
+    }
+
     onLoginFail() {
         this.setState({ error: 'Authentication Failed.', loading: false})
     }
@@ -81,58 +138,67 @@ class SignUp extends Component {
             titleStyle,
             topSectionStyle,
             usernameStyle,
-            textStyle
+            textStyle,
+            imageStyle,
+            profileStyle
         } = styles;
 
         return(
             <View style={containerStyle}>
-            <View>
-                <View style={topSectionStyle}>
-                    <Text style={titleStyle}>SIGN UP</Text>
-                </View>
-                <Input 
-                    placeholder="John Ang"
-                    label="Full Name*"
-                    value={this.state.displayName}
-                    onChangeText={displayName => this.setState({ displayName })}
-                /> 
-                <Input 
-                    placeholder="john_ang_99"
-                    label="Username*"
-                    value={this.state.username}
-                    onChangeText={username => this.setState({ username })}
-                /> 
-                <Input 
-                    placeholder="email@google.com"
-                    label="Email*"
-                    value={this.state.email}
-                    onChangeText={email => this.setState({ email })}
-                /> 
-                <Input 
-                    placeholder="Recommended min 8 characters"
-                    label="Password*"
-                    value={this.state.password}
-                    onChangeText={password => this.setState({ password })}
-                    secureTextEntry
-                /> 
-                <Input 
-                    placeholder="Singapore number"
-                    label="Phone Number*"
-                    value={this.state.phoneNumber}
-                    onChangeText={phoneNumber => this.setState({ phoneNumber })}
-                /> 
-                <Input 
-                    placeholder="DD/MM/YYYY"
-                    label="Birthday*"
-                    value={this.state.birthDate}
-                    onChangeText={birthDate => this.setState({ birthDate })}
-                /> 
-                {/* <Input 
-                    placeholder="Will allow actual uploading"
-                    label="Image URL*"
-                    value={this.state.photoURL}
-                    onChangeText={photoURL => this.setState({ photoURL })}
-                />  */}
+                <View>
+                    <View style={topSectionStyle}>
+                        <Text style={titleStyle}>SIGN UP</Text>
+                    </View>
+                    <Input 
+                        placeholder="John Ang"
+                        label="Full Name*"
+                        value={this.state.displayName}
+                        onChangeText={displayName => this.setState({ displayName })}
+                    /> 
+                    <Input 
+                        placeholder="john_ang_99"
+                        label="Username*"
+                        value={this.state.username}
+                        onChangeText={username => this.setState({ username })}
+                    /> 
+                    <Input 
+                        placeholder="email@google.com"
+                        label="Email*"
+                        value={this.state.email}
+                        onChangeText={email => this.setState({ email })}
+                    /> 
+                    <Input 
+                        placeholder="Recommended min 8 characters"
+                        label="Password*"
+                        value={this.state.password}
+                        onChangeText={password => this.setState({ password })}
+                        secureTextEntry
+                    /> 
+                    <Input 
+                        placeholder="Singapore number"
+                        label="Phone Number*"
+                        value={this.state.phoneNumber}
+                        onChangeText={phoneNumber => this.setState({ phoneNumber })}
+                    /> 
+                    <Input 
+                        placeholder="DD/MM/YYYY"
+                        label="Birthday*"
+                        value={this.state.birthDate}
+                        onChangeText={birthDate => this.setState({ birthDate })}
+                    /> 
+                    <Input 
+                        placeholder="Will allow actual uploading"
+                        label="Image URL*"
+                        value={this.state.photoURL}
+                        onChangeText={photoURL => this.setState({ photoURL })}
+                    /> 
+                    <TouchableOpacity onPress={() => this.pickImage()}>
+                        <Image style={imageStyle} source={ImageUpload} />
+                    </TouchableOpacity>
+                    <Image
+                        source={this.state.avatarSource}
+                        style={profileStyle}
+                    />
                 </View>
                 <Button onPress={this.handleSubmit.bind(this)}>
                     SUBMIT
@@ -143,6 +209,11 @@ class SignUp extends Component {
 }
 
 const styles = {
+    profileStyle: {
+        height: 120,
+        width: 120,
+        borderRadius: 60
+    },
     containerStyle: {
         flex: 1,
         backgroundColor: '#2D9B83',
@@ -173,8 +244,8 @@ const styles = {
         alignItems: 'center'
     },
     imageStyle: {
-        height: 100,
-        width: 100
+        height: 40,
+        width: 40
     },
     imageContainerStyle: {
         justifyContent: 'center',
