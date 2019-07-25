@@ -43,10 +43,11 @@ class PickImage extends Component {
                     uri: source.uri
                 }, () => {
                     // const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+                    const mime = 'image/jpg'
                     console.log('IMAGE LOADED UP!!!')
                     const Blob = RNFetchBlob.polyfill.Blob
                     const fs = RNFetchBlob.fs
-                    windowXMLHttpRequest = RNFetchBlob.polyfill.XMLHttepRequest
+                    window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
                     window.Blob = Blob
                     let uploadBlob = null
                     const imageRef = storage.ref('images').child('hello.jpg')
@@ -63,6 +64,9 @@ class PickImage extends Component {
                             uploadBlob.close()
                             return imageRef.getDownloadURL()
                             console.log(imageRef.getDownloadURL())
+                        })
+                        .catch((error) => {
+                            console.error(error)
                         })
                 });
             }
