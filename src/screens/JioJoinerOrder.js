@@ -12,6 +12,10 @@ class JioJoinerOrder extends Component {
         userData: {}
     };
 
+    componentDidMount() {
+        this.getUserInfo()
+    }
+
     getUserInfo() {
         let dbLocation = '/users/' + this.props.uid + '/';
         db
