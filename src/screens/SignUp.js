@@ -262,8 +262,9 @@ const styles = {
         alignItems: 'center'
     },
     imageStyle: {
-        height: 40,
-        width: 40
+        height: 30,
+        width: 30,
+        tintColor: '#FFFFFF'
     },
     imageContainerStyle: {
         justifyContent: 'center',

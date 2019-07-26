@@ -88,7 +88,7 @@ class LoginForm extends Component {
                 <View style={headerStyle}>
                     <Text style={textStyle}>KampongJio</Text>
                     <TouchableOpacity onPress={()=> Actions.signUp()}>
-                        <Text style={textStyle}>
+                        <Text style={[textStyle, {fontSize: 16}]}>
                             SIGN UP
                         </Text>
                     </TouchableOpacity>
@@ -129,7 +129,7 @@ const styles = {
     containerStyle: {
         flex: 1,
         backgroundColor: '#2D9B83',
-        justifyContent: 'space-between'
+        // justifyContent: 'space-between'
     },
     titleStyle: {
         textAlign: 'center',
@@ -165,7 +165,8 @@ const styles = {
         opacity: 0.85,
         padding: 15,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 };
 
