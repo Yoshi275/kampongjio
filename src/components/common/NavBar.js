@@ -27,7 +27,6 @@ class NavBar extends Component {
 const styles = {
     containerStyle : {
         backgroundColor: '#8CDCAC',
-        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingTop: 10,
@@ -35,9 +34,8 @@ const styles = {
         marginTop: 5
     },
     imageStyle : {
-        height: 40,
-        width: 40,
-        // tintColor: '#FF7058'
+        height: 30,
+        width: 30,
     }
 }
 

@@ -44,6 +44,7 @@ const RouterComponent = () => {
                     key="mainPage"
                     component={MainPage}
                     title="Kampong Jio"
+                    hideNavBar={true}
                 />
                 <Scene
                     key="jioInformation"

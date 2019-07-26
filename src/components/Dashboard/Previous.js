@@ -17,14 +17,14 @@ const styles = {
     titleStyle: {
         textAlign: 'center',
         textTransform: 'uppercase',
-        fontSize: 32,
+        fontSize: 26,
         color: '#FFFFFF',
         borderWidth: 2,
         borderRadius: 10,
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 50,
-        marginRight: 50,
+        marginLeft: 40,
+        marginRight: 40,
         borderColor: '#FF7058',
         backgroundColor: '#F3A462',
         opacity: 0.9

@@ -106,24 +106,21 @@ class JioDetails extends Component {
 
 const styles = {
     textContainerStyle: {
-        padding: 3,
+        paddingLeft: 3,
+        paddingRight: 3,
         flex: 6,
-        /* Figure out how to make it space out
-        height: 80,
         flexDirection: 'column',
         justifyContent: 'space-around'
-        */
     },
     titleStyle: {
         fontSize: 24,
         color: '#FFFFFF',
         fontWeight: 'bold',
-        //fontFamily: 'KaushanScript-Regular'
-        //no error, but the font cannot show up
     },
     locationStyle: {
         fontSize: 16,
-        color: '#FFFFFF' 
+        color: '#FFFFFF',
+        fontStyle: 'italic'
     },
     timeTextStyle: {
         fontSize: 16,
@@ -140,7 +137,8 @@ const styles = {
     },
     iconContainerStyle: {
         flex: 1,
-        padding: 3
+        padding: 3,
+        justifyContent: 'flex-start'
     },
     imageContainerStyle: {
         justifyContent: 'center',
@@ -150,10 +148,6 @@ const styles = {
         borderWidth: 2,
         borderRadius: 2,
         padding: 3,
-        shadowColor: '#FF0000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
         flex: 2.2 
     }, 
     timeStyle: {

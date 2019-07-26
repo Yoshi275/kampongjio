@@ -25,6 +25,9 @@ class MainPage extends Component {
     render() {
         return (
         <View style={styles.containerStyle}>
+            <View style={styles.headerStyle}>
+                <Text style={styles.textStyle}>KampongJio</Text>
+            </View>
             <Input 
                 placeholder="WORK IN PROGRESS..."
                 label="Location"
@@ -52,6 +55,16 @@ const styles = {
         flex: 1,
         backgroundColor: '#2D9B83',
         justifyContent: 'space-between'
+    },
+    textStyle: {
+        fontSize: 20,
+        color: '#000000',
+        fontWeight: '500',
+    },
+    headerStyle: {
+        backgroundColor: '#8CDCAC',
+        opacity: 0.85,
+        padding: 15,
     }
 };
 

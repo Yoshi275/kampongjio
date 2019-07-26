@@ -27,12 +27,10 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, keybo
 };
 
 const styles = {
-    //flex value is like proportion of space it is given, like input is 2/3 of space
     inputStyle: {
         paddingRight: 5,
         paddingLeft: 5,
-        fontSize: 16,
-        //lineHeight: 23,
+        fontSize: 14,
     },
     inputContainerStyle: {
         // marginBottom is not included because the cards have their own margins, take note
@@ -41,18 +39,18 @@ const styles = {
         borderRadius: 2,
         borderColor: '#000000',
         backgroundColor: '#FFFFFF',
-        marginTop: 5,
+        marginTop: 3,
         marginRight: 10,
-        marginBottom: 5,
-        elevation: 5
+        marginBottom: 3,
+        // elevation: 5
     },
     labelStyle: {
         flex: 1,
-        fontSize: 18,
+        fontSize: 16,
         marginLeft: 10,
-        marginRight: 10,
+        marginRight: 5,
         fontWeight: '400',
-        color: '#FFFFFF'
+        color: '#FFFFFF',
     },
     containerStyle: {
         flexDirection: 'row',

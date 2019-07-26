@@ -4,7 +4,6 @@ import HeaderSection from './HeaderSection';
 import { Food } from '../../resources/icons';
 import { jioStatusText } from '../../data/jioStatus';
 
-//TODO: Consider using encodeURI() for linking function in the URL or react-native-hyperlink
 class FullJioDetails extends Component {
     render() {
         const { 
@@ -29,7 +28,6 @@ class FullJioDetails extends Component {
                         <Text style={titleStyle}>{this.props.order.store}</Text> 
                         <Text style={textStyle}>Coordinator : {this.props.order.coordinatorName}</Text>
                         <Text style={textStyle}>{this.props.order.phoneNumber}</Text>
-                        
                     </View>
                 </HeaderSection>
                 <Text style={textStyle}>Status : {jioStatusText(this.props.order.jioStatus)}</Text>
@@ -54,9 +52,10 @@ class FullJioDetails extends Component {
 
 const styles = {
     containerStyle: {
-        width: 0,
+        // width: 0,
         flexGrow: 1,
-        flex: 1
+        flex: 1, 
+        justifyContent: 'space-around'
     },
     imageStyle: {
         height: 120,
@@ -74,7 +73,7 @@ const styles = {
         color: '#FFFFFF',
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 3,
+        // marginTop: 3,
         marginBottom: 3,
     },
     imageContainerStyle: {
