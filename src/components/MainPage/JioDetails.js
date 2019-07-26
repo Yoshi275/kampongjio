@@ -8,7 +8,6 @@ import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Food } from '../../resources/icons';
-import { Makisan, AlAmaan, McDonalds }  from '../../resources/images';
 import { jioStatusIcon } from '../../data/jioStatus';
 import { storage } from '../../config';
 
@@ -43,7 +42,8 @@ class JioDetails extends Component {
         if(this.props.fromDashboard) {
             Actions.coordinator({ 
                 order: this.props.order,
-                jioOrderId: this.props.jioOrderId
+                jioOrderId: this.props.jioOrderId,
+
             });
         } else {
             Actions.jioInformation({ 
