@@ -93,7 +93,7 @@ class LoginForm extends Component {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View>
+                <ScrollView>
                     <View style={imageContainerStyle}>
                         <Image 
                             source={ Logo }
@@ -115,7 +115,7 @@ class LoginForm extends Component {
                         onChangeText={password => this.setState({ password })}
                         secureTextEntry
                     />
-                </View>               
+                </ScrollView>            
                 <View>
                     {this.renderError()}
                     {this.renderButton()}

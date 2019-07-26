@@ -58,6 +58,17 @@ class JioInformation extends Component {
         }
     }
 
+    renderReceipt() {
+        if (this.props.order.receipt) {
+            return(
+                <View style={{flex: 1, justifyContent: 'center', padding: 5}}>
+                    <Text style={[styles.titleStyle, {paddingBottom: 5}]}>RECEIPT</Text>
+                    <Text>IMAGE WILL BE INSIDE VIEW HERE</Text>
+                    <Text style={styles.textStyle}>Contact us if there are any discrepancies</Text>
+                </View>
+            );
+        }
+    }
     renderButton() {
         if (this.props.fromDashboard) {
             if (this.props.order.jioStatus === '1jioOpen') {
@@ -104,6 +115,7 @@ class JioInformation extends Component {
                         </View>
                     </TimeOrange>
                     {this.renderOrder()}
+                    {this.renderReceipt()}
                 </ScrollView>
                 <View>
                     {this.renderButton()}

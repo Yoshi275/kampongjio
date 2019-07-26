@@ -15,6 +15,7 @@
 			"deliveryCost" : "2",
 			"minOrder" : "40",
 			"discount" : "10",
+			"receipt" : false,
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
@@ -66,6 +67,7 @@
 			"deliveryCost" : "5",
 			"minOrder" : "10",
 			"discount" : "10",
+			"receipt" : false,
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,
@@ -107,7 +109,7 @@
 			"store" : "McDonalds",
 			"coordinatorName" : "Rafi",
 			"phoneNumber" : 99998888,
-			"jioStatus" : "3jioArrived",
+			"jioStatus" : "1jioOpen",
 			"jioLocation" : "Theme Room 2, Learn Lobes",
 			"jioOpenTime" : "21:30",
 			"jioCloseTime" : "22:15",
@@ -117,6 +119,7 @@
 			"deliveryCost" : "2",
 			"minOrder" : "20",
 			"discount" : "15",
+			"receipt" : false,
 			"foodOrders" : [
 				{
 					"foodOrderNo" : 0,

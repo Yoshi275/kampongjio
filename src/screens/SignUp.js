@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { Input, Button } from '../components/common';
+import { Input, Button, Card } from '../components/common';
 import { Actions } from 'react-native-router-flux';
 import { auth, db, storage } from '../config';
 import { ImageUpload } from '../resources/icons/'
@@ -130,16 +130,31 @@ class SignUp extends Component {
             }
         })
     }
+
+    renderAvatar() {
+        if(this.state.avatarSource === null) {
+            return null;
+        } else {
+            return (
+                <View style={styles.avatarViewStyle}>
+                    <Image
+                        source={this.state.avatarSource}
+                        style={styles.profileStyle}
+                    />
+                </View>
+            );
+        }
+    }
     
     render() {
         const {
             containerStyle,
             titleStyle,
             topSectionStyle,
-            usernameStyle,
-            textStyle,
+            imageUploadStyle,
+            imageTextStyle,
             imageStyle,
-            profileStyle
+            image
         } = styles;
 
         return(
@@ -193,13 +208,15 @@ class SignUp extends Component {
                         value={this.state.photoURL}
                         onChangeText={photoURL => this.setState({ photoURL })}
                     /> 
+                    <Card>
                     <TouchableOpacity onPress={() => this.pickImage()}>
-                        <Image style={imageStyle} source={ImageUpload} />
+                        <View style= {imageUploadStyle}>
+                            <Text style={imageTextStyle}>UPLOAD PROFILE IMAGE</Text>
+                            <Image style={imageStyle} source={ImageUpload} />
+                        </View>
                     </TouchableOpacity>
-                    <Image
-                        source={this.state.avatarSource}
-                        style={profileStyle}
-                    />
+                    {this.renderAvatar()}
+                    </Card>
                 </ScrollView>
                 <Button onPress={() => this.checkInput()}>
                     SUBMIT
@@ -259,6 +276,26 @@ const styles = {
         borderColor: '#FF7058',
         height: 140,
         width: 140
+    },
+    imageUploadStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 5, 
+        paddingBottom: 5
+    },
+    imageTextStyle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        paddingRight: 3
+    },
+    avatarViewStyle: {
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        marginBottom: 10
     }
 };
 

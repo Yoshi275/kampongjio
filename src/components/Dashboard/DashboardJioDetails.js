@@ -13,8 +13,12 @@ import { Edit, Food } from '../../resources/icons';
 class DashboardJioDetails extends Component {
     state = {
         jioJoinOrderId: null,
-        orderDetails: {}
+        orderDetails: {},
+        photoURL: null,
+        isPhotoDefault: true
     }
+
+//TODO: Add getProfilePhoto as well
 
     componentDidMount() {
         let foodOrders = Object.entries(this.props.order.foodOrders)
@@ -51,7 +55,7 @@ class DashboardJioDetails extends Component {
                     jioOrderId: this.props.jioOrderId,
                     jioJoinOrderId: this.state.jioJoinOrderId,
                     fromDashboard: true }) 
-            }}>
+            }}> 
                 <Card>
                     <CardSection>
                         <View style={imageContainerStyle}>

@@ -26,7 +26,7 @@ class MainPage extends Component {
         return (
         <View style={styles.containerStyle}>
             <Input 
-                placeholder="Try 'Singapore'"
+                placeholder="WORK IN PROGRESS..."
                 label="Location"
                 value={this.state.location}
                 onChangeText={location => this.setState({ location })}
