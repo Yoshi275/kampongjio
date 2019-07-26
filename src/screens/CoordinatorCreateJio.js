@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Input, Button, TimeOrange } from '../components/common';
+import { Input, Button, TimeOrange, Card } from '../components/common';
 import { db , storage } from '../config';
 import { ImageUpload } from '../resources/icons/'
 import ImagePicker from 'react-native-image-picker'
@@ -125,6 +125,20 @@ class CoordinatorCreateJio extends Component {
         }
     }
 
+    renderAvatar() {
+        if(this.state.avatarSource === null) {
+            return null;
+        } else {
+            return (
+                <View style={styles.avatarViewStyle}>
+                    <Image
+                        source={this.state.avatarSource}
+                        style={styles.profileStyle}
+                    />
+                </View>
+            );
+        }
+    }
     handleSubmit() {
         // a method called after button is pressed
         const postData = {
@@ -178,7 +192,8 @@ class CoordinatorCreateJio extends Component {
             storeStyle, 
             containerStyle, 
             imageStyle,
-            profileStyle
+            imageUploadStyle,
+            imageTextStyle,
         } = styles;
 
         return(
@@ -231,6 +246,7 @@ class CoordinatorCreateJio extends Component {
                     label="Discount (%)*"
                     value={this.state.discount}
                     onChangeText={discount => this.setState({ discount })}
+                    keyboardType='numeric'
                 /> 
                 <TimeOrange>    
                     <View style={{flex: 3}}>
@@ -256,13 +272,15 @@ class CoordinatorCreateJio extends Component {
                         /> 
                     </View>
                 </TimeOrange>
-                <TouchableOpacity onPress={() => this.pickImage()}>
-                    <Image style={imageStyle} source={ImageUpload} />
-                </TouchableOpacity>
-                <Image
-                    source={this.state.avatarSource}
-                    style={profileStyle}
-                />
+                <Card>
+                    <TouchableOpacity onPress={() => this.pickImage()}>
+                        <View style= {imageUploadStyle}>
+                            <Text style={imageTextStyle}>UPLOAD RESTAURANT IMAGE</Text>
+                            <Image style={imageStyle} source={ImageUpload} />
+                        </View>
+                    </TouchableOpacity>
+                    {this.renderAvatar()}
+                </Card>
                 </ScrollView>
 
                 <Button onPress={() => this.checkInput() }>LET'S JIO!</Button>
@@ -275,11 +293,14 @@ const styles = {
     profileStyle: {
         height: 120,
         width: 120,
-        borderRadius: 60
+        shadowColor: '#FFFFFF',
+        shadowOffset: {height: 3},
+        shadowOpacity: 0.8
     },
     imageStyle: {
         height: 40,
-        width: 40
+        width: 40,
+        tintColor: '#FFFFFF'
     },
     containerStyle: {
         flex: 1,
@@ -300,5 +321,25 @@ const styles = {
         borderColor: '#FF7058',
         backgroundColor: '#F3A462',
     },
+    imageUploadStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 5, 
+        paddingBottom: 5
+    },
+    imageTextStyle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        paddingRight: 3
+    },
+    avatarViewStyle: {
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        marginBottom: 10
+    }
 };
 export default CoordinatorCreateJio;
