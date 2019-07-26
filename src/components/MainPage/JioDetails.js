@@ -18,13 +18,13 @@ class JioDetails extends Component {
     }
 
     componentDidMount() {
-        this.getProfilePhoto()
+        this.getRestaurantImage()
     }
 
-    getProfilePhoto() {
+    getRestaurantImage() {
         storage
             .ref('restaurants')
-            .child(`${this.props.order.store.toLowerCase()}.jpg`)
+            .child(`${this.props.order.store.toLowerCase().replace(/\s/g, '')}.jpg`)
             .getDownloadURL()
             .then((url) => {
                 console.log(url)

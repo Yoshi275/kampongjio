@@ -6,6 +6,7 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from '../common';
 import { jioStatusIcon } from '../../data/jioStatus';
 import { Edit, Food } from '../../resources/icons';
+import { storage } from '../../config';
 // import { Makisan, McDonalds, AlAmaan }  from '../../resources/images';
 // import PayButton from './PayButton';
 
@@ -18,8 +19,6 @@ class DashboardJioDetails extends Component {
         isPhotoDefault: true
     }
 
-//TODO: Add getProfilePhoto as well
-
     componentDidMount() {
         let foodOrders = Object.entries(this.props.order.foodOrders)
         for(let i = 0; i < foodOrders.length; i++) {
@@ -30,6 +29,24 @@ class DashboardJioDetails extends Component {
                 })
             }
         }
+        this.getRestaurantImage()
+    }
+
+    getRestaurantImage() {
+        storage
+            .ref('restaurants')
+            .child(`${this.props.order.store.toLowerCase().replace(/\s/g, '')}.jpg`)
+            .getDownloadURL()
+            .then((url) => {
+                console.log(url)
+                this.setState({ 
+                    photoURL: url,
+                    isPhotoDefault: false
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     
     render() {
@@ -50,18 +67,21 @@ class DashboardJioDetails extends Component {
 
         return (
             <TouchableOpacity onPress={() => { Actions.jioInformation({ 
-                    order: this.props.order, 
-                    orderDetails: this.state.orderDetails,
-                    jioOrderId: this.props.jioOrderId,
-                    jioJoinOrderId: this.state.jioJoinOrderId,
-                    fromDashboard: true }) 
+                order: this.props.order, 
+                orderDetails: this.state.orderDetails,
+                jioOrderId: this.props.jioOrderId,
+                jioJoinOrderId: this.state.jioJoinOrderId,
+                fromDashboard: true,
+                isPhotoDefault: this.state.isPhotoDefault,
+                photoURL: this.state.photoURL
+                }) 
             }}> 
                 <Card>
                     <CardSection>
                         <View style={imageContainerStyle}>
                             <Image 
                                 style={imageStyle}
-                                source={ jioImage }
+                                source={this.state.isPhotoDefault ? Food : { uri: this.state.photoURL }}
                             />
                         </View> 
         

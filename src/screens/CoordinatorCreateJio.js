@@ -80,7 +80,7 @@ class CoordinatorCreateJio extends Component {
         window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
         window.Blob = Blob
         let uploadBlob = null
-        const imageRef = storage.ref('restaurants').child(`${this.state.store.toLowerCase()}.jpg`)
+        const imageRef = storage.ref('restaurants').child(`${this.state.store.toLowerCase().replace(/\s/g, '')}.jpg`)
         fs
             .readFile(this.state.avatarSource.uri, 'base64')
             .then((data) => {
