@@ -97,7 +97,7 @@ class Profile extends Component {
                 </View>
                 <View>
                     <Button>
-                        SETTINGS
+                        LOG OUT
                     </Button>
                     <NavBar />
                 </View>
