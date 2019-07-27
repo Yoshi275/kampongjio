@@ -135,8 +135,8 @@ const styles = {
         width: 80
     },
     iconStyle: {
-        height: 40,
-        width: 40,
+        height: 35,
+        width: 35,
     },
     editStyle: {
         height: 25,
@@ -144,20 +144,18 @@ const styles = {
     },
     iconContainerStyle: {
         flex: 1,
-        padding: 3,
+        margin: 3,
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end'
     },
     imageContainerStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 3,
+        // margin: 3,
         borderColor: '#FF7058',
         borderWidth: 2,
         borderRadius: 2,
         padding: 3,
-        flex: 2.2 
+        flex: 2.5 
     }, 
     timeStyle: {
         flexDirection: 'row',

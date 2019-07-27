@@ -194,6 +194,7 @@ const styles = {
         marginLeft: 40,
         marginRight: 40,
         borderColor: '#FF7058',
+        borderStyle: 'dotted',
         backgroundColor: '#F3A462',
     },
     labelStyle: {

@@ -1,8 +1,3 @@
-// A reusable component that house details of jio written in the form of card
-// and card sections. This will display Image, restaurantName, location,
-// CloseJioTime, PickupTime, and StatusIcon
-// Consider making the layout more dynamic when we start hooking it up to a database
-
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
@@ -132,23 +127,23 @@ const styles = {
         width: 80
     },
     iconStyle: {
-        height: 40,
-        width: 40,
+        height: 35,
+        width: 35,
     },
     iconContainerStyle: {
         flex: 1,
-        padding: 3,
-        justifyContent: 'flex-start'
+        margin: 3,
+        // justifyContent: 'flex-start'
     },
     imageContainerStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 3,
+        // margin: 3,
         borderColor: '#FF7058',
         borderWidth: 2,
         borderRadius: 2,
         padding: 3,
-        flex: 2.2 
+        flex: 2.5 
     }, 
     timeStyle: {
         flexDirection: 'row',
