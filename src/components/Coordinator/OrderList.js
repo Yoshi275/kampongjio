@@ -1,13 +1,13 @@
 //Not sure why the ScrollView is not working. Will fix it next time
 
 import React, { Component } from 'react';
-import { ScrollView, FlatList } from 'react-native';
+import { ScrollView, FlatList, Text, View } from 'react-native';
 import OrderDetails from './OrderDetails';
 
 class OrderList extends Component {
     constructor(props) {
         super(props);
-        const count = Object.entries(this.props.order.foodOrders).length;
+        const count = typeof this.props.order.foodOrders != 'undefined' ? Object.keys(this.props.order.foodOrders).length : 0;
         this.state = { jioJoinerNum: count }
     }
 
@@ -25,13 +25,28 @@ class OrderList extends Component {
         item[1].joinerName
     );
 
+    renderFoodOrders() {
+        if(typeof this.props.order.foodOrders != 'undefined') {
+            return(
+                <FlatList 
+                    data={Object.entries(this.props.order.foodOrders)}
+                    renderItem={this.renderJio}
+                    keyExtractor={this.keyExtractor}
+                />
+            )
+        } else {
+            return(
+                <Text>There are no orders. Please add your own order.</Text>
+            )
+        }
+    }
+
     render() {
         return(
-            <FlatList 
-                data={Object.entries(this.props.order.foodOrders)}
-                renderItem={this.renderJio}
-                keyExtractor={this.keyExtractor}
-            />
+            <View>
+               { this.renderFoodOrders() }
+            </View>
+
         );
     }
     

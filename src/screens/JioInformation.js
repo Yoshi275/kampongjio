@@ -11,7 +11,7 @@ class JioInformation extends Component {
     }
 
     componentDidMount() {
-        if(true) {
+        if(this.props.receipt) {
             console.log('HELLO THERE')
             console.log(this.props.jioOrderId)
             this.getReceiptImage()
