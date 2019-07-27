@@ -31,7 +31,7 @@ const styles = {
         justifyContent: 'space-around',
         paddingTop: 10,
         paddingBottom: 10,
-        marginTop: 5
+        // marginTop: 5
     },
     imageStyle : {
         height: 30,

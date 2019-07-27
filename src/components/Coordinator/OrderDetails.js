@@ -159,7 +159,7 @@ class OrderDetails extends Component {
             return (
                 <CardSection>
                     <CardSection>
-                        <Text style={[titleStyle, { fontWeight:'normal' }]}>PAID</Text>
+                        <Text style={[titleStyle, { fontWeight:'normal', fontSize: 22 }]}>PAID</Text>
                         <Switch 
                             style={switchStyle}
                             value={this.state.paid} 
@@ -167,7 +167,7 @@ class OrderDetails extends Component {
                         />
                     </CardSection>
                     <CardSection>
-                        <Text style={[titleStyle, { fontWeight:'normal' }]}>COLLECTED</Text>
+                        <Text style={[titleStyle, { fontWeight:'normal', fontSize: 22 }]}>COLLECTED</Text>
                         <Switch 
                             style={switchStyle}
                             value={this.state.collected} 

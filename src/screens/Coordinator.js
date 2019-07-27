@@ -184,7 +184,7 @@ const styles = {
     storeStyle: {
         textAlign: 'center',
         textTransform: 'uppercase',
-        fontSize: 32,
+        fontSize: 26,
         color: '#FFFFFF',
         borderWidth: 2,
         borderRadius: 10,
@@ -195,6 +195,7 @@ const styles = {
         // paddingLeft: 50,
         // paddingRight: 50,
         borderColor: '#FF7058',
+        borderStyle: 'dotted',
         backgroundColor: '#F3A462',
         flex: 7,
     },
