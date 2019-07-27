@@ -159,8 +159,7 @@ class CoordinatorCreateJio extends Component {
             minOrder: this.state.minOrder,
             discount: this.state.discount,
             receipt: this.state.receipt,
-            foodOrders: [],
-            receipt: false
+            foodOrders: []
         }
 
         const dbLocation = '/allOrders/';

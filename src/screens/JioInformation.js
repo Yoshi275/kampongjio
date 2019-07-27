@@ -12,6 +12,8 @@ class JioInformation extends Component {
 
     componentDidMount() {
         if(true) {
+            console.log('HELLO THERE')
+            console.log(this.props.jioOrderId)
             this.getReceiptImage()
         }
     }
@@ -26,6 +28,7 @@ class JioInformation extends Component {
                 this.setState({
                     receiptURL: url
                 })
+                console.log(this.state.receiptURL)
             })
     }
 
@@ -92,6 +95,7 @@ class JioInformation extends Component {
                     <Text>IMAGE WILL BE INSIDE VIEW HERE</Text>
                     <Image
                         source={{ uri: this.state.receiptURL }}
+                        style={styles.imageStyle}
                     />
                     <Text style={styles.textStyle}>Contact us if there are any discrepancies</Text>
                 </View>
@@ -129,6 +133,7 @@ class JioInformation extends Component {
         return(
             <View style={styles.containerStyle}>
                 <ScrollView>
+                    <Text>{this.props.jioOrderId}</Text>
                     <FullJioDetails 
                         order={this.props.order}
                         isPhotoDefault={this.props.isPhotoDefault}
@@ -156,6 +161,10 @@ class JioInformation extends Component {
 }
 
 const styles = {
+    imageStyle: {
+        height: 120,
+        width: 120
+    },
     containerStyle: {
         flex: 1,
         backgroundColor: '#2D9B83',
