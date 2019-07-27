@@ -24,7 +24,7 @@ class CoordinatorCreateJio extends Component {
         userData: {},
         receipt: false,
         avatarSource: null,
-        imageURI: null
+        uri: null
     };
 
     getUserInfo() {
@@ -160,6 +160,7 @@ class CoordinatorCreateJio extends Component {
             discount: this.state.discount,
             receipt: this.state.receipt,
             foodOrders: [],
+            receipt: false
         }
 
         const dbLocation = '/allOrders/';

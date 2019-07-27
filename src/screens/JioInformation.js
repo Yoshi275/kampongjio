@@ -1,10 +1,36 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, NavBar, TimeOrange, CardSection } from '../components/common';
 import FullJioDetails from '../components/JioInformation/FullJioDetails';
+import { storage } from '../config'
 
 class JioInformation extends Component {
+    state = {
+        receiptURL: null
+    }
+
+    componentDidMount() {
+        if(true) {
+            this.getReceiptImage()
+        }
+    }
+
+    getReceiptImage() {
+        storage
+            .ref('receipts')
+            .child(`${this.props.jioOrderId}.jpg`)
+            .getDownloadURL()
+            .then((url) => {
+                console.log(url)
+                this.setState({
+                    receiptURL: url
+                })
+            })
+    }
+
+    
+
     calcPrice() {
         const count = Object.keys(this.props.order.foodOrders).length;
         const eachDelivery = parseFloat(this.props.order.deliveryCost) / count;
@@ -64,6 +90,9 @@ class JioInformation extends Component {
                 <View style={{flex: 1, justifyContent: 'center', padding: 5}}>
                     <Text style={[styles.titleStyle, {paddingBottom: 5}]}>RECEIPT</Text>
                     <Text>IMAGE WILL BE INSIDE VIEW HERE</Text>
+                    <Image
+                        source={{ uri: this.state.receiptURL }}
+                    />
                     <Text style={styles.textStyle}>Contact us if there are any discrepancies</Text>
                 </View>
             );
