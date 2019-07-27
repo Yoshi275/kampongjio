@@ -148,10 +148,10 @@ const styles = {
         alignItems: 'center',
         backgroundColor: '#F3A462',
         margin: 5,
-        borderWidth: 3,
+        // borderWidth: 3,
         borderRadius: 70,
         // padding: 3,
-        borderColor: '#FF7058',
+        // borderColor: '#FF7058',
         height: 140,
         width: 140
     }

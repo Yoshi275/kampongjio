@@ -144,7 +144,7 @@ const styles = {
     containerOrderStyle: {
         borderWidth: 1,
         backgroundColor: '#FF7058',
-        marginBottom: 5,
+        marginTop: 5
     },
     titleStyle: {
         fontSize: 24,

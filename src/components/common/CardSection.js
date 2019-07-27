@@ -16,11 +16,10 @@ const styles = {
     containerStyle: {
         padding: 5,
         backgroundColor: '#F3A462',
-        alignItems: 'center',
-        // justifyContent: 'flex-start',
+        // alignItems: 'center',
+        justifyContent: 'space-between',
         flexDirection: 'row',
         flex: 1,
-        borderColor: '#2F4353',
         position: 'relative'
     }
 };
