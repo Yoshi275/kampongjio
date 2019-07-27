@@ -3,6 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { Card, NavBar, Button, TimeOrange } from '../components/common';
 import { ProfileIcon } from '../resources/icons';
 import { auth, db, storage } from '../config';
+import { Actions } from 'react-native-router-flux';
 
 class Profile extends Component {
     state = { 
@@ -65,6 +66,18 @@ class Profile extends Component {
             })
     }
 
+    logOut() {
+        auth
+            .signOut()
+            .then((success) => {
+                console.log(success)
+                Actions.loginForm()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     render() {
         const {
             containerStyle,
@@ -96,7 +109,7 @@ class Profile extends Component {
                     </Card>
                 </View>
                 <View>
-                    <Button>
+                    <Button onPress={() => this.logOut()}>
                         LOG OUT
                     </Button>
                     <NavBar />
