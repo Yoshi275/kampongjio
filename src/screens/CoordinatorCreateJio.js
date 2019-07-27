@@ -173,7 +173,9 @@ class CoordinatorCreateJio extends Component {
                 console.log('Success Message: ', response) // success callback
                 this.setState({ firebaseOrderId: response.getKey() });
                 console.log(this.state.firebaseOrderId);
-                this.uploadImage()
+                if(this.state.avatarSource !== null) {
+                    this.uploadImage()
+                }
                 Actions.jioJoinerOrder({ 
                     order: this.state.order, 
                     jioOrderId: this.state.firebaseOrderId,
