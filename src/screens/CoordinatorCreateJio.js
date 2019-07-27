@@ -23,7 +23,7 @@ class CoordinatorCreateJio extends Component {
         firebaseOrderId: '',
         userData: {},
         avatarSource: null,
-        imageURI: null
+        uri: null
     };
 
     getUserInfo() {
