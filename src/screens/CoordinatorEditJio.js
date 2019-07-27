@@ -19,6 +19,7 @@ class CoordinatorEditJio extends Component {
         jioOpenTime: this.props.order.jioOpenTime,
         jioCloseTime: this.props.order.jioCloseTime,
         jioArrivalTime: this.props.order.jioArrivalTime,
+        receipt: this.props.order.receipt,
         order: {},
         foodOrders: this.props.order.foodOrders
     };
@@ -58,6 +59,7 @@ class CoordinatorEditJio extends Component {
             deliveryCost: this.state.deliveryCost,
             minOrder: this.state.minOrder,
             discount: this.state.discount,
+            receipt: this.state.receipt,
             foodOrders: this.state.foodOrders,
         }
 

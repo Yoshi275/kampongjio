@@ -12,7 +12,8 @@ class Coordinator extends Component {
     state = { 
         jioStatus : this.props.order.jioStatus, 
         receipt: this.props.order.receipt,
-        avatarSource: null,
+        receiptSource: null,
+        uri: null
      };
 
     componentDidUpdate() {
@@ -52,14 +53,14 @@ class Coordinator extends Component {
             } else {
                 const source = { uri: response.uri };
                 this.setState({
-                    avatarSource: source,
+                    receiptSource: source,
                     uri: source.uri,
                 })
             }
         })
     }
 
-    uploadImage() {
+    uploadReceipt() {
         const mime = 'image/jpg'
         console.log('IMAGE LOADED UP!!!')
         const Blob = RNFetchBlob.polyfill.Blob
@@ -67,9 +68,9 @@ class Coordinator extends Component {
         window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
         window.Blob = Blob
         let uploadBlob = null
-        const imageRef = storage.ref('restaurants').child(`${this.state.store.toLowerCase().replace(/\s/g, '')}.jpg`)
+        const imageRef = storage.ref('receipts').child(`${this.props.jioOrderId}.jpg`)
         fs
-            .readFile(this.state.avatarSource.uri, 'base64')
+            .readFile(this.state.receiptSource.uri, 'base64')
             .then((data) => {
                 return Blob.build(data, { type: `${mime};BASE64`})
             })
@@ -83,13 +84,14 @@ class Coordinator extends Component {
             })
             .then((url) => {
                 console.log(url)
+                this.setState({ receipt: true })
             })
             .catch((error) => {
                 console.error(error)
             })
     }
 
-    receiptUpload() {
+    renderReceiptUpload() {
         if (this.state.jioStatus === '2jioClosed' && !this.state.receipt) {
             return(
             <Card>
@@ -99,20 +101,20 @@ class Coordinator extends Component {
                         <Image style={styles.imageStyle} source={ImageUpload} />
                     </View>
                 </TouchableOpacity>
-                {this.renderAvatar()}
+                {this.renderReceipt()}
             </Card>
             );
         } 
     }
 
-    renderAvatar() {
-        if(this.state.avatarSource === null) {
+    renderReceipt() {
+        if(this.state.receiptSource === null) {
             return null;
         } else {
             return (
-                <View style={styles.avatarViewStyle}>
+                <View style={styles.receiptViewStyle}>
                     <Image
-                        source={this.state.avatarSource}
+                        source={this.state.receiptSource}
                         style={styles.profileStyle}
                     />
                 </View>
@@ -129,7 +131,7 @@ class Coordinator extends Component {
         } else if( this.state.jioStatus === '2jioClosed' ) {
             if (!this.state.receipt) {
                 return (
-                    <Button onPress={ () => this.setState({ receipt: true }) }>UPLOAD RECEIPT</Button>
+                    <Button onPress={ () => this.uploadReceipt() }>UPLOAD RECEIPT</Button>
                 );
             } else {
                 return (
@@ -158,7 +160,7 @@ class Coordinator extends Component {
             <View style={containerStyle}>
                 <ScrollView>
                     <Text style={storeStyle}>{store}</Text>
-                    {this.receiptUpload()}
+                    {this.renderReceiptUpload()}
                     <CoordinatorFullJio 
                         order={this.props.order}
                         jioOrderId={this.props.jioOrderId}
@@ -235,7 +237,7 @@ const styles = {
         color: '#FFFFFF',
         paddingRight: 3
     },
-    avatarViewStyle: {
+    receiptViewStyle: {
         flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center',

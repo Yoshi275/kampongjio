@@ -22,8 +22,9 @@ class CoordinatorCreateJio extends Component {
         order: {},
         firebaseOrderId: '',
         userData: {},
+        receipt: false,
         avatarSource: null,
-        imageURI: null
+        uri: null
     };
 
     getUserInfo() {
@@ -157,7 +158,8 @@ class CoordinatorCreateJio extends Component {
             deliveryCost: this.state.deliveryCost,
             minOrder: this.state.minOrder,
             discount: this.state.discount,
-            foodOrders: [],
+            receipt: this.state.receipt,
+            foodOrders: []
         }
 
         const dbLocation = '/allOrders/';
