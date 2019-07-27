@@ -22,6 +22,7 @@ class CoordinatorCreateJio extends Component {
         order: {},
         firebaseOrderId: '',
         userData: {},
+        receipt: false,
         avatarSource: null,
         imageURI: null
     };
@@ -157,6 +158,7 @@ class CoordinatorCreateJio extends Component {
             deliveryCost: this.state.deliveryCost,
             minOrder: this.state.minOrder,
             discount: this.state.discount,
+            receipt: this.state.receipt,
             foodOrders: [],
         }
 
