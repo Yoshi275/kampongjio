@@ -65,17 +65,19 @@ class PreviousDetails extends Component {
                     let filteredOrders = []
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
-                        let foodOrdersArr = Object.values(order[1].foodOrders)
-                        for(let i = 0; i < foodOrdersArr.length; i++) {
-                            if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
-                                orderIncludesUser = true
+                        if(typeof order[1].foodOrders != 'undefined') {
+                            let foodOrdersArr = Object.values(order[1].foodOrders)
+                            for(let i = 0; i < foodOrdersArr.length; i++) {
+                                if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
+                                    orderIncludesUser = true
+                                }
                             }
-                        }
-                        if(orderIncludesUser) {
-                            filteredOrders.push(order)
-                            console.log('ADDING ORDER TO FILTERED')
-                        } else {
-                            console.log('IGNORING ORDER')
+                            if(orderIncludesUser) {
+                                filteredOrders.push(order)
+                                console.log('ADDING ORDER TO FILTERED')
+                            } else {
+                                console.log('IGNORING ORDER')
+                            }
                         }
                     })
                     this.setState({ allOrders: filteredOrders });

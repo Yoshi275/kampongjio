@@ -92,7 +92,7 @@ class Coordinator extends Component {
     }
 
     renderReceiptUpload() {
-        if ((this.state.jioStatus === '2jioClosed') && !this.state.receipt) {
+        if ((this.state.jioStatus != '1jioOpen') && !this.state.receipt) {
             return(
             <Card>
                 <TouchableOpacity onPress={() => this.pickImage()}>
@@ -117,6 +117,9 @@ class Coordinator extends Component {
                         source={this.state.receiptSource}
                         style={styles.profileStyle}
                     />
+                    <TouchableOpacity onPress={ () => this.uploadReceipt() }>
+                        <Text style={styles.uploadStyle}>UPLOAD ME!</Text>
+                    </TouchableOpacity>
                 </View>
             );
         }
@@ -129,16 +132,15 @@ class Coordinator extends Component {
                 <Button onPress={ () => this.setState({ jioStatus : '2jioClosed'}) }>JIO CLOSED</Button>
             );
         } else if( this.state.jioStatus === '2jioClosed' ) {
+            return (
+                <Button onPress={ () => this.setState({ jioStatus : '3jioArrived'}) }>FOOD ARRIVED</Button>
+            );
+        } else {        
             if (!this.state.receipt) {
-                return (
-                    <Button onPress={ () => this.uploadReceipt() }>UPLOAD RECEIPT</Button>
-                );
-            } else {
-                return (
-                    <Button onPress={ () => this.setState({ jioStatus : '3jioArrived'}) }>FOOD ARRIVED</Button>
+                return(
+                    <Text style={styles.uploadStyle}>PLEASE UPLOAD RECEIPT TO COMPLETE JIO</Text>
                 );
             }
-        } else {        
             return(
                 <Button onPress={ () => {Actions.mainPage(); this.setState({ jioStatus : '4jioCompleted'});} }>JIO COMPLETED</Button>
             );
@@ -242,6 +244,12 @@ const styles = {
         justifyContent: 'center', 
         alignItems: 'center',
         marginBottom: 10
+    },
+    uploadStyle: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFFFFF'
     }
 }
 
