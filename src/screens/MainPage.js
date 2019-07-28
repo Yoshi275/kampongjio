@@ -26,7 +26,7 @@ class MainPage extends Component {
         return (
         <View style={styles.containerStyle}>
             <View style={styles.headerStyle}>
-                <Text style={styles.textStyle}>KampongJio</Text>
+                <Text style={styles.textStyle}>All Existing Jios Near You</Text>
             </View>
             <Input 
                 placeholder="WORK IN PROGRESS..."
