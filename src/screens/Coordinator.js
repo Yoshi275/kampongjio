@@ -92,12 +92,12 @@ class Coordinator extends Component {
     }
 
     renderReceiptUpload() {
-        if (this.state.jioStatus === '2jioClosed' && !this.state.receipt) {
+        if ((this.state.jioStatus != '1jioOpen') && !this.state.receipt) {
             return(
             <Card>
                 <TouchableOpacity onPress={() => this.pickImage()}>
                     <View style= {styles.imageUploadStyle}>
-                        <Text style={styles.imageTextStyle}>UPLOAD RECEIPT</Text>
+                        <Text style={styles.imageTextStyle}>RECEIPT</Text>
                         <Image style={styles.imageStyle} source={ImageUpload} />
                     </View>
                 </TouchableOpacity>
@@ -112,11 +112,21 @@ class Coordinator extends Component {
             return null;
         } else {
             return (
-                <View style={styles.receiptViewStyle}>
-                    <Image
-                        source={this.state.receiptSource}
-                        style={styles.profileStyle}
-                    />
+                <View>
+                    <View style={styles.receiptViewStyle}>
+                        <Image
+                            source={this.state.receiptSource}
+                            style={styles.profileStyle}
+                        />
+                        {/* <TouchableOpacity onPress={ () => this.uploadReceipt() }>
+                            <Text style={styles.uploadStyle}>UPLOAD ME!</Text>
+                        </TouchableOpacity> */}
+                    </View>
+                    <Button 
+                        extraStyle={styles.uploadButtonStyle} 
+                        onPress={ () => this.uploadReceipt() }>
+                            UPLOAD ME!
+                        </Button>
                 </View>
             );
         }
@@ -129,16 +139,18 @@ class Coordinator extends Component {
                 <Button onPress={ () => this.setState({ jioStatus : '2jioClosed'}) }>JIO CLOSED</Button>
             );
         } else if( this.state.jioStatus === '2jioClosed' ) {
+            return (
+                <Button onPress={ () => this.setState({ jioStatus : '3jioArrived'}) }>FOOD ARRIVED</Button>
+            );
+        } else {        
             if (!this.state.receipt) {
-                return (
-                    <Button onPress={ () => this.uploadReceipt() }>UPLOAD RECEIPT</Button>
-                );
-            } else {
-                return (
-                    <Button onPress={ () => this.setState({ jioStatus : '3jioArrived'}) }>FOOD ARRIVED</Button>
+                return(
+                    <View>
+                        <Text style={styles.uploadStyle}>PLEASE UPLOAD RECEIPT</Text>
+                        <Text style={styles.uploadStyle}>TO COMPLETE JIO</Text>
+                    </View>
                 );
             }
-        } else {        
             return(
                 <Button onPress={ () => {Actions.mainPage(); this.setState({ jioStatus : '4jioCompleted'});} }>JIO COMPLETED</Button>
             );
@@ -241,7 +253,18 @@ const styles = {
         flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center',
-        marginBottom: 10
+        marginBottom: 5
+    },
+    uploadStyle: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFFFFF'
+    },
+    uploadButtonStyle: {
+        flex: 1, 
+        backgroundColor: '#000000',
+        borderWidth: 0
     }
 }
 

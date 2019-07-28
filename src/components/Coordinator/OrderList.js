@@ -36,7 +36,7 @@ class OrderList extends Component {
             )
         } else {
             return(
-                <Text>There are no orders. Please add your own order.</Text>
+                <Text style={styles.errorStyle}>There are no orders. Please add your own order.</Text>
             )
         }
     }
@@ -50,6 +50,14 @@ class OrderList extends Component {
         );
     }
     
+}
+
+const styles = {
+    errorStyle: {
+        fontSize: 18,
+        color: '#FFFFFF',
+        textAlign: 'center'
+    }
 }
 
 export default OrderList;
