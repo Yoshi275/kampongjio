@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import DashboardJioDetails from './DashboardJioDetails';
 import { db, auth } from '../../config';
 import Dashboard from '../../screens/Dashboard';
@@ -60,21 +60,29 @@ class OngoingDetails extends Component {
                     allOrdersArr.forEach((order) => {
                         let orderIncludesUser = false
                         if(order[1].coordinatorName !== this.state.userData.displayName) {
-                            let foodOrdersArr = Object.values(order[1].foodOrders)
-                            for(let i = 0; i < foodOrdersArr.length; i++) {
-                                if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
-                                    orderIncludesUser = true
-                                    // console.log('FOOD ORDER ACCEPTED')
+                            if(typeof order[1].foodOrders != 'undefined') {
+                                let foodOrdersArr = Object.values(order[1].foodOrders)
+                                for(let i = 0; i < foodOrdersArr.length; i++) {
+                                    if(foodOrdersArr[i].joinerName === this.state.userData.displayName) {
+                                        orderIncludesUser = true
+                                        console.log('FOOD ORDER ACCEPTED')
+                                        // console.log(foodOrdersArr[i])
+                                    }
+                                }
+                                if(orderIncludesUser) {
+                                    filteredOrders.push(order)
+                                    console.log(order)
+                                    console.log('ADDING ORDER TO FILTERED')
+                                    console.log(filteredOrders)
+                                } else {
+                                    console.log('IGNORING ORDER')
                                 }
                             }
                         }
-                        if(orderIncludesUser) {
-                            filteredOrders.push(order)
-                            // console.log('ADDING ORDER TO FILTERED')
-                        } else {
-                            // console.log('IGNORING ORDER')
-                        }
+                        
                     })
+                    console.log('I AM AFTER FOREACH')
+                    console.log(filteredOrders);
                     this.setState({ allOrders: filteredOrders });
                 }
             });

@@ -6,7 +6,7 @@
 // https://www.youtube.com/watch?v=5vFgqCfggC0
 
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import DashboardJioDetails from './DashboardJioDetails';
 import { auth, db } from '../../config';
 

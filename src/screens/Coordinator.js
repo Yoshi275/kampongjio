@@ -92,7 +92,7 @@ class Coordinator extends Component {
     }
 
     renderReceiptUpload() {
-        if (this.state.jioStatus === '2jioClosed' && !this.state.receipt) {
+        if ((this.state.jioStatus === '2jioClosed') && !this.state.receipt) {
             return(
             <Card>
                 <TouchableOpacity onPress={() => this.pickImage()}>

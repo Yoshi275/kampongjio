@@ -69,6 +69,7 @@ class InitiatedDetails extends Component {
                         if(order[1].coordinatorName === this.state.userData.displayName) {
                             filteredOrders.push(order)
                     }})
+                    console.log(filteredOrders);
                     this.setState({ allOrders: filteredOrders });
                 } 
             });
@@ -98,6 +99,7 @@ class InitiatedDetails extends Component {
                     renderItem={this.renderJio}
                     keyExtractor={this.keyExtractor}
                 />
+                {/* <Text>RENDER CAN</Text> */}
             </View>
         );
     }
