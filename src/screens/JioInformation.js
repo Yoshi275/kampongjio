@@ -133,7 +133,6 @@ class JioInformation extends Component {
         return(
             <View style={styles.containerStyle}>
                 <ScrollView>
-                    <Text>{this.props.jioOrderId}</Text>
                     <FullJioDetails 
                         order={this.props.order}
                         isPhotoDefault={this.props.isPhotoDefault}
