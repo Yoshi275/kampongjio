@@ -34,7 +34,10 @@ class FullJioDetails extends Component {
                 <Text style={textStyle}>Location : {this.props.order.jioLocation}</Text>             
                 <View style={{flexDirection: 'row'}}>
                     <Text style={textStyle}>Menu : </Text>
-                    <TouchableOpacity style={{flex: 1, flexDirection: 'column'}} onPress={()=> Linking.openURL( this.props.order.jioMenuURL )}>
+                    <TouchableOpacity style={{flex: 1, flexDirection: 'column'}} onPress={()=> 
+                        Linking
+                            .openURL( this.props.order.jioMenuURL )
+                            .catch((err) => console.error("Error: " + err))}>
                         <Text style={[textStyle, {fontWeight: '800', textDecorationLine:'underline'}]}>
                             {this.props.order.jioMenuURL}
                         </Text>
